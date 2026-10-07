@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Title, description and keywords are filled from config.js (seo). -->
+  <title>Cabinet médical</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="theme-color" content="#F7F9FA">
+  <meta name="format-detection" content="telephone=no">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Noto+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <script src="config.js"></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+  <div class="top-sentinel" aria-hidden="true"></div>
+
+  <!-- 1. Header -->
+  <header class="site-header" data-header>
+    <div class="container header-inner">
+      <a class="brand" href="#top" data-bind="brand">
+        <span class="brand-mark" aria-hidden="true" data-bind="brandMark"></span>
+        <span class="brand-name" data-bind="cabinetName"></span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Navigation principale" data-nav>
+        <ul class="nav-list">
+          <li><a href="#consultations" data-nav-for="consultations">Consultations</a></li>
+          <li><a href="#medecin" data-nav-for="medecin">Le médecin</a></li>
+          <li><a href="#cabinet" data-nav-for="cabinet">Le cabinet</a></li>
+          <li><a href="#infos" data-nav-for="infos">Infos pratiques</a></li>
+          <li><a href="#faq" data-nav-for="faq">FAQ</a></li>
+          <li><a href="#contact" data-nav-for="contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn-primary btn-sm" data-action="book" target="_blank" rel="noopener">Prendre rendez-vous</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav" data-menu-toggle>
+          <span class="visually-hidden" data-menu-label>Ouvrir le menu</span>
+          <span class="icon" data-icon="menu-2" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenu">
+    <!-- 2. Hero -->
+    <section class="hero" id="top" data-section="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="hero-eyebrow" data-bind="heroEyebrow"></p>
+          <h1 class="hero-title" data-bind="doctorName"></h1>
+          <p class="hero-intro" data-bind="intro"></p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary" data-action="book" target="_blank" rel="noopener">
+              <span class="icon" data-icon="calendar-event" aria-hidden="true"></span>
+              Prendre rendez-vous
+            </a>
+            <a class="btn btn-ghost" data-action="call">
+              <span class="icon" data-icon="phone" aria-hidden="true"></span>
+              Appeler le cabinet
+            </a>
+          </div>
+          <dl class="facts" data-facts></dl>
+        </div>
+
+        <figure class="hero-visual reveal" data-hero-visual>
+          <div class="portrait" data-portrait></div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 3. Domaines de consultation -->
+    <section class="section" id="consultations" data-section="consultations" aria-labelledby="t-consultations">
+      <div class="container">
+        <h2 class="section-title reveal" id="t-consultations">Domaines de consultation</h2>
+        <ul class="consult-grid" data-consultations></ul>
+      </div>
+    </section>
+
+    <!-- 4. Le médecin -->
+    <section class="section section-tint" id="medecin" data-section="medecin" aria-labelledby="t-medecin">
+      <div class="container doctor-grid">
+        <div class="doctor-intro reveal">
+          <h2 class="section-title" id="t-medecin">Le médecin</h2>
+          <div class="doctor-bio" data-bio></div>
+          <dl class="doctor-meta" data-doctor-meta></dl>
+        </div>
+        <div class="doctor-path reveal" data-qualifications-wrap>
+          <h3 class="sub-title">Formation et parcours</h3>
+          <ol class="timeline" data-qualifications></ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Le cabinet -->
+    <section class="section" id="cabinet" data-section="cabinet" aria-labelledby="t-cabinet">
+      <div class="container">
+        <h2 class="section-title reveal" id="t-cabinet">Le cabinet</h2>
+        <div class="cabinet-layout">
+          <div class="gallery reveal" data-gallery></div>
+          <div class="equipment reveal" data-equipment-wrap>
+            <h3 class="sub-title">Sur place</h3>
+            <ul class="equipment-list" data-equipment></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Informations pratiques -->
+    <section class="section section-tint" id="infos" data-section="infos" aria-labelledby="t-infos">
+      <div class="container">
+        <h2 class="section-title reveal" id="t-infos">Informations pratiques</h2>
+        <div class="infos-grid">
+          <div class="infos-main reveal">
+            <div class="hours-card" data-hours-wrap>
+              <div class="hours-head">
+                <h3 class="sub-title">Horaires</h3>
+                <p class="status" data-status role="status"></p>
+              </div>
+              <table class="hours-table">
+                <caption class="visually-hidden">Horaires d'ouverture du cabinet</caption>
+                <tbody data-hours></tbody>
+              </table>
+            </div>
+            <dl class="info-list" data-info-list></dl>
+          </div>
+          <div class="infos-side reveal">
+            <div class="map" data-map></div>
+            <a class="link-arrow" data-action="directions" target="_blank" rel="noopener">
+              Voir l'itinéraire
+              <span class="icon" data-icon="arrow-up-right" aria-hidden="true"></span>
+            </a>
+          </div>
+        </div>
+        <div class="insurance reveal" data-insurance-wrap>
+          <h3 class="sub-title">Organismes acceptés</h3>
+          <ul class="chips" data-insurance></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. FAQ -->
+    <section class="section" id="faq" data-section="faq" aria-labelledby="t-faq">
+      <div class="container container-narrow">
+        <h2 class="section-title reveal" id="t-faq">Questions fréquentes</h2>
+        <div class="accordion reveal" data-faq></div>
+      </div>
+    </section>
+
+    <!-- 8. Contact -->
+    <section class="section" id="contact" data-section="contact" aria-labelledby="t-contact">
+      <div class="container">
+        <div class="contact-panel reveal">
+          <h2 class="section-title" id="t-contact">Contact</h2>
+          <ul class="contact-grid" data-contact></ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 9. Footer -->
+  <footer class="site-footer" data-section="footer">
+    <div class="container footer-grid">
+      <div>
+        <p class="footer-name" data-bind="cabinetName"></p>
+        <p class="footer-text" data-bind="address"></p>
+        <p class="footer-text" data-footer-hours></p>
+      </div>
+      <div class="footer-legal">
+        <p class="footer-emergency" data-emergency>
+          <span class="icon" data-icon="alert-triangle" aria-hidden="true"></span>
+          <span data-bind="emergency"></span>
+        </p>
+        <p class="footer-text" data-bind="disclaimer"></p>
+        <p class="footer-small" data-copyright></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile action bar -->
+  <div class="action-bar" data-action-bar>
+    <a class="action-bar-btn" data-action="call">
+      <span class="icon" data-icon="phone" aria-hidden="true"></span>
+      Appeler
+    </a>
+    <a class="action-bar-btn action-bar-btn-primary" data-action="whatsapp" target="_blank" rel="noopener">
+      <span class="icon" data-icon="brand-whatsapp" aria-hidden="true"></span>
+      WhatsApp
+    </a>
+  </div>
+
+  <noscript>
+    <p class="noscript">Ce site nécessite JavaScript pour afficher ses informations. Merci de l'activer dans votre navigateur.</p>
+  </noscript>
+</body>
+</html>
