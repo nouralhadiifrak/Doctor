@@ -22,9 +22,9 @@ window.SITE = {
 
   /* Palette supplied by the client: #464B71, #118AB2, #7CD5C7, #F2F2ED */
   theme: {
-    primaryColor: "#464B71",     // buttons, logo, links (white text 8.4:1)
-    accentColor: "#118AB2",      // status, small accents (darkened automatically for text)
-    highlightColor: "#7CD5C7",   // decorative only: placeholders, check marks
+    primaryColor: "#464B71",     // hero block, buttons on light backgrounds (light text 7.5:1)
+    accentColor: "#118AB2",      // contact block, large tile (deepened behind small text)
+    highlightColor: "#7CD5C7",   // buttons on dark blocks, arcs, tiles (dark text 8.2:1)
     backgroundColor: "#F2F2ED",
     textColor: "#262A42"         // derived from #464B71 for body text (12.5:1)
   },
@@ -34,8 +34,17 @@ window.SITE = {
     navDoctor: "La praticienne",
     consultations: "Domaines de prise en charge",
     doctor: "La kinésithérapeute",
-    doctorPath: "Formation"
+    doctorPath: "Formation",
+    process: "Déroulement de la prise en charge"
   },
+
+  /* Standard course of care in kinésithérapie (no claim specific to this practice). */
+  process: [
+    { title: "Bilan", description: "La première séance commence par un bilan : vos symptômes, vos examens et vos objectifs.", icon: "clipboard-heart" },
+    { title: "Programme", description: "Un programme de rééducation est établi selon la prescription médicale et le bilan.", icon: "file-certificate" },
+    { title: "Séances", description: "Exercices, techniques manuelles et conseils, à poursuivre aussi chez vous.", icon: "stretching" },
+    { title: "Suivi", description: "Les progrès sont réévalués au fil des séances, en lien avec votre médecin.", icon: "activity-heartbeat" }
+  ],
 
   intro: "Séances de kinésithérapie et de rééducation sur rendez-vous, au cabinet à Casablanca. Chaque prise en charge débute par un bilan, puis un programme de séances adapté à votre situation.",
 

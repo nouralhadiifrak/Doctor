@@ -402,6 +402,22 @@
     return items.length > 0;
   }
 
+  /* Optional "how it works" list (kiné template). Skipped if the page has no slot. */
+  function renderProcess() {
+    var el = $("[data-process]");
+    if (!el) return false;
+    var items = list(SITE.process);
+    el.innerHTML = items.map(function (p) {
+      return '<li class="process-item reveal">' +
+        '<span class="process-icon"><span class="icon">' + icon(p.icon || "check") + "</span></span>" +
+        "<h3>" + esc(p.title) + "</h3>" +
+        (p.description ? "<p>" + esc(p.description) + "</p>" : "") +
+        "</li>";
+    }).join("");
+    el.style.setProperty("--steps", items.length || 1);
+    return items.length > 0;
+  }
+
   function renderDoctor() {
     var bio = Array.isArray(doctor.bio) ? list(doctor.bio) : (doctor.bio ? String(doctor.bio).split(/\n\s*\n/) : []);
     $("[data-bio]").innerHTML = bio.map(function (p) { return "<p>" + esc(p.trim()) + "</p>"; }).join("");
@@ -658,7 +674,10 @@
       });
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
     els.forEach(function (el, i) {
-      if (el.classList.contains("consult-item")) el.style.transitionDelay = (i % 3) * 70 + "ms";
+      if (el.classList.contains("consult-item") || el.classList.contains("process-item")) {
+        var siblings = Array.prototype.indexOf.call(el.parentNode.children, el);
+        el.style.transitionDelay = (siblings % 4) * 80 + "ms";
+      }
       io.observe(el);
     });
   }
@@ -673,6 +692,7 @@
     renderHeader();
     renderHero();
     section("consultations", renderConsultations());
+    section("process", renderProcess());
     section("medecin", renderDoctor());
     section("cabinet", renderCabinet());
     section("infos", renderPractical());

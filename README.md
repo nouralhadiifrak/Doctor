@@ -7,14 +7,15 @@ deploys as a static folder.
 ## Structure
 
 ```
-templates/medecin/        Reusable template (index.html, style.css, script.js, config.js)
+templates/medecin/        Calm template for doctors (index.html, style.css, script.js, config.js)
+templates/kine/           Bold colour-block template for kinés (same config.js schema + process)
 clients/demo-medecin/     Demo site for prospects (fictional content) + images/
 clients/kine-wiam-kaabat/ Cabinet de Kinésithérapie Kaabat Wiam (fields marked TO CONFIRM in config.js)
 ```
 
 ## New client
 
-1. Copy `templates/medecin/` to `clients/<client-slug>/` and add an `images/` folder.
+1. Copy `templates/medecin/` (or `templates/kine/`) to `clients/<client-slug>/` and add an `images/` folder.
 2. Fill in `config.js`. All content lives there; `index.html` holds none.
    - `theme.primaryColor` / `theme.accentColor` recolour the whole site.
    - Empty a field (`""`, `[]`, `null`) and its block or section disappears.
@@ -34,5 +35,7 @@ clients/kine-wiam-kaabat/ Cabinet de Kinésithérapie Kaabat Wiam (fields marked
 Informational tone only: no slogans, no superlatives, no promises of results,
 no patient testimonials, no before/after images, no prices presented as offers.
 Never publish invented qualifications, registration numbers, reviews or phone numbers.
+
+`script.js` is shared: keep it identical in both templates.
 
 Icons: [Tabler Icons](https://tabler.io/icons) (MIT), inlined in `script.js`.
