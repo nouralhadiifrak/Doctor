@@ -48,7 +48,27 @@
     "external-link": '<path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6"/><path d="M11 13l9 -9"/><path d="M15 4h5v5"/>',
     "check": '<path d="M5 12l5 5l10 -10"/>',
     "chevron-down": '<path d="M6 9l6 6l6 -6"/>',
-    "alert-triangle": '<path d="M12 9v4"/><path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0"/><path d="M12 16h.01"/>'
+    "alert-triangle": '<path d="M12 9v4"/><path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0"/><path d="M12 16h.01"/>',
+    "massage": '<path d="M3 17a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"/><path d="M8 5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"/><path d="M4 22l4 -2v-3h12"/><path d="M11 20h9"/><path d="M8 14l3 -2l1 -4c3 1 3 4 3 6"/>',
+    "bone": '<path d="M15 3a3 3 0 0 1 3 3a3 3 0 1 1 -2.12 5.122l-4.758 4.758a3 3 0 1 1 -5.117 2.297l0 -.177l-.176 0a3 3 0 1 1 2.298 -5.115l4.758 -4.758a3 3 0 0 1 2.12 -5.122l-.005 -.005"/>',
+    "run": '<path d="M11.007 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M4 17l5 1l.75 -1.5"/><path d="M15 21v-4l-4 -3l1 -6"/><path d="M7 12v-3l5 -1l3 3l3 1"/>',
+    "stretching": '<path d="M15 5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"/><path d="M5 20l5 -.5l1 -2"/><path d="M18 20v-5h-5.5l2.5 -6.5l-5.5 1l1.5 2"/>',
+    "stretching-2": '<path d="M6.5 21l3.5 -5"/><path d="M5 11l7 -2"/><path d="M16 21l-4 -7v-5l7 -4"/><path d="M9.007 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/>',
+    "walk": '<path d="M12 4a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"/><path d="M7 21l3 -4"/><path d="M16 21l-2 -4l-3 -3l1 -6"/><path d="M6 12l2 -3l4 -1l3 3l3 1"/>',
+    "brain": '<path d="M15.5 13a3.5 3.5 0 0 0 -3.5 3.5v1a3.5 3.5 0 0 0 7 0v-1.8"/><path d="M8.5 13a3.5 3.5 0 0 1 3.5 3.5v1a3.5 3.5 0 0 1 -7 0v-1.8"/><path d="M17.5 16a3.5 3.5 0 0 0 0 -7h-.5"/><path d="M19 9.3v-2.8a3.5 3.5 0 0 0 -7 0"/><path d="M6.5 16a3.5 3.5 0 0 1 0 -7h.5"/><path d="M5 9.3v-2.8a3.5 3.5 0 0 1 7 0v10"/>',
+    "old": '<path d="M11 21l-1 -4l-2 -3v-6"/><path d="M5 14l-1 -3l4 -3l3 2l3 .5"/><path d="M7 4a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"/><path d="M7 17l-2 4"/><path d="M16 21v-8.5a1.5 1.5 0 0 1 3 0v.5"/>',
+    "ball-football": '<path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M12 7l4.76 3.45l-1.76 5.55h-6l-1.76 -5.55l4.76 -3.45"/><path d="M12 7v-4m3 13l2.5 3m-.74 -8.55l3.74 -1.45m-11.44 7.05l-2.56 2.95m.74 -8.55l-3.74 -1.45"/>',
+    "body-scan": '<path d="M11 8a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"/><path d="M10 17v-1a2 2 0 1 1 4 0v1"/><path d="M8 10q 1 1 2 1h4q 1 0 2 -1"/><path d="M12 11v3"/><path d="M3 7v-2a2 2 0 0 1 2 -2h2"/><path d="M3 17v2a2 2 0 0 0 2 2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M17 21h2a2 2 0 0 0 2 -2v-2"/>',
+    "barbell": '<path d="M2 12h1"/><path d="M6 8h-2a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h2"/><path d="M6 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1"/><path d="M9 12h6"/><path d="M15 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1"/><path d="M18 8h2a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-2"/><path d="M22 12h-1"/>',
+    "brand-instagram": '<path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4l0 -10"/><path d="M8.5 12a3.5 3.5 0 1 0 7 0a3.5 3.5 0 0 0 -7 0"/><path d="M17 7v.01"/>',
+    "message-circle": '<path d="M3 20l1.3 -3.9c-2.324 -3.437 -1.426 -7.872 2.1 -10.374c3.526 -2.501 8.59 -2.296 11.845 .48c3.255 2.777 3.695 7.266 1.029 10.501c-2.666 3.235 -7.615 4.215 -11.574 2.293l-4.7 1"/>',
+    "accessible": '<path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M10 16.5l2 -3l2 3m-2 -3v-2l3 -1m-6 0l3 1"/><path d="M11.5 7.5a.5 .5 0 1 0 1 0a.5 .5 0 1 0 -1 0" fill="currentColor"/>',
+    "wave-sine": '<path d="M21 12h-2c-.894 0 -1.662 -.857 -1.761 -2c-.296 -3.45 -.749 -6 -2.749 -6s-2.5 3.582 -2.5 8s-.5 8 -2.5 8s-2.452 -2.547 -2.749 -6c-.1 -1.147 -.867 -2 -1.763 -2h-2"/>',
+    "flame": '<path d="M12 10.941c2.333 -3.308 .167 -7.823 -1 -8.941c0 3.395 -2.235 5.299 -3.667 6.706c-1.43 1.408 -2.333 3.294 -2.333 5.588c0 3.704 3.134 6.706 7 6.706c3.866 0 7 -3.002 7 -6.706c0 -1.712 -1.232 -4.403 -2.333 -5.588c-2.084 3.353 -3.257 3.353 -4.667 2.235"/>',
+    "snowflake": '<path d="M10 4l2 1l2 -1"/><path d="M12 2v6.5l3 1.72"/><path d="M17.928 6.268l.134 2.232l1.866 1.232"/><path d="M20.66 7l-5.629 3.25l.01 3.458"/><path d="M19.928 14.268l-1.866 1.232l-.134 2.232"/><path d="M20.66 17l-5.629 -3.25l-2.99 1.738"/><path d="M14 20l-2 -1l-2 1"/><path d="M12 22v-6.5l-3 -1.72"/><path d="M6.072 17.732l-.134 -2.232l-1.866 -1.232"/><path d="M3.34 17l5.629 -3.25l-.01 -3.458"/><path d="M4.072 9.732l1.866 -1.232l.134 -2.232"/><path d="M3.34 7l5.629 3.25l2.99 -1.738"/>',
+    "treadmill": '<path d="M10 3a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"/><path d="M3 14l4 1l.5 -.5"/><path d="M12 18v-3l-3 -2.923l.75 -5.077"/><path d="M6 10v-2l4 -1l2.5 2.5l2.5 .5"/><path d="M21 22a1 1 0 0 0 -1 -1h-16a1 1 0 0 0 -1 1"/><path d="M18 21l1 -11l2 -1"/>',
+    "woman": '<path d="M10 16v5"/><path d="M14 16v5"/><path d="M8 16h8l-2 -7h-4l-2 7"/><path d="M5 11c1.667 -1.333 3.333 -2 5 -2"/><path d="M19 11c-1.667 -1.333 -3.333 -2 -5 -2"/><path d="M10 4a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/>',
+    "baby-bottle": '<path d="M5 10h14"/><path d="M12 2v2"/><path d="M12 4a5 5 0 0 1 5 5v11a2 2 0 0 1 -2 2h-6a2 2 0 0 1 -2 -2v-11a5 5 0 0 1 5 -5"/>'
   };
 
   function icon(name) {
@@ -128,13 +148,24 @@
     ? "https://wa.me/" + waNumber + (booking.whatsappMessage ? "?text=" + encodeURIComponent(booking.whatsappMessage) : "")
     : "";
   var externalHref = booking.externalBookingUrl || "";
-  var bookHref = waHref || externalHref || telHref;
+  /* Instagram: accepts a handle ("@name") or a profile URL. */
+  var igHandle = String(booking.instagram || "")
+    .replace(/^https?:\/\/(www\.)?instagram\.com\//i, "").replace(/^@/, "").replace(/[\/?#].*$/, "");
+  var igHref = igHandle ? "https://www.instagram.com/" + igHandle + "/" : "";
+  var igDmHref = igHandle ? "https://ig.me/m/" + igHandle : "";
+  var bookHref = waHref || externalHref || igDmHref || telHref;
   var directionsHref = practical.mapsLink || (practical.address
     ? "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(practical.address)
     : "");
 
   function wireActions() {
-    var map = { book: bookHref, call: telHref, whatsapp: waHref, directions: directionsHref };
+    var map = {
+      book: bookHref, call: telHref, whatsapp: waHref, directions: directionsHref,
+      // Fallbacks shown only when the main channel is missing
+      "instagram-if-no-whatsapp": waHref ? "" : igDmHref,
+      "instagram-if-no-phone": telHref ? "" : igHref,
+      "directions-if-no-phone": telHref ? "" : directionsHref
+    };
     $$("[data-action]").forEach(function (el) {
       var href = map[el.getAttribute("data-action")];
       if (href) {
@@ -238,10 +269,20 @@
      Sections
      ------------------------------------------------------------------------ */
   function renderHead() {
-    doc.documentElement.style.setProperty("--primary", theme.primaryColor || "");
-    doc.documentElement.style.setProperty("--accent", theme.accentColor || "");
-    if (!theme.primaryColor) doc.documentElement.style.removeProperty("--primary");
-    if (!theme.accentColor) doc.documentElement.style.removeProperty("--accent");
+    var vars = {
+      "--primary": theme.primaryColor,
+      "--accent": theme.accentColor,
+      "--bg": theme.backgroundColor,
+      "--highlight": theme.highlightColor,
+      "--ink": theme.textColor
+    };
+    Object.keys(vars).forEach(function (k) {
+      if (vars[k]) doc.documentElement.style.setProperty(k, vars[k]);
+    });
+    if (theme.backgroundColor) {
+      var tc = $('meta[name="theme-color"]');
+      if (tc) tc.setAttribute("content", theme.backgroundColor);
+    }
 
     var title = seo.title || [id.doctorName, id.title, id.neighborhood, id.city].filter(Boolean).join(", ");
     if (title) doc.title = title;
@@ -276,9 +317,22 @@
     doc.head.appendChild(s);
   }
 
+  /* Section titles and nav labels: defaults in index.html, overridable in
+     config.js (labels) so the template serves a doctor, a kiné, a dentist... */
+  function renderLabels() {
+    var labels = SITE.labels || {};
+    $$("[data-label]").forEach(function (el) {
+      var v = labels[el.getAttribute("data-label")];
+      if (!isEmpty(v)) el.textContent = v;
+    });
+  }
+
   function renderHeader() {
     setText("cabinetName", id.cabinetName || id.doctorName);
-    setText("brandMark", initials(id.cabinetName || id.doctorName));
+    // Header can use a shorter name; the footer keeps the full one
+    if (id.shortName) setText("headerName", id.shortName);
+    else setText("headerName", id.cabinetName || id.doctorName);
+    setText("brandMark", id.monogram || initials(id.doctorName || id.cabinetName));
   }
 
   function renderHero() {
@@ -311,6 +365,8 @@
     }
     if (id.neighborhood) {
       facts.push({ icon: "map-pin", label: "Quartier", value: id.neighborhood + (id.city ? ", " + id.city : "") });
+    } else if (id.city) {
+      facts.push({ icon: "map-pin", label: "Ville", value: id.city });
     }
     if (!isEmpty(google.rating)) {
       var rating = String(google.rating).replace(".", ",");
@@ -453,8 +509,13 @@
         'title="Plan d\'accès au cabinet"></iframe>';
     }
     show(mapEl, !!practical.mapsEmbedUrl);
-    show($(".infos-side"), !!(practical.mapsEmbedUrl || directionsHref));
-    if (!practical.mapsEmbedUrl && !directionsHref) $(".infos-grid").style.gridTemplateColumns = "1fr";
+    var hasMain = hours || rows.length > 0;
+    var hasSide = !!(practical.mapsEmbedUrl || directionsHref);
+    show($(".infos-main"), hasMain);
+    show($(".infos-side"), hasSide);
+    show($(".infos-grid"), hasMain || hasSide);
+    // One column only: the map goes full width in a wide format
+    $(".infos-grid").classList.toggle("is-single", !(hasMain && hasSide));
 
     var ins = list(SITE.insurance);
     $("[data-insurance]").innerHTML = ins.map(function (i) { return "<li>" + esc(i) + "</li>"; }).join("");
@@ -496,8 +557,14 @@
       href: waHref, icon: "brand-whatsapp", label: "WhatsApp",
       value: booking.whatsappDisplay || booking.phone || "+" + waNumber, hint: "Écrire un message", ext: true
     });
-    if (practical.address) cards.push({
-      href: directionsHref, icon: "map-pin", label: "Adresse", value: practical.address, hint: "Voir l'itinéraire", ext: true
+    if (practical.address || directionsHref) cards.push({
+      href: directionsHref, icon: "map-pin",
+      label: practical.address ? "Adresse" : "Localisation",
+      value: practical.address || [id.neighborhood, id.city].filter(Boolean).join(", ") || "Google Maps",
+      hint: "Voir l'itinéraire", ext: true
+    });
+    if (igHref) cards.push({
+      href: igHref, icon: "brand-instagram", label: "Instagram", value: "@" + igHandle, hint: "Voir le profil", ext: true
     });
     if (externalHref) cards.push({
       href: externalHref, icon: "calendar-event", label: "Rendez-vous en ligne",
@@ -601,6 +668,7 @@
      ------------------------------------------------------------------------ */
   function init() {
     renderHead();
+    renderLabels();
     setupIcons();
     renderHeader();
     renderHero();

@@ -1,0 +1,11 @@
+Déposez ici les photos du cabinet. Elles remplacent automatiquement les visuels provisoires.
+
+Noms attendus (modifiables dans config.js) :
+  wiam-kaabat.jpg  portrait de la kinésithérapeute, format vertical (4:5), 1200 x 1500 px conseillé
+  cabinet-1.jpg    photo principale du cabinet, 1600 x 1200 px conseillé
+  cabinet-2.jpg
+  cabinet-3.jpg
+
+Utilisez des photos réelles du cabinet, prises avec l'accord des personnes visibles.
+Pas de photos de patients, pas d'avant/après.
+Compressez les images (moins de 300 Ko chacune) pour un chargement rapide.

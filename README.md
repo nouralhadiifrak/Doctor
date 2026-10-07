@@ -9,6 +9,7 @@ deploys as a static folder.
 ```
 templates/medecin/        Reusable template (index.html, style.css, script.js, config.js)
 clients/demo-medecin/     Demo site for prospects (fictional content) + images/
+clients/kine-wiam-kaabat/ Cabinet de Kinésithérapie Kaabat Wiam (fields marked TO CONFIRM in config.js)
 ```
 
 ## New client
@@ -21,6 +22,9 @@ clients/demo-medecin/     Demo site for prospects (fictional content) + images/
    - `whatsapp`: digits only in international format (`2126XXXXXXXX`).
    - `mapsEmbedUrl`: Google Maps > Partager > Intégrer une carte > the `src` value.
    - `google.rating`: only real figures from the doctor's Google Business profile.
+   - Other professions (kiné, dentiste...): rename sections and menu items with `labels`.
+   - `theme` also accepts `highlightColor`, `backgroundColor`, `textColor` for 4-colour palettes.
+   - `booking.instagram`: used for booking (direct message) when there is no WhatsApp.
 3. Drop photos in `images/` with the names used in `config.js`. Until a file exists,
    a designed placeholder (initials, abstract blocks) is shown.
 4. Verify the emergency numbers and wording in `legal` with the doctor.

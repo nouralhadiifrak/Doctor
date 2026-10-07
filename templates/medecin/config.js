@@ -14,23 +14,37 @@ window.SITE = {
     doctorName: "Dr Prénom Nom",
     title: "Médecin généraliste",
     cabinetName: "Cabinet médical",
+    shortName: "",   // optional shorter name for the header
+    monogram: "",    // optional, default: initials of doctorName
     neighborhood: "Quartier",
     city: "Casablanca"
   },
 
-  /* Two colours only. Everything else (tints, borders, hover) derives from them.
+  /* primaryColor and accentColor are required; the other three are optional.
+     Tints, borders and hover states all derive from these values.
      Keep primary dark enough for white text (contrast 4.5:1 minimum). */
   theme: {
     primaryColor: "#1E5A72",
-    accentColor: "#3F7D68"
+    accentColor: "#3F7D68",
+    highlightColor: "",   // decorative only (placeholders, check marks)
+    backgroundColor: "",  // page background, default #F7F9FA
+    textColor: ""         // body text, default #14232B
   },
+
+  /* Optional: rename section titles and menu items for other professions.
+     Keys: navConsultations, navDoctor, navCabinet, navInfos, consultations,
+     doctor, doctorPath, cabinet, equipment, infos, insurance, callButton */
+  labels: {},
 
   /* Two sentences, factual. Shown in the hero. */
   intro: "Première phrase : type de consultations et public reçu. Deuxième phrase : modalités (sur rendez-vous, suivi, orientation).",
 
   /* icon: one of stethoscope, heart-rate-monitor, activity-heartbeat, vaccine,
      baby-carriage, clipboard-heart, report-medical, file-certificate, lungs,
-     first-aid-kit, thermometer, microscope, scale, wheelchair, home-heart */
+     first-aid-kit, thermometer, microscope, scale, wheelchair, home-heart,
+     massage, bone, run, walk, stretching, stretching-2, brain, old, woman,
+     baby-bottle, ball-football, body-scan, barbell, treadmill, accessible,
+     wave-sine, flame, snowflake */
   consultations: [
     { title: "Domaine de consultation", description: "Une ou deux lignes descriptives, sans promesse de résultat.", icon: "stethoscope" }
   ],
@@ -81,7 +95,10 @@ window.SITE = {
     whatsapp: "",
     whatsappMessage: "Bonjour, je souhaite prendre rendez-vous au cabinet.",
     /* Optional, e.g. the doctor's DabaDoc profile URL. */
-    externalBookingUrl: ""
+    externalBookingUrl: "",
+    /* Optional: handle or profile URL. Used as the booking channel (direct
+       message) when there is no WhatsApp, and shown in Contact. */
+    instagram: ""
   },
 
   insurance: ["AMO (CNSS)", "CNOPS"],
