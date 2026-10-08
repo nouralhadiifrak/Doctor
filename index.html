@@ -46,7 +46,8 @@
       --footer-bg: #3A2000;
       --error: #B3261E;
       --veil: rgba(255, 255, 255, .55);
-      --vanta-line: #F2A900;
+      --stripe-base: #FFFBF0;
+      --stripe-band: #F7E2A6;
       --ok: #2E7D32;
       color-scheme: light;
 
@@ -76,7 +77,8 @@
         --error: #FF8A80;
         --ok: #8BD48F;
       --veil: rgba(33, 24, 15, .55);
-      --vanta-line: #CC6F00;
+      --stripe-base: #15100A;
+      --stripe-band: #2C1E0C;
         color-scheme: dark;
       }
     }
@@ -101,7 +103,8 @@
       --error: #FF8A80;
       --ok: #8BD48F;
       --veil: rgba(33, 24, 15, .55);
-      --vanta-line: #CC6F00;
+      --stripe-base: #15100A;
+      --stripe-band: #2C1E0C;
       color-scheme: dark;
     }
     html[lang="ar"] {
@@ -360,8 +363,8 @@
     .hero-card .ic { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: var(--tile); color: var(--orange-text); }
 
     /* About */
-    /* Animated topology background (Vanta.js), fixed behind every section */
-    #vanta-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+    /* Animated diagonal bands (recreation of the "Scene" video), fixed behind every section */
+    #bg-stripes { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
     .about { background: var(--veil); }
     .about-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 64px; align-items: center; }
     .portrait {
@@ -563,7 +566,7 @@
   </style>
 </head>
 <body>
-  <div id="vanta-bg" aria-hidden="true"></div>
+  <canvas id="bg-stripes" aria-hidden="true"></canvas>
 
   <header class="header">
     <nav class="container nav" aria-label="Main">
@@ -1202,28 +1205,61 @@
       startBackground();
     }
 
-    // Vanta Topology background in the site palette; restarted when the theme changes.
-    // Skipped for visitors who ask for reduced motion (the plain background stays).
-    let vanta = null;
-    function startBackground() {
-      if (!window.VANTA || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-      if (vanta) vanta.destroy();
-      const css = getComputedStyle(document.documentElement);
-      const hex = name => parseInt(css.getPropertyValue(name).trim().slice(1), 16);
-      vanta = VANTA.TOPOLOGY({
-        el: "#vanta-bg",
-        mouseControls: true,
-        touchControls: true,
-        gyroControls: false,
-        minHeight: 200.00,
-        minWidth: 200.00,
-        scale: 1.00,
-        scaleMobile: 1.00,
-        color: hex("--vanta-line"),
-        backgroundColor: hex("--bg")
-      });
+    // Background: slanted bands that slide and stretch, drawn in the palette of the current theme.
+    // With reduced motion a single still frame is drawn.
+    const bgCanvas = document.getElementById("bg-stripes");
+    const bgCtx = bgCanvas.getContext("2d");
+    const reduceBg = matchMedia("(prefers-reduced-motion: reduce)");
+    const SLANT = 0.36;                 // horizontal shift per pixel of height (about 20 degrees)
+    const rand = (a, b) => a + Math.random() * (b - a);
+    const bands = Array.from({ length: 18 }, (_, i) => {
+      const thin = i % 3 === 0;         // a third are hairlines, the rest are wide bands
+      return {
+        x: Math.random(),               // start position, as a fraction of the width
+        speed: rand(18, 55),            // px per second, left to right
+        width: thin ? rand(1, 4) : rand(24, 150),
+        stretch: thin ? rand(0, 3) : rand(20, 90),
+        rate: rand(0.25, 0.7),
+        phase: rand(0, Math.PI * 2)
+      };
+    });
+    let bgColors = {}, bgW = 0, bgH = 0, bgRaf = 0, bgStart = performance.now();
+
+    function sizeBackground() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      bgW = window.innerWidth; bgH = window.innerHeight;
+      bgCanvas.width = Math.round(bgW * dpr); bgCanvas.height = Math.round(bgH * dpr);
+      bgCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
-    window.addEventListener("load", startBackground);
+    function drawBackground(now) {
+      const t = (now - bgStart) / 1000;
+      const shear = bgH * SLANT, span = bgW + shear + 320;
+      bgCtx.fillStyle = bgColors.base;
+      bgCtx.fillRect(0, 0, bgW, bgH);
+      bgCtx.fillStyle = bgColors.band;
+      bgCtx.beginPath();
+      for (const b of bands) {
+        const w = Math.max(1, b.width + b.stretch * Math.sin(t * b.rate + b.phase));
+        const x = ((b.x * span + b.speed * t) % span) - shear - 160;
+        bgCtx.moveTo(x, bgH);
+        bgCtx.lineTo(x + w, bgH);
+        bgCtx.lineTo(x + w + shear, 0);
+        bgCtx.lineTo(x + shear, 0);
+        bgCtx.closePath();
+      }
+      bgCtx.fill();
+    }
+    function loop(now) { drawBackground(now); bgRaf = requestAnimationFrame(loop); }
+    function startBackground() {
+      const css = getComputedStyle(document.documentElement);
+      bgColors = { base: css.getPropertyValue("--stripe-base").trim(), band: css.getPropertyValue("--stripe-band").trim() };
+      cancelAnimationFrame(bgRaf);
+      if (!bgW) sizeBackground();
+      if (reduceBg.matches) drawBackground(bgStart + 8000);
+      else bgRaf = requestAnimationFrame(loop);
+    }
+    window.addEventListener("resize", () => { sizeBackground(); startBackground(); });
+    reduceBg.addEventListener("change", startBackground);
     applyTheme(document.documentElement.dataset.theme);
     themeToggle.addEventListener("click", () => {
       const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
@@ -1409,8 +1445,5 @@
     const browser = (navigator.language || "en").slice(0, 2);
     setLang(saved || (T[browser] ? browser : "en"));
   </script>
-  <!-- Vanta.js Topology (MIT) on p5.js (LGPL-2.1), served from assets/vendor -->
-  <script src="assets/vendor/p5.min.js" defer></script>
-  <script src="assets/vendor/vanta.topology.min.js" defer></script>
 </body>
 </html>
