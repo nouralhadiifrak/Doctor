@@ -45,6 +45,8 @@
       --contact-bg: var(--brown);
       --footer-bg: #3A2000;
       --error: #B3261E;
+      --veil: rgba(255, 255, 255, .55);
+      --vanta-line: #F2A900;
       --ok: #2E7D32;
       color-scheme: light;
 
@@ -73,6 +75,8 @@
         --footer-bg: #0D0904;
         --error: #FF8A80;
         --ok: #8BD48F;
+      --veil: rgba(33, 24, 15, .55);
+      --vanta-line: #CC6F00;
         color-scheme: dark;
       }
     }
@@ -96,6 +100,8 @@
       --footer-bg: #0D0904;
       --error: #FF8A80;
       --ok: #8BD48F;
+      --veil: rgba(33, 24, 15, .55);
+      --vanta-line: #CC6F00;
       color-scheme: dark;
     }
     html[lang="ar"] {
@@ -354,7 +360,9 @@
     .hero-card .ic { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: var(--tile); color: var(--orange-text); }
 
     /* About */
-    .about { background: var(--surface); }
+    /* Animated topology background (Vanta.js), fixed behind every section */
+    #vanta-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+    .about { background: var(--veil); }
     .about-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 64px; align-items: center; }
     .portrait {
       aspect-ratio: 4 / 5; border-radius: 28px; overflow: hidden; position: relative;
@@ -447,7 +455,7 @@
     html[dir="rtl"] .info-list a { text-align: right; }
 
     /* Google reviews */
-    .reviews { background: var(--bg); }
+    .reviews { background: transparent; }
     .rating-badge {
       display: inline-flex; align-items: center; gap: 12px; margin-top: 6px;
       background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
@@ -477,7 +485,7 @@
     .reviews-more { text-align: center; margin-top: 40px; }
 
     /* Instagram */
-    .insta { background: var(--surface); padding: 72px 0; }
+    .insta { background: var(--veil); padding: 72px 0; }
     .insta-card {
       display: flex; align-items: center; gap: 32px; max-width: 900px; margin: 0 auto;
       background: var(--bg); border: 1px solid var(--line); border-radius: 28px; padding: 32px 36px;
@@ -555,6 +563,7 @@
   </style>
 </head>
 <body>
+  <div id="vanta-bg" aria-hidden="true"></div>
 
   <header class="header">
     <nav class="container nav" aria-label="Main">
@@ -634,7 +643,7 @@
         </div>
         <div class="about-text reveal">
           <span class="eyebrow" data-i18n="about.eyebrow">About me</span>
-          <h2 class="js-mask" data-i18n="about.title">A calm, caring space</h2>
+          <h2 class="js-mask" data-i18n="about.title">You're in good hands</h2>
           <p data-i18n="about.p1">I'm Fatine Tber, speech and language therapist. I help children, teens and adults communicate with confidence, in sessions adapted to each person.</p>
           <div class="stats">
             <div class="stat"><b>3</b><span data-i18n="about.s1">languages spoken</span></div>
@@ -903,7 +912,7 @@
         "hero.card1": "Personalised plans", "hero.card2": "Children & adults",
         "about.role": "Speech & Language Therapist",
         "about.eyebrow": "About me",
-        "about.title": "A calm, caring space",
+        "about.title": "You're in good hands",
         "about.p1": "I'm Fatine Tber, speech and language therapist. I help children, teens and adults communicate with confidence, in sessions adapted to each person.",
         "about.s1": "languages spoken", "about.s2n": "All", "about.s2": "ages welcome", "about.s3n": "15 min", "about.s3": "per session",
         "services.eyebrow": "Services",
@@ -985,7 +994,7 @@
         "hero.card1": "Suivi personnalisé", "hero.card2": "Enfants & adultes",
         "about.role": "Orthophoniste",
         "about.eyebrow": "À propos",
-        "about.title": "Un espace calme et bienveillant",
+        "about.title": "Vous êtes entre de bonnes mains",
         "about.p1": "Je suis Fatine Tber, orthophoniste. J'accompagne enfants, adolescents et adultes pour communiquer avec confiance, avec des séances adaptées à chacun.",
         "about.s1": "langues parlées", "about.s2n": "Tous", "about.s2": "les âges", "about.s3n": "15 min", "about.s3": "par séance",
         "services.eyebrow": "Services",
@@ -1067,7 +1076,7 @@
         "hero.card1": "خطط علاج مخصصة", "hero.card2": "أطفال وبالغون",
         "about.role": "أخصائية النطق واللغة",
         "about.eyebrow": "من أنا",
-        "about.title": "مساحة هادئة وحنونة",
+        "about.title": "أنتم في أيدٍ أمينة",
         "about.p1": "أنا فاتن طبر، أخصائية النطق واللغة. أرافق الأطفال والمراهقين والبالغين للتواصل بثقة، بجلسات مكيّفة مع كل شخص.",
         "about.s1": "لغات", "about.s2n": "كل", "about.s2": "الأعمار", "about.s3n": "15 د", "about.s3": "لكل جلسة",
         "services.eyebrow": "الخدمات",
@@ -1190,7 +1199,31 @@
     function applyTheme(theme) {
       document.documentElement.dataset.theme = theme;
       themeToggle.setAttribute("aria-pressed", String(theme === "dark"));
+      startBackground();
     }
+
+    // Vanta Topology background in the site palette; restarted when the theme changes.
+    // Skipped for visitors who ask for reduced motion (the plain background stays).
+    let vanta = null;
+    function startBackground() {
+      if (!window.VANTA || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      if (vanta) vanta.destroy();
+      const css = getComputedStyle(document.documentElement);
+      const hex = name => parseInt(css.getPropertyValue(name).trim().slice(1), 16);
+      vanta = VANTA.TOPOLOGY({
+        el: "#vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        color: hex("--vanta-line"),
+        backgroundColor: hex("--bg")
+      });
+    }
+    window.addEventListener("load", startBackground);
     applyTheme(document.documentElement.dataset.theme);
     themeToggle.addEventListener("click", () => {
       const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
@@ -1376,5 +1409,8 @@
     const browser = (navigator.language || "en").slice(0, 2);
     setLang(saved || (T[browser] ? browser : "en"));
   </script>
+  <!-- Vanta.js Topology (MIT) on p5.js (LGPL-2.1), served from assets/vendor -->
+  <script src="assets/vendor/p5.min.js" defer></script>
+  <script src="assets/vendor/vanta.topology.min.js" defer></script>
 </body>
 </html>
