@@ -103,7 +103,71 @@
     .btn-icon, .btn-label { position: relative; z-index: 1; transition: color .4s var(--mg-ease); }
     .btn-icon { font-size: 1.15em; line-height: 1; color: #fff; }
     .btn-label { white-space: nowrap; }
-    html[dir="rtl"] .btn-icon { transform: scaleX(-1); }
+    html[dir="rtl"] .btn-icon:not(.anim):not(.svg) { transform: scaleX(-1); }
+    .btn-icon.svg { display: grid; }
+    /* Animated icons: GIF frames as a mask strip, painted with the text colour */
+    .btn-icon.anim {
+      width: 22px; height: 22px; background-color: currentColor;
+      -webkit-mask-image: var(--sprite); mask-image: var(--sprite);
+      -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+    }
+    .btn-icon.i-calendar {
+      --sprite: url(data:image/png;base64,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);
+      -webkit-mask-size: 2400% 100%; mask-size: 2400% 100%;
+      animation: sprite-calendar 1.17s step-end infinite;
+    }
+    @keyframes sprite-calendar {
+      0.00% { -webkit-mask-position: 0.000% 0; mask-position: 0.000% 0; }
+      14.53% { -webkit-mask-position: 4.348% 0; mask-position: 4.348% 0; }
+      17.95% { -webkit-mask-position: 8.696% 0; mask-position: 8.696% 0; }
+      21.37% { -webkit-mask-position: 13.043% 0; mask-position: 13.043% 0; }
+      24.79% { -webkit-mask-position: 17.391% 0; mask-position: 17.391% 0; }
+      28.21% { -webkit-mask-position: 21.739% 0; mask-position: 21.739% 0; }
+      32.48% { -webkit-mask-position: 26.087% 0; mask-position: 26.087% 0; }
+      35.90% { -webkit-mask-position: 30.435% 0; mask-position: 30.435% 0; }
+      39.32% { -webkit-mask-position: 34.783% 0; mask-position: 34.783% 0; }
+      42.74% { -webkit-mask-position: 39.130% 0; mask-position: 39.130% 0; }
+      46.15% { -webkit-mask-position: 43.478% 0; mask-position: 43.478% 0; }
+      49.57% { -webkit-mask-position: 47.826% 0; mask-position: 47.826% 0; }
+      53.85% { -webkit-mask-position: 52.174% 0; mask-position: 52.174% 0; }
+      57.26% { -webkit-mask-position: 56.522% 0; mask-position: 56.522% 0; }
+      60.68% { -webkit-mask-position: 60.870% 0; mask-position: 60.870% 0; }
+      64.10% { -webkit-mask-position: 65.217% 0; mask-position: 65.217% 0; }
+      67.52% { -webkit-mask-position: 69.565% 0; mask-position: 69.565% 0; }
+      70.94% { -webkit-mask-position: 73.913% 0; mask-position: 73.913% 0; }
+      75.21% { -webkit-mask-position: 78.261% 0; mask-position: 78.261% 0; }
+      78.63% { -webkit-mask-position: 82.609% 0; mask-position: 82.609% 0; }
+      82.05% { -webkit-mask-position: 86.957% 0; mask-position: 86.957% 0; }
+      85.47% { -webkit-mask-position: 91.304% 0; mask-position: 91.304% 0; }
+      88.89% { -webkit-mask-position: 95.652% 0; mask-position: 95.652% 0; }
+      92.31% { -webkit-mask-position: 100.000% 0; mask-position: 100.000% 0; }
+    }
+    .btn-icon.i-thinking {
+      --sprite: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA7YAAAAyCAQAAADCOo9AAAANVUlEQVR42u3dfYwcZR3A8e/u7Pau3B1coaVVoLSlFCRCpbUvsVipAdJrQS8FpDEQKJIQfAkCVuQfo0aLQdJgiCSQKCpSWqJA5OUKtbUVq1SFFAwIFQr2qtJiS1vKXfd2Zh7/mNm53duZnfe9vd3fb5Pmuje7n5u95/k9LzfPMxoSEq0ebXTSgYmRyrtr5MignP9pmGKIEStyzvulW3YlEoyMfAQSLVz6e+nhPKbQRpZB+nmRPp5NNOmaTsrNk6VQ9h1DDDEix3iWplx2JaSxlZCIPS7QgW+wmpNdvrubNfw0obRrABewnLlMpQONw+zhTzzOK85PIYYYyZddTUa6EhISo9/UwqnsRKEoUsTAwMTEQKeIjkLxezKAFttazk5UlaHYxsLEurrNZagyQ6HEiFB2T0yk7EpISLRQaOTsR5LJYzoHURQwMCiiY9gPnSImBkMo/s2U2M79dsp1MxRrEjkXMVrLKC+7pSa99HWSZVdCQqKlRqB+z0SJPG+hKKDskcDIRxGDAorXYhgZ4HGUM9pwMxQ/j3UeYrSeMVx2vR7xy66EhERLjWgBJrCcb7KWtazmEjrLvhOnAb/HJ10pTPuIu2Mo3/dRTAoovh25CyFGqxn1Kbv16fBKSEg0zJh2AvdxuCKN7OeHHBe7up+GjsLE9ElZVtKaEVE5N7Dx8chnIkarGfUpu5Ud3o/wJe7mFzzMWq5ioiQnCYnmamrncxCFQqdoP6ypuX4+FrO5vQPFEMWy5DRsVE766SjujPjzrwtsrIv8GY2GoTwmSOMZKpChWtwolV0V4BG17FY2tZ3cz7GK9z3K3eSQy68kJJogNOAsDBSFET14axJuIGaPfRsKHRPlXFQychJOORebKF6JZEzgkP1e/sb7TBJDjIYpu8MxlX4UptOFK1LERPGGXH4lIdEs8aJnD76A4m8x3rmNvU6qqmWUktdApM7CklDG0jFhKN+/FIqRrlFZdv2NgVh1sI23UCPGtcp+Zhd5SVLhI+vz/QyZ1De+EEOM8rTVyxyKHtV5HEXmsiLQRJabMZ7x4Gx152VYYQLtoY0MMD2UMX1MGLVDjPQNq+xmAtavKGW3FDngB8ygQJtLI1zgTNYQ7I85khMDNbZZcmh2bwZyvs1yNF0MMUYmiZU1U0rpiGjGIMecr7338hn+TiHSeWRCGZkxYARN8GKkZegVZTdIFCLXc50uVoFLU4v97A2c4LMXluTEwI1tDhMdgyxddAE6JvmE+w9iiDHS0IFzfDqBcDbU2I6ullFgt5Pqsj61IgPsDm0oYE8oo38MGGbNcZoY6RuaXXbNQIYZqewOx3xOrGl0M0/yVfg3c+916Uznaj7DDLpQHGI7d/EPkto/VIxmMXI1R1bRjHG+75SPaBgo+rgAk6xvhVGYZHkmggE7+ZAOVAAjy1FeEkOMQEb6Zbd0A4VTfOvglBh1sDqG93IOtqtzFCPZnJiIYf0iv+tyyfptTCGZ/UPFaAZDc/kqCWOr595OpUUN22IYkxm0LymqbRRRDHFGBKO0DCSY8USk86i34b+cRYy0jVLZNQNdHhWt7Jai19foTThfnUYvvQEa+WbKu2SBn9nXOOrONtdDduVdDQnMjIvRHMaZ3MSNTEvQyAHfwqyRtIYwPffg8TdywO32sqLaRsFjJ9tgxiw76dU2DBRzxoRRO7WLUS/jdpclce77VEUvuwCn+xozItdzt5q72nnn2xLJJbk65MTYRg641vUXWqrUt8RmxGgOY6Vz3JWJGhM4guExXjMwOcbkmMaT9lbutQzFC5GNduCrgYzvuHyyjWkoMUbdKC+7KqWyW9qy4jF7l2V342mP+axwRikudu5ipFBc3Bp51xoa7/JczaWjGGRSrEG0GM1hdHAARYECioN0JGbkgBUYZTsXFZxKr2NisMq1mIc7j40oT8PaMH4Hx8UwcsD3fI2fxPqs3IzK/aSSNbw31xejXgZlZdfbiFd2rTiVAddp8SEUhssUdRSjFA840hCKBxLKJfVoB2OEBsyruXB6CMX1sdp0MZrDmObcT7NI0WfdYDhDA1aV7V1TMqz9a2716FOHPY877X6qm6G4L5HPahXFGsbNYojRoGXXOnrQw7jQI+NEzSV3oRjEwGAQxY+aNe9Wr3I8j1oXlmeA82P3GsRI09BC/RU3qrGHzeTIkiXHNt5O0DDQeJAF/N2+k61l5MjxKotZ63G9YtjzuIO59JGpMhQbWciXEzgPjQeZyQZXYwOz+LFrp0EMMUa/7Brk+Cuz2FJl/JFZbPVYoRA1J97DIdrJkqWdD7m3WXN7dcvsPzieBDEvexYjLUPDsJuiYJfQxzGu5F6WA0/ztYQNgzb+wmx6+CLzOAl4jxfZwFPUXogUxsjxEss4k8voYSadwBF2sZlneK2mEtwwyPEvVnI7l9PDWYx3jMfYLUZTG1/hcpYxhy70xI1S2T2bFVzIDLpRHGEXW3kysbILOjn6uYhPcw0LORmNd9nOOv6QYB0sxX84n3tYBLzArezxzV1jNLdHGWqbkPr2WM1qhFmXGsUwmMZs4GXeScmwKkInGT7gOrrROZqCUQA66aMPKgwt5qc3bFjV5C3WshboRvGB3ZPVMGIpI41+2zgJXYymN3TgDM7gNX7DATrRUjI0XmcNayAlA3Q0DJ7n+SpDTzAnahhovEOvY1jPGInm3crZXDPxvBvIqJ5wPOKL7Iv9Y7auoYcuqGGMNn7F2zzBE7zNQx6brcUzNAwWsJndvMkWPsWhwE1tFOMAW5hvGxoa+FTB8Ma7jnEYM2XjgBhNb1h18E2e5Xn+xy85moqB824ZSN0gdcNwjIw9zW4knHdHNpJptx+m/8hWYW0kVnu8tytWA9XKRhtXARtq7Foaz3icHhQmkOVqTmJZ4obBRWyy98mZxHYuYVPChlZhXMgOLmFTgJ6uGGI0gmHVQWsTx2uYRE8KRmUuyaASNqojY0+Sp20YqeTdkefRCAZZYCZGjaXZJopPEmcjhdY1NLZjYrI98K2XgxsasBjFEMcwMTnGEIrFiRvwCsoxFC+ncB5iiDFWjcX2ViLWI606WJ5LSCWXpJ0TxSADdPO+J2Ki+ICJxF3X2ZrGXEwGGMB03UEmnpEFbkQ5l/+bFFHcGOAMwxndHHSONFEcpFsMMcSwj3Svg2Mrl0huT8moHNlpQA/dGB5vksGgk4tjteiNZ2h1MnbyAu208+eAfeowRhZ4AyoWh8Pr+F8vF844xF5wDOjnkBhijAEjl7qhldU4Zf9rPZN8TkwzlzRTbm8oo3oa9ZSaBVBBwM2ia0VjGUbk6eQwRh7FEq7jWj4b6kq7YIYGbGUTefIYGIwjz0bPDfujG7AayJMhwzjg1hTOw83QxBAjhmGiAzenbMA2NpJH2YvjrDqYtGHlkyVcW5ZL0jDSzLtioAHL7DtTeN+zYlnsXkPjGB0sYhHtqRrQ4bOdYTJGG6WtsxWKhwLcqi68cTwwhy3sYx+/Y0HA35IYYoyu0cEiFgPnpGhY79bOQynWQU1ye5MYZIA8ez1v26Wj2EM+9nx4Ixh7geW8h0LxHpcRds1xUOMEHmUf+9jABCAXSglrPEyWqXyBK5iZmvFr8kCX3X3QxBCj4Y1SPT/AkpSMylo9kytSqIPxttYXo7EMuwAuoOD6p2ETxTHmxWvPQxiz2cEOZqdkzKbb/uB0FHqEiWt/YwHwnPNcXyrnUWk8V/HKdA1NDDEa3qis54rTUjDmAdj56hMjXpms4f7KtA3ESKEdBPJYt0Euug6d19lH1MNYT5Ei61MxHgWuQDFIkSKDKD4XYSxd23gEmMhRdIoU0TnKCWKIIUYdjeF6rux/P5+4MZyvFCqlfFXPvCtGvQw0YKnrAFpHsTSJ9jygEWdkG8SYao9prX8/mooBfbFGtmKIIUbj1/N65CutiXK7GHZkgc1VjI5iG0ntJjz6hgZcyn4Uiv1cSrQrkv2Nbtazn/2sp1sMMcQYBaMe9bz6eDHECNSmn+3MTpc/zk2qPW8Yoz3y1chhziPq1chiiCHG2KnnzZETxaifQQaYyJEKxEQxwOTERp2NYWQqjh3LhmYXDzHEEKN567kYY9jIeiDKc5icXEM4+oYCMs5XY9kwyJDBEEMMMZq4nosxho1sFWCtHjqf4+x7V5SeN2ljLgC5mI1hYxkqxi9DDDHEEEMMMULPUZeW6V7PQNVMtbW66Ab7iFzkHYXFEEMMMcQQo0WNrP2iKdzCq65/FC498ypfZ7L9Q2XFEEMMMcQQQ4xgYbXkC3mEAXvZrtethawlvgOsY37ZK8UQQwwxxBBDDJ9hM8zgKWd/DMNz+2WFwnD21PgtpwdmxBBDDDHEEKOFjRyw0nm5WRMob9kNFDorCLLiSAwxxBBDDDFa2QBWOLcbD/ewXhHsfjliiCGGGGKI0cLGZA573krI76GjOMwE/FbGiiGGGGKIIUYLG1lWczx65IukixzPTb5DaDHEEEMMMcRoZYN/ul7eHKZN347fJsxiiCGGGGKI0cpGhDnqkWuO/st4nwG0GGKIIYYYYrSwkU3gFriddPkcIYYYYoghhhgtbPwfjt5ezWecd+AAAAAASUVORK5CYII=);
+      -webkit-mask-size: 1900% 100%; mask-size: 1900% 100%;
+      animation: sprite-thinking 1.17s step-end infinite;
+    }
+    @keyframes sprite-thinking {
+      0.00% { -webkit-mask-position: 0.000% 0; mask-position: 0.000% 0; }
+      14.53% { -webkit-mask-position: 5.556% 0; mask-position: 5.556% 0; }
+      17.95% { -webkit-mask-position: 11.111% 0; mask-position: 11.111% 0; }
+      21.37% { -webkit-mask-position: 16.667% 0; mask-position: 16.667% 0; }
+      24.79% { -webkit-mask-position: 22.222% 0; mask-position: 22.222% 0; }
+      28.21% { -webkit-mask-position: 27.778% 0; mask-position: 27.778% 0; }
+      32.48% { -webkit-mask-position: 33.333% 0; mask-position: 33.333% 0; }
+      35.90% { -webkit-mask-position: 38.889% 0; mask-position: 38.889% 0; }
+      39.32% { -webkit-mask-position: 44.444% 0; mask-position: 44.444% 0; }
+      46.15% { -webkit-mask-position: 50.000% 0; mask-position: 50.000% 0; }
+      49.57% { -webkit-mask-position: 55.556% 0; mask-position: 55.556% 0; }
+      53.85% { -webkit-mask-position: 61.111% 0; mask-position: 61.111% 0; }
+      64.10% { -webkit-mask-position: 66.667% 0; mask-position: 66.667% 0; }
+      67.52% { -webkit-mask-position: 72.222% 0; mask-position: 72.222% 0; }
+      70.94% { -webkit-mask-position: 77.778% 0; mask-position: 77.778% 0; }
+      75.21% { -webkit-mask-position: 83.333% 0; mask-position: 83.333% 0; }
+      78.63% { -webkit-mask-position: 88.889% 0; mask-position: 88.889% 0; }
+      82.05% { -webkit-mask-position: 94.444% 0; mask-position: 94.444% 0; }
+      85.47% { -webkit-mask-position: 100.000% 0; mask-position: 100.000% 0; }
+    }
     .btn:focus-visible { background-color: var(--brown); }
     .btn:focus-visible .btn-cover { opacity: 1; }
     .btn:focus-visible .btn-label, .btn:focus-visible .btn-icon { color: var(--amber); }
@@ -265,6 +329,65 @@
     .field .error { display: none; color: #B3261E; font-size: .85rem; margin-top: 5px; }
     .field.invalid .error { display: block; }
     .form .btn { width: 100%; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 14px; }
+    .field input[type="date"], .field input[type="time"] { min-height: 50px; }
+    html[dir="rtl"] .field input[dir="ltr"] { text-align: right; }
+    .field .optional { font-weight: 400; color: var(--muted); }
+    .form-note { margin: 4px 0 0; text-align: center; font-size: .95rem; color: var(--muted); }
+    .form-note a { color: var(--orange); font-weight: 600; text-decoration: none; white-space: nowrap; }
+    .info-list li { align-items: flex-start; }
+    .info-list li a { padding-top: 10px; }
+    html[dir="rtl"] .info-list a { text-align: right; }
+
+    /* Google reviews */
+    .reviews { background: var(--bg); }
+    .rating-badge {
+      display: inline-flex; align-items: center; gap: 12px; margin-top: 6px;
+      background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
+      padding: 10px 20px; text-decoration: none; box-shadow: var(--shadow);
+    }
+    .rating-score { font-family: "Fraunces", Georgia, serif; font-size: 1.6rem; font-weight: 600; line-height: 1; }
+    .stars { color: var(--amber); letter-spacing: 2px; }
+    .rating-badge .stars { font-size: 1.25rem; }
+    .rating-count { color: var(--muted); font-size: .95rem; }
+    .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .review {
+      margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 28px 26px; position: relative;
+    }
+    .review::after {
+      content: "\201D"; position: absolute; top: 6px; inset-inline-end: 20px;
+      font-family: "Fraunces", Georgia, serif; font-size: 4.5rem; line-height: 1; color: var(--cream);
+    }
+    .review-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .review-head strong { display: block; font-size: 1rem; }
+    .review-head .stars { font-size: .95rem; }
+    .review-avatar {
+      width: 46px; height: 46px; border-radius: 50%; flex-shrink: 0; display: grid; place-items: center;
+      background: var(--cream); color: var(--orange); font-weight: 700; font-family: "Plus Jakarta Sans", sans-serif;
+    }
+    .review blockquote { margin: 0; color: var(--muted); font-family: "Plus Jakarta Sans", sans-serif; text-align: left; }
+    .reviews-more { text-align: center; margin-top: 40px; }
+
+    /* Instagram */
+    .insta { background: var(--surface); padding: 72px 0; }
+    .insta-card {
+      display: flex; align-items: center; gap: 32px; max-width: 900px; margin: 0 auto;
+      background: var(--bg); border: 1px solid var(--line); border-radius: 28px; padding: 32px 36px;
+    }
+    .insta-avatar {
+      width: 120px; height: 120px; border-radius: 50%; flex-shrink: 0; padding: 4px;
+      background: conic-gradient(from 210deg, var(--amber), var(--orange), var(--brown), var(--amber));
+    }
+    .insta-avatar img {
+      width: 100%; height: 100%; border-radius: 50%; object-fit: contain; padding: 22px 16px;
+      background: var(--surface); border: 3px solid var(--surface);
+    }
+    .insta-text { flex: 1; }
+    .insta-text h2 { margin-bottom: .2em; }
+    .insta-handle { font-weight: 600; color: var(--orange); margin-bottom: .4em; }
+    .insta-text p:last-child { margin: 0; color: var(--muted); }
+    html[dir="rtl"] .insta-handle { text-align: right; }
     .form-status { margin: 14px 0 0; font-size: .95rem; text-align: center; min-height: 1.5em; }
     .form-status.ok { color: #2E7D32; }
     .form-status.err { color: #B3261E; }
@@ -281,6 +404,7 @@
       .hero-art { max-width: 360px; }
       .portrait { max-width: 380px; width: 100%; margin: 0 auto; }
       .cards { grid-template-columns: repeat(2, 1fr); }
+      .review-grid { grid-template-columns: 1fr; max-width: 620px; margin: 0 auto; }
     }
     @media (max-width: 780px) {
       .menu-toggle { display: inline-flex; }
@@ -292,6 +416,10 @@
       .nav-links.open { display: flex; }
       .nav-links a { display: block; padding: 12px 0; font-size: 1.05rem; }
       .logo-text { display: none; }
+    }
+    @media (max-width: 700px) {
+      .insta-card { flex-direction: column; text-align: center; padding: 32px 22px; gap: 18px; }
+      html[dir="rtl"] .insta-handle { text-align: center; }
     }
     @media (max-width: 600px) {
       .cards { grid-template-columns: 1fr; }
@@ -305,6 +433,7 @@
       .stat { padding: 14px 10px; }
       .stat b { font-size: 1.3rem; }
       .form { padding: 24px 18px; }
+      .rating-badge { flex-wrap: wrap; justify-content: center; gap: 6px 10px; }
       .hero-card { font-size: .8rem; padding: 9px 12px; }
       .hero-card.one { inset-inline-start: 0; }
       .hero-card.two { inset-inline-end: 0; }
@@ -313,7 +442,7 @@
       html { scroll-behavior: auto; }
       .reveal { opacity: 1; transform: none; transition: none; }
       .card, .btn { transition: none; }
-      .btn-glow { animation: none; }
+      .btn-glow, .btn-icon.anim { animation: none; }
       .mask-reveal { clip-path: none; transition: none; }
     }
   </style>
@@ -331,7 +460,8 @@
         <li><a href="#home" data-i18n="nav.home">Home</a></li>
         <li><a href="#about" data-i18n="nav.about">About</a></li>
         <li><a href="#services" data-i18n="nav.services">Services</a></li>
-        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Appointments</a></li>
+        <li><a href="#reviews" data-i18n="nav.reviews">Reviews</a></li>
       </ul>
 
       <div class="nav-right">
@@ -361,8 +491,8 @@
           <h1><span class="js-mask" data-i18n="hero.title1">Fatine Tber</span><span class="accent js-mask" style="--mask-delay:.15s" data-i18n="hero.title2">helping you find your voice, at every age</span></h1>
           <p class="hero-sub js-mask" style="--mask-delay:.3s" data-i18n="hero.sub">Caring, personalised speech therapy for children, teens and adults, from first words to regaining speech.</p>
           <div class="hero-actions">
-            <a href="#contact" class="btn" data-i18n="hero.cta1">Book a consultation</a>
-            <a href="#services" class="btn" data-i18n="hero.cta2">Explore services</a>
+            <a href="#contact" class="btn" data-icon="calendar" data-i18n="hero.cta1">Book a consultation</a>
+            <a href="#services" class="btn" data-icon="thinking" data-i18n="hero.cta2">Explore services</a>
           </div>
         </div>
 
@@ -472,48 +602,135 @@
       </div>
     </section>
 
-    <!-- CONTACT -->
+    <!-- APPOINTMENT -->
     <section class="contact" id="contact">
       <div class="container contact-grid">
         <div class="contact-info reveal">
-          <span class="eyebrow" data-i18n="contact.eyebrow">Contact</span>
-          <h2 class="js-mask" data-i18n="contact.title">Let's talk</h2>
-          <p data-i18n="contact.sub">Have a question or want to book an assessment for yourself or a loved one? Send me a message and I'll get back to you within 48 hours.</p>
+          <span class="eyebrow" data-i18n="contact.eyebrow">Appointments</span>
+          <h2 class="js-mask" data-i18n="contact.title">Book an appointment</h2>
+          <p data-i18n="contact.sub">Choose the date and time that suit you best. We'll call you back to confirm your appointment.</p>
           <ul class="info-list">
             <li>
-              <span class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
-              <a href="mailto:contact@example.com" class="js-email">contact@example.com</a>
-            </li>
-            <li>
               <span class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span>
-              <a href="tel:+000000000" dir="ltr">+00 0 00 00 00 00</a>
+              <a href="tel:+212522360359" dir="ltr">05 22 36 03 59</a>
             </li>
             <li>
               <span class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-              <a href="https://www.google.com/maps/place/Cabinet+d%E2%80%99orthophonie+Fatine+Tber/data=!4m2!3m1!1s0x0:0x4f036dd50c137de8" target="_blank" rel="noopener" data-i18n="contact.address">View the practice on Google Maps</a>
+              <a href="https://www.google.com/maps/place/Cabinet+d%E2%80%99orthophonie+Fatine+Tber/data=!4m2!3m1!1s0x0:0x4f036dd50c137de8" target="_blank" rel="noopener" lang="fr" dir="ltr">B2, Triangle d’or, 7 rue Ahmed Amine, résidence Vertu, rez-de-chaussée, Casablanca 20000</a>
+            </li>
+            <li>
+              <span class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></span>
+              <a href="https://www.instagram.com/cabinetorthophonieft/" target="_blank" rel="noopener" dir="ltr">@cabinetorthophonieft</a>
             </li>
           </ul>
         </div>
 
-        <form class="form reveal" id="contact-form" novalidate>
-          <div class="field">
-            <label for="name" data-i18n="form.name">Full name</label>
-            <input id="name" name="name" type="text" autocomplete="name" required>
-            <div class="error" data-i18n="form.errName">Please enter your name.</div>
+        <form class="form reveal" id="booking-form" novalidate>
+          <div class="field-row">
+            <div class="field">
+              <label for="firstName" data-i18n="form.first">First name</label>
+              <input id="firstName" name="firstName" type="text" autocomplete="given-name" required>
+              <div class="error" data-i18n="form.errFirst">Please enter a first name.</div>
+            </div>
+            <div class="field">
+              <label for="lastName" data-i18n="form.last">Last name</label>
+              <input id="lastName" name="lastName" type="text" autocomplete="family-name" required>
+              <div class="error" data-i18n="form.errLast">Please enter a last name.</div>
+            </div>
           </div>
           <div class="field">
-            <label for="email" data-i18n="form.email">Email</label>
-            <input id="email" name="email" type="email" autocomplete="email" dir="ltr" required>
-            <div class="error" data-i18n="form.errEmail">Please enter a valid email address.</div>
+            <label for="phone" data-i18n="form.phone">Phone number</label>
+            <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" placeholder="06 12 34 56 78" required>
+            <div class="error" data-i18n="form.errPhone">Please enter a valid phone number.</div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="date" data-i18n="form.date">Preferred date</label>
+              <input id="date" name="date" type="date" dir="ltr" required>
+              <div class="error" data-i18n="form.errDate">Please choose a date from today onwards.</div>
+            </div>
+            <div class="field">
+              <label for="time" data-i18n="form.time">Preferred time</label>
+              <input id="time" name="time" type="time" dir="ltr" step="900" required>
+              <div class="error" data-i18n="form.errTime">Please choose a time.</div>
+            </div>
           </div>
           <div class="field">
-            <label for="message" data-i18n="form.message">Message</label>
-            <textarea id="message" name="message" required></textarea>
-            <div class="error" data-i18n="form.errMessage">Please write a short message.</div>
+            <label for="message" data-i18n="form.message">Message (optional)</label>
+            <textarea id="message" name="message" data-i18n-ph="form.messagePh"></textarea>
           </div>
-          <button type="submit" class="btn" data-i18n="form.send">Send message</button>
+          <button type="submit" class="btn" data-icon="calendar" data-i18n="form.send">Request an appointment</button>
           <p class="form-status" role="status" aria-live="polite"></p>
+          <p class="form-note"><span data-i18n="form.orCall">Prefer to talk? Call us:</span> <a href="tel:+212522360359" dir="ltr">05 22 36 03 59</a></p>
         </form>
+      </div>
+    </section>
+
+    <!-- GOOGLE REVIEWS -->
+    <section class="reviews" id="reviews">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow" data-i18n="reviews.eyebrow">Google reviews</span>
+          <h2 class="js-mask" data-i18n="reviews.title">What patients say</h2>
+          <a class="rating-badge" href="https://www.google.com/maps/place/Cabinet+d%E2%80%99orthophonie+Fatine+Tber/data=!4m2!3m1!1s0x0:0x4f036dd50c137de8" target="_blank" rel="noopener">
+            <span class="rating-score" data-i18n="reviews.score">5.0</span>
+            <span class="stars" aria-hidden="true">★★★★★</span>
+            <span class="rating-count" data-i18n="reviews.count">41 Google reviews</span>
+          </a>
+        </div>
+        <div class="review-grid">
+          <figure class="review reveal">
+            <figcaption class="review-head">
+              <span class="review-avatar" aria-hidden="true">SB</span>
+              <span>
+                <strong dir="ltr">Salma B.</strong>
+                <span class="stars" role="img" aria-label="5/5">★★★★★</span>
+              </span>
+            </figcaption>
+            <blockquote lang="fr" dir="ltr">J’ai suivi des séances avec elle pour mon fils. C’est une professionnelle très compétente, dotée d’une patience et d’une douceur exceptionnelles. Merci beaucoup pour votre service.</blockquote>
+          </figure>
+          <figure class="review reveal">
+            <figcaption class="review-head">
+              <span class="review-avatar" aria-hidden="true">SA</span>
+              <span>
+                <strong dir="ltr">Salma A.</strong>
+                <span class="stars" role="img" aria-label="5/5">★★★★★</span>
+              </span>
+            </figcaption>
+            <blockquote lang="fr" dir="ltr">Une orthophoniste exceptionnelle ! Dès les premières séances, j’ai été impressionnée par son professionnalisme, sa douceur et sa capacité à mettre en confiance. Elle prend vraiment le temps d’expliquer chaque étape […]</blockquote>
+          </figure>
+          <figure class="review reveal">
+            <figcaption class="review-head">
+              <span class="review-avatar" aria-hidden="true">KB</span>
+              <span>
+                <strong dir="ltr">Khadija B.</strong>
+                <span class="stars" role="img" aria-label="5/5">★★★★★</span>
+              </span>
+            </figcaption>
+            <blockquote lang="fr" dir="ltr">Je recommande vivement cette orthophoniste. Elle est encore jeune mais très professionnelle, attentive et à l’écoute. Elle a su accompagner ma nièce avec efficacité. Les progrès ont été rapides et significatifs. Merci pour votre sérieux et votre bienveillance.</blockquote>
+          </figure>
+        </div>
+        <div class="reviews-more reveal">
+          <a class="btn" href="https://www.google.com/maps/place/Cabinet+d%E2%80%99orthophonie+Fatine+Tber/data=!4m2!3m1!1s0x0:0x4f036dd50c137de8" target="_blank" rel="noopener" data-i18n="reviews.all">See all reviews on Google</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- INSTAGRAM -->
+    <section class="insta" id="instagram">
+      <div class="container">
+        <div class="insta-card reveal">
+          <a class="insta-avatar" href="https://www.instagram.com/cabinetorthophonieft/" target="_blank" rel="noopener" aria-label="Instagram @cabinetorthophonieft">
+            <img src="assets/logo-mark.png" alt="" width="240" height="127">
+          </a>
+          <div class="insta-text">
+            <span class="eyebrow" data-i18n="insta.eyebrow">Instagram</span>
+            <h2 class="js-mask" data-i18n="insta.title">Follow the practice</h2>
+            <p class="insta-handle" dir="ltr">@cabinetorthophonieft</p>
+            <p data-i18n="insta.sub">Tips, activities and news from the practice, shared on Instagram.</p>
+          </div>
+          <a class="btn" href="https://www.instagram.com/cabinetorthophonieft/" target="_blank" rel="noopener" data-icon="instagram" data-i18n="insta.btn">Follow on Instagram</a>
+        </div>
       </div>
     </section>
   </main>
@@ -541,14 +758,19 @@
 
   <script>
     /* ===== Settings: edit these ===== */
-    const CONTACT_EMAIL = "contact@example.com";
-    // Optional: paste a Formspree (or similar) endpoint to receive messages directly,
-    // e.g. "https://formspree.io/f/xxxxxxx". Left empty, the form opens the visitor's email app.
+    // Where appointment requests go. The first one filled in is used:
+    // 1. FORM_ENDPOINT: a Formspree (or similar) URL, e.g. "https://formspree.io/f/xxxxxxx" (requests arrive by email)
+    // 2. WHATSAPP_NUMBER: international format without "+" or spaces, e.g. "212612345678"
+    // 3. CONTACT_EMAIL: opens the visitor's email app with the request filled in
+    // If all are empty, the form asks visitors to call the practice.
     const FORM_ENDPOINT = "";
+    const WHATSAPP_NUMBER = "";
+    const CONTACT_EMAIL = "";
+    const INSTA_SVG = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2\" y=\"2\" width=\"20\" height=\"20\" rx=\"5\"/><circle cx=\"12\" cy=\"12\" r=\"4\"/><circle cx=\"17.5\" cy=\"6.5\" r=\".8\" fill=\"currentColor\"/></svg>";
 
     const T = {
       en: {
-        "nav.home": "Home", "nav.about": "About", "nav.services": "Services", "nav.contact": "Contact",
+        "nav.home": "Home", "nav.about": "About", "nav.services": "Services", "nav.contact": "Appointments", "nav.reviews": "Reviews",
         "hero.badge": "Speech & Language Therapist · Orthophoniste",
         "hero.title1": "Fatine Tber",
         "hero.title2": "helping you find your voice, at every age",
@@ -590,20 +812,44 @@
         "s6.intro": "When reading or writing is a daily struggle, at school, at university or at work, a clear assessment explains why, and targeted therapy builds strategies that last.",
         "s6.list": ["Full reading and spelling assessment", "Dyslexia and dysorthographia therapy", "Phonological awareness and reading comprehension", "Strategies for school, exams and work"],
         "modal.cta": "Book an assessment",
-        "contact.eyebrow": "Contact",
-        "contact.title": "Let's talk",
-        "contact.sub": "Have a question or want to book an assessment for yourself or a loved one? Send me a message and I'll get back to you within 48 hours.",
-        "contact.address": "View the practice on Google Maps",
-        "form.name": "Full name", "form.email": "Email", "form.message": "Message", "form.send": "Send message",
-        "form.errName": "Please enter your name.", "form.errEmail": "Please enter a valid email address.", "form.errMessage": "Please write a short message.",
-        "form.sending": "Sending…", "form.ok": "Thank you! Your message has been sent.", "form.mail": "Your email app is opening to send the message.",
-        "form.fail": "Sorry, something went wrong. Please try again or email directly.",
-        "form.subject": "Website message from",
+        "contact.eyebrow": "Appointments",
+        "contact.title": "Book an appointment",
+        "contact.sub": "Choose the date and time that suit you best. We'll call you back to confirm your appointment.",
+        "form.first": "First name",
+        "form.last": "Last name",
+        "form.phone": "Phone number",
+        "form.date": "Preferred date",
+        "form.time": "Preferred time",
+        "form.message": "Message (optional)",
+        "form.messagePh": "Briefly describe the patient's situation: age, difficulties, reason for the visit…",
+        "form.errFirst": "Please enter a first name.",
+        "form.errLast": "Please enter a last name.",
+        "form.errPhone": "Please enter a valid phone number.",
+        "form.errDate": "Please choose a date from today onwards.",
+        "form.errTime": "Please choose a time.",
+        "form.send": "Request an appointment",
+        "form.sending": "Sending…",
+        "form.ok": "Thank you! Your request has been sent. We'll call you to confirm.",
+        "form.mail": "Your email app is opening to send the request.",
+        "form.wa": "WhatsApp is opening to send your request.",
+        "form.none": "Online booking is not active yet. Please call us on 05 22 36 03 59.",
+        "form.fail": "Sorry, something went wrong. Please try again or call us on 05 22 36 03 59.",
+        "form.subject": "Appointment request",
+        "form.orCall": "Prefer to talk? Call us:",
+        "reviews.eyebrow": "Google reviews",
+        "reviews.title": "What patients say",
+        "reviews.score": "5.0",
+        "reviews.count": "41 Google reviews",
+        "reviews.all": "See all reviews on Google",
+        "insta.eyebrow": "Instagram",
+        "insta.title": "Follow the practice",
+        "insta.sub": "Tips, activities and news from the practice, shared on Instagram.",
+        "insta.btn": "Follow on Instagram",
         "footer.role": "Speech & Language Therapist", "footer.rights": "All rights reserved.",
         "meta.title": "Fatine Tber — Speech Therapist", "ui.close": "Close", "ui.menu": "Menu"
       },
       fr: {
-        "nav.home": "Accueil", "nav.about": "À propos", "nav.services": "Services", "nav.contact": "Contact",
+        "nav.home": "Accueil", "nav.about": "À propos", "nav.services": "Services", "nav.contact": "Rendez-vous", "nav.reviews": "Avis",
         "hero.badge": "Orthophoniste",
         "hero.title1": "Fatine Tber",
         "hero.title2": "vous aider à trouver votre voix, à tout âge",
@@ -645,20 +891,44 @@
         "s6.intro": "Quand lire ou écrire devient un combat quotidien, à l'école, à l'université ou au travail, un bilan précis permet de comprendre pourquoi, et une rééducation ciblée apporte des stratégies durables.",
         "s6.list": ["Bilan complet du langage écrit", "Rééducation de la dyslexie et de la dysorthographie", "Conscience phonologique et compréhension écrite", "Stratégies pour l'école, les examens et le travail"],
         "modal.cta": "Demander un bilan",
-        "contact.eyebrow": "Contact",
-        "contact.title": "Parlons-en",
-        "contact.sub": "Une question ou un bilan à programmer, pour vous ou un proche ? Envoyez-moi un message, je vous réponds sous 48 heures.",
-        "contact.address": "Voir le cabinet sur Google Maps",
-        "form.name": "Nom complet", "form.email": "E-mail", "form.message": "Message", "form.send": "Envoyer",
-        "form.errName": "Veuillez indiquer votre nom.", "form.errEmail": "Veuillez saisir une adresse e-mail valide.", "form.errMessage": "Veuillez écrire un court message.",
-        "form.sending": "Envoi…", "form.ok": "Merci ! Votre message a bien été envoyé.", "form.mail": "Votre messagerie s'ouvre pour envoyer le message.",
-        "form.fail": "Désolée, une erreur est survenue. Réessayez ou écrivez directement par e-mail.",
-        "form.subject": "Message du site de",
+        "contact.eyebrow": "Rendez-vous",
+        "contact.title": "Prendre rendez-vous",
+        "contact.sub": "Choisissez la date et l'heure qui vous conviennent. Nous vous rappelons pour confirmer votre rendez-vous.",
+        "form.first": "Prénom",
+        "form.last": "Nom",
+        "form.phone": "Numéro de téléphone",
+        "form.date": "Date souhaitée",
+        "form.time": "Heure souhaitée",
+        "form.message": "Message (facultatif)",
+        "form.messagePh": "Décrivez brièvement la situation du patient : âge, difficultés, motif de consultation…",
+        "form.errFirst": "Veuillez indiquer le prénom.",
+        "form.errLast": "Veuillez indiquer le nom.",
+        "form.errPhone": "Veuillez saisir un numéro de téléphone valide.",
+        "form.errDate": "Veuillez choisir une date à partir d'aujourd'hui.",
+        "form.errTime": "Veuillez choisir une heure.",
+        "form.send": "Demander un rendez-vous",
+        "form.sending": "Envoi…",
+        "form.ok": "Merci ! Votre demande a bien été envoyée. Nous vous rappelons pour confirmer.",
+        "form.mail": "Votre messagerie s'ouvre pour envoyer la demande.",
+        "form.wa": "WhatsApp s'ouvre pour envoyer votre demande.",
+        "form.none": "La prise de rendez-vous en ligne n'est pas encore active. Appelez-nous au 05 22 36 03 59.",
+        "form.fail": "Désolée, une erreur est survenue. Réessayez ou appelez-nous au 05 22 36 03 59.",
+        "form.subject": "Demande de rendez-vous",
+        "form.orCall": "Vous préférez appeler ?",
+        "reviews.eyebrow": "Avis Google",
+        "reviews.title": "Ce que disent nos patients",
+        "reviews.score": "5,0",
+        "reviews.count": "41 avis Google",
+        "reviews.all": "Voir tous les avis sur Google",
+        "insta.eyebrow": "Instagram",
+        "insta.title": "Suivez le cabinet",
+        "insta.sub": "Conseils, activités et actualités du cabinet, partagés sur Instagram.",
+        "insta.btn": "Suivre sur Instagram",
         "footer.role": "Orthophoniste", "footer.rights": "Tous droits réservés.",
         "meta.title": "Fatine Tber — Orthophoniste", "ui.close": "Fermer", "ui.menu": "Menu"
       },
       ar: {
-        "nav.home": "الرئيسية", "nav.about": "من أنا", "nav.services": "الخدمات", "nav.contact": "اتصل بي",
+        "nav.home": "الرئيسية", "nav.about": "من أنا", "nav.services": "الخدمات", "nav.contact": "المواعيد", "nav.reviews": "التقييمات",
         "hero.badge": "أخصائية النطق واللغة · أرطوفونية",
         "hero.title1": "فاتن طبر",
         "hero.title2": "أساعدك على إيجاد صوتك، في كل الأعمار",
@@ -700,15 +970,39 @@
         "s6.intro": "عندما تصبح القراءة أو الكتابة معاناة يومية، في المدرسة أو الجامعة أو العمل، يساعد التقييم الدقيق على فهم السبب، ويقدّم العلاج الموجّه استراتيجيات تدوم.",
         "s6.list": ["تقييم شامل للغة المكتوبة", "علاج عسر القراءة وعسر الكتابة", "الوعي الصوتي وفهم المقروء", "استراتيجيات للمدرسة والامتحانات والعمل"],
         "modal.cta": "احجز تقييماً",
-        "contact.eyebrow": "اتصل بي",
-        "contact.title": "لنتحدث",
-        "contact.sub": "لديك سؤال أو تريد حجز تقييم لك أو لأحد أحبّائك؟ أرسل لي رسالة وسأرد عليك خلال 48 ساعة.",
-        "contact.address": "موقع العيادة على خرائط Google",
-        "form.name": "الاسم الكامل", "form.email": "البريد الإلكتروني", "form.message": "الرسالة", "form.send": "إرسال الرسالة",
-        "form.errName": "يرجى إدخال اسمك.", "form.errEmail": "يرجى إدخال بريد إلكتروني صحيح.", "form.errMessage": "يرجى كتابة رسالة قصيرة.",
-        "form.sending": "جارٍ الإرسال…", "form.ok": "شكراً لك! تم إرسال رسالتك.", "form.mail": "يتم فتح تطبيق البريد لإرسال الرسالة.",
-        "form.fail": "عذراً، حدث خطأ. حاول مرة أخرى أو راسلنا مباشرة عبر البريد.",
-        "form.subject": "رسالة من الموقع من",
+        "contact.eyebrow": "المواعيد",
+        "contact.title": "احجز موعداً",
+        "contact.sub": "اختر التاريخ والوقت المناسبين لك، وسنتصل بك لتأكيد موعدك.",
+        "form.first": "الاسم",
+        "form.last": "اسم العائلة",
+        "form.phone": "رقم الهاتف",
+        "form.date": "التاريخ المطلوب",
+        "form.time": "الوقت المطلوب",
+        "form.message": "رسالة (اختياري)",
+        "form.messagePh": "صف باختصار حالة المريض: العمر، الصعوبات، سبب الاستشارة…",
+        "form.errFirst": "يرجى إدخال الاسم.",
+        "form.errLast": "يرجى إدخال اسم العائلة.",
+        "form.errPhone": "يرجى إدخال رقم هاتف صحيح.",
+        "form.errDate": "يرجى اختيار تاريخ ابتداءً من اليوم.",
+        "form.errTime": "يرجى اختيار الوقت.",
+        "form.send": "طلب موعد",
+        "form.sending": "جارٍ الإرسال…",
+        "form.ok": "شكراً لك! تم إرسال طلبك، وسنتصل بك للتأكيد.",
+        "form.mail": "يتم فتح تطبيق البريد لإرسال الطلب.",
+        "form.wa": "يتم فتح واتساب لإرسال طلبك.",
+        "form.none": "الحجز عبر الإنترنت غير مفعّل بعد. يرجى الاتصال بنا على 05 22 36 03 59.",
+        "form.fail": "عذراً، حدث خطأ. حاول مرة أخرى أو اتصل بنا على 05 22 36 03 59.",
+        "form.subject": "طلب موعد",
+        "form.orCall": "تفضّل الاتصال؟",
+        "reviews.eyebrow": "تقييمات Google",
+        "reviews.title": "ماذا يقول مرضانا",
+        "reviews.score": "5.0",
+        "reviews.count": "41 تقييماً على Google",
+        "reviews.all": "عرض جميع التقييمات على Google",
+        "insta.eyebrow": "إنستغرام",
+        "insta.title": "تابعوا العيادة",
+        "insta.sub": "نصائح وأنشطة وأخبار العيادة على إنستغرام.",
+        "insta.btn": "تابعونا على إنستغرام",
         "footer.role": "أخصائية النطق واللغة", "footer.rights": "جميع الحقوق محفوظة.",
         "meta.title": "فاتن طبر — أخصائية النطق", "ui.close": "إغلاق", "ui.menu": "القائمة"
       }
@@ -721,9 +1015,12 @@
       label.textContent = btn.textContent.trim();
       if (btn.dataset.i18n) { label.dataset.i18n = btn.dataset.i18n; delete btn.dataset.i18n; }
       btn.textContent = "";
+      const icon = btn.dataset.icon;
       btn.insertAdjacentHTML("afterbegin",
         '<span class="btn-band" aria-hidden="true"><span class="btn-glow"></span><span class="btn-cover"></span></span>' +
-        '<span class="btn-icon" aria-hidden="true">\u2192</span>');
+        (icon === "calendar" || icon === "thinking" ? `<span class="btn-icon anim i-${icon}" aria-hidden="true"></span>`
+          : icon === "instagram" ? `<span class="btn-icon svg" aria-hidden="true">${INSTA_SVG}</span>`
+          : '<span class="btn-icon" aria-hidden="true">\u2192</span>'));
       btn.appendChild(label);
     });
 
@@ -743,6 +1040,7 @@
       root.dir = next === "ar" ? "rtl" : "ltr";
       document.title = t("meta.title");
       document.querySelectorAll("[data-i18n]").forEach(el => { el.textContent = t(el.dataset.i18n); });
+      document.querySelectorAll("[data-i18n-ph]").forEach(el => { el.placeholder = t(el.dataset.i18nPh); });
       document.querySelectorAll(".lang-switch button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === next)));
       document.querySelector(".modal-close").setAttribute("aria-label", t("ui.close"));
       document.querySelector(".menu-toggle").setAttribute("aria-label", t("ui.menu"));
@@ -787,13 +1085,22 @@
     modal.addEventListener("click", e => { if (e.target === modal) modal.close(); });
     document.getElementById("modal-cta").addEventListener("click", () => modal.close());
 
-    // Contact form
-    const form = document.getElementById("contact-form");
+    // Appointment request form
+    const form = document.getElementById("booking-form");
     const status = form.querySelector(".form-status");
-    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const dateInput = document.getElementById("date");
+    const pad = n => String(n).padStart(2, "0");
+    const now = new Date();
+    const today = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
+    dateInput.min = today;
+
     function validate() {
       let ok = true;
-      [["name", v => v.trim().length > 1], ["email", v => emailRe.test(v.trim())], ["message", v => v.trim().length > 4]]
+      [["firstName", v => v.trim().length > 0],
+       ["lastName", v => v.trim().length > 0],
+       ["phone", v => /^[+\d\s().-]+$/.test(v.trim()) && v.replace(/\D/g, "").length >= 9],
+       ["date", v => v !== "" && v >= today],
+       ["time", v => v !== ""]]
         .forEach(([id, test]) => {
           const input = document.getElementById(id);
           const valid = test(input.value);
@@ -806,6 +1113,25 @@
     form.querySelectorAll("input, textarea").forEach(el =>
       el.addEventListener("input", () => el.closest(".field").classList.remove("invalid")));
 
+    function requestText(d) {
+      const date = new Date(d.date + "T00:00").toLocaleDateString(lang === "ar" ? "ar-MA" : lang === "fr" ? "fr-FR" : "en-GB",
+        { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+      return [
+        t("form.subject"),
+        `${t("form.first")}: ${d.firstName.trim()}`,
+        `${t("form.last")}: ${d.lastName.trim()}`,
+        `${t("form.phone")}: ${d.phone.trim()}`,
+        `${t("form.date")}: ${date}`,
+        `${t("form.time")}: ${d.time}`,
+        d.message.trim() ? `\n${d.message.trim()}` : ""
+      ].join("\n").trim();
+    }
+
+    function showStatus(key, kind) {
+      status.textContent = t(key);
+      status.className = "form-status " + kind;
+    }
+
     form.addEventListener("submit", async e => {
       e.preventDefault();
       status.className = "form-status";
@@ -813,37 +1139,36 @@
       if (!validate()) return;
       const data = Object.fromEntries(new FormData(form));
 
-      if (!FORM_ENDPOINT) {
-        const subject = encodeURIComponent(`${t("form.subject")} ${data.name}`);
-        const body = encodeURIComponent(`${data.message}\n\n— ${data.name} (${data.email})`);
-        window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-        status.textContent = t("form.mail");
-        status.classList.add("ok");
-        return;
-      }
-
-      const submit = form.querySelector("[type=submit]");
-      submit.disabled = true;
-      status.textContent = t("form.sending");
-      try {
-        const res = await fetch(FORM_ENDPOINT, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", "Accept": "application/json" },
-          body: JSON.stringify(data)
-        });
-        if (!res.ok) throw new Error(res.status);
-        form.reset();
-        status.textContent = t("form.ok");
-        status.classList.add("ok");
-      } catch (err) {
-        status.textContent = t("form.fail");
-        status.classList.add("err");
-      } finally {
-        submit.disabled = false;
+      if (FORM_ENDPOINT) {
+        const submit = form.querySelector("[type=submit]");
+        submit.disabled = true;
+        showStatus("form.sending", "");
+        try {
+          const res = await fetch(FORM_ENDPOINT, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "Accept": "application/json" },
+            body: JSON.stringify({ ...data, _subject: `${t("form.subject")} – ${data.firstName} ${data.lastName}` })
+          });
+          if (!res.ok) throw new Error(res.status);
+          form.reset();
+          showStatus("form.ok", "ok");
+        } catch (err) {
+          showStatus("form.fail", "err");
+        } finally {
+          submit.disabled = false;
+        }
+      } else if (WHATSAPP_NUMBER) {
+        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(requestText(data))}`, "_blank", "noopener");
+        showStatus("form.wa", "ok");
+      } else if (CONTACT_EMAIL) {
+        const subject = encodeURIComponent(`${t("form.subject")} – ${data.firstName} ${data.lastName}`);
+        window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${encodeURIComponent(requestText(data))}`;
+        showStatus("form.mail", "ok");
+      } else {
+        showStatus("form.none", "err");
       }
     });
 
-    document.querySelectorAll(".js-email").forEach(a => { a.href = "mailto:" + CONTACT_EMAIL; a.textContent = CONTACT_EMAIL; });
     document.getElementById("year").textContent = new Date().getFullYear();
 
     // Mask text reveal: hidden only once JS runs, revealed bottom-to-top when in view
