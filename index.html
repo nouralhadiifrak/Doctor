@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Fatine Tber — Speech Therapist</title>
   <meta name="description" content="Fatine Tber, speech and language therapist (orthophoniste) helping children, teens and adults communicate with confidence.">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -65,17 +67,58 @@
     .section-head { text-align: center; max-width: 640px; margin: 0 auto 48px; }
     .section-head p { color: var(--muted); }
 
+    /* Moving gradient button (port of Originkit "Moving Gradient Button") */
     .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      padding: 13px 26px; border-radius: 999px; border: 2px solid transparent;
+      --mg-ease: cubic-bezier(.44, 0, .56, 1);
+      --mg-band: 3px;
+      position: relative; isolation: isolate;
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 14px 28px; border: 0; border-radius: 999px;
+      background-color: var(--orange); color: var(--cream);
       font: 600 1rem var(--font-body); text-decoration: none; cursor: pointer;
-      transition: background .2s, color .2s, border-color .2s, transform .2s;
+      -webkit-tap-highlight-color: transparent;
+      transition: background-color .4s var(--mg-ease), transform .2s;
     }
     .btn:active { transform: translateY(1px); }
-    .btn-primary { background: var(--accent); color: #fff; }
-    .btn-primary:hover { background: var(--accent-hover); }
-    .btn-outline { border-color: var(--brown); color: var(--brown); background: transparent; }
-    .btn-outline:hover { background: var(--brown); color: var(--cream); }
+    .btn:disabled { opacity: .7; cursor: default; }
+    .btn-band {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+      padding: var(--mg-band); border-radius: inherit;
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    }
+    .btn-band::before { content: ""; position: absolute; inset: 0; background: var(--cream); }
+    .btn-glow {
+      position: absolute; top: 50%; left: 50%; width: 160%; aspect-ratio: 1;
+      translate: -50% -50%;
+      background: repeating-conic-gradient(from 0deg, transparent 0deg, var(--brown) 99deg, var(--amber) 180deg);
+      animation: mg-spin 11.4s linear infinite;
+    }
+    .btn-cover {
+      position: absolute; inset: 0; opacity: 0;
+      background: conic-gradient(from 0deg, var(--brown), var(--amber), var(--brown), var(--amber), var(--brown));
+      transition: opacity .4s var(--mg-ease);
+    }
+    .btn-icon, .btn-label { position: relative; z-index: 1; transition: color .4s var(--mg-ease); }
+    .btn-icon { font-size: 1.15em; line-height: 1; color: #fff; }
+    .btn-label { white-space: nowrap; }
+    html[dir="rtl"] .btn-icon { transform: scaleX(-1); }
+    .btn:focus-visible { background-color: var(--brown); }
+    .btn:focus-visible .btn-cover { opacity: 1; }
+    .btn:focus-visible .btn-label, .btn:focus-visible .btn-icon { color: var(--amber); }
+    @media (hover: hover) {
+      .btn:hover { background-color: var(--brown); }
+      .btn:hover .btn-cover { opacity: 1; }
+      .btn:hover .btn-label, .btn:hover .btn-icon { color: var(--amber); }
+    }
+    @keyframes mg-spin { to { rotate: 360deg; } }
+
+    /* Mask text reveal (port of Originkit "Mask Text Reveal", bottom-to-top) */
+    .mask-reveal { clip-path: inset(100% 0% 0% 0%); transition: clip-path 1s cubic-bezier(.42, 0, 1, 1) var(--mask-delay, 0s); }
+    .mask-reveal.in { clip-path: inset(0% 0% 0% 0%); }
+    .mask-reveal.done { clip-path: none; }
+    .hero h1 > span { display: block; }
     :focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; }
 
     /* Header */
@@ -87,11 +130,7 @@
     }
     .nav { display: flex; align-items: center; justify-content: space-between; height: 70px; gap: 16px; }
     .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--font-head); font-weight: 600; font-size: 1.2rem; }
-    .logo-mark {
-      width: 38px; height: 38px; border-radius: 12px; flex-shrink: 0;
-      background: var(--amber); color: var(--brown);
-      display: grid; place-items: center;
-    }
+    .logo-mark { height: 40px; width: auto; flex-shrink: 0; }
     .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; margin: 0; padding: 0; }
     .nav-links a { text-decoration: none; font-weight: 500; color: var(--muted); transition: color .2s; }
     .nav-links a:hover { color: var(--orange); }
@@ -131,8 +170,13 @@
     .hero-sub { font-size: 1.12rem; color: var(--muted); max-width: 520px; margin-bottom: 32px; }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
     .hero-art { position: relative; aspect-ratio: 1 / 1; max-width: 440px; width: 100%; justify-self: center; }
-    .hero-art .blob { position: absolute; inset: 0; background: var(--cream); border-radius: 42% 58% 55% 45% / 48% 42% 58% 52%; }
-    .hero-art svg { position: relative; width: 100%; height: 100%; }
+    .hero-art { display: grid; place-items: center; }
+    .hero-art .blob {
+      position: absolute; inset: 0; background: var(--surface);
+      border-radius: 42% 58% 55% 45% / 48% 42% 58% 52%;
+      box-shadow: 0 0 0 14px var(--cream), var(--shadow);
+    }
+    .hero-logo { position: relative; width: 80%; height: auto; }
     .hero-card {
       position: absolute; background: var(--surface); border-radius: 16px; box-shadow: var(--shadow);
       padding: 12px 16px; display: flex; align-items: center; gap: 10px; font-size: .9rem; font-weight: 600;
@@ -146,10 +190,10 @@
     .about-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 64px; align-items: center; }
     .portrait {
       aspect-ratio: 4 / 5; border-radius: 28px; overflow: hidden; position: relative;
-      background: linear-gradient(160deg, var(--cream), var(--amber));
+      background: linear-gradient(160deg, #6B3C05, var(--brown));
       display: grid; place-items: center;
     }
-    .portrait .initials { font-family: "Fraunces", serif; font-size: 5.5rem; color: var(--brown); opacity: .85; }
+    .portrait-logo { width: 62%; height: auto; margin-bottom: 18%; }
     .portrait-caption {
       position: absolute; bottom: 18px; inset-inline: 18px; background: rgba(255, 255, 255, .92);
       border-radius: 14px; padding: 12px 16px; font-size: .92rem;
@@ -265,6 +309,8 @@
       html { scroll-behavior: auto; }
       .reveal { opacity: 1; transform: none; transition: none; }
       .card, .btn { transition: none; }
+      .btn-glow { animation: none; }
+      .mask-reveal { clip-path: none; transition: none; }
     }
   </style>
 </head>
@@ -273,9 +319,7 @@
   <header class="header">
     <nav class="container nav" aria-label="Main">
       <a href="#home" class="logo">
-        <span class="logo-mark" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.1A8.4 8.4 0 0 1 12 3.1a8.4 8.4 0 0 1 9 8.4z"/></svg>
-        </span>
+        <img class="logo-mark" src="assets/logo-mark.png" alt="" width="240" height="127">
         <span class="logo-text" data-i18n="hero.title1">Fatine Tber</span>
       </a>
 
@@ -310,30 +354,17 @@
             </span>
             <span data-i18n="hero.badge">Speech & Language Therapist · Orthophoniste</span>
           </span>
-          <h1><span data-i18n="hero.title1">Fatine Tber</span><br><span class="accent" data-i18n="hero.title2">helping you find your voice, at every age</span></h1>
-          <p class="hero-sub" data-i18n="hero.sub">Caring, personalised speech therapy for children, teens and adults, from first words to regaining speech.</p>
+          <h1><span class="js-mask" data-i18n="hero.title1">Fatine Tber</span><span class="accent js-mask" style="--mask-delay:.15s" data-i18n="hero.title2">helping you find your voice, at every age</span></h1>
+          <p class="hero-sub js-mask" style="--mask-delay:.3s" data-i18n="hero.sub">Caring, personalised speech therapy for children, teens and adults, from first words to regaining speech.</p>
           <div class="hero-actions">
-            <a href="#contact" class="btn btn-primary" data-i18n="hero.cta1">Book a consultation</a>
-            <a href="#services" class="btn btn-outline" data-i18n="hero.cta2">Explore services</a>
+            <a href="#contact" class="btn" data-i18n="hero.cta1">Book a consultation</a>
+            <a href="#services" class="btn" data-i18n="hero.cta2">Explore services</a>
           </div>
         </div>
 
         <div class="hero-art reveal" aria-hidden="true">
           <div class="blob"></div>
-          <svg viewBox="0 0 400 400" fill="none">
-            <!-- speech bubbles illustration -->
-            <rect x="70" y="95" width="190" height="120" rx="36" fill="#CC6F00"/>
-            <path d="M110 205 L95 250 L150 212 Z" fill="#CC6F00"/>
-            <circle cx="125" cy="155" r="11" fill="#F9E6A8"/>
-            <circle cx="165" cy="155" r="11" fill="#F9E6A8"/>
-            <circle cx="205" cy="155" r="11" fill="#F9E6A8"/>
-            <rect x="170" y="200" width="160" height="104" rx="32" fill="#4D2A00"/>
-            <path d="M290 292 L310 335 L258 300 Z" fill="#4D2A00"/>
-            <path d="M205 256 q20 -26 40 0 t40 0" stroke="#F2A900" stroke-width="9" stroke-linecap="round"/>
-            <circle cx="320" cy="110" r="16" fill="#F2A900"/>
-            <circle cx="70" cy="300" r="10" fill="#F2A900"/>
-            <path d="M330 160 l6 12 12 6 -12 6 -6 12 -6 -12 -12 -6 12 -6z" fill="#CC6F00"/>
-          </svg>
+          <img class="hero-logo" src="assets/logo.png" alt="" width="720" height="417">
           <div class="hero-card one">
             <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
             <span data-i18n="hero.card1">Personalised plans</span>
@@ -351,7 +382,7 @@
       <div class="container about-grid">
         <div class="portrait reveal">
           <!-- Replace with: <img src="fatine.jpg" alt="Fatine Tber"> -->
-          <span class="initials" aria-hidden="true">FT</span>
+          <img class="portrait-logo" src="assets/logo-mark.png" alt="" width="240" height="127">
           <div class="portrait-caption">
             <strong data-i18n="hero.title1">Fatine Tber</strong>
             <span data-i18n="about.role">Speech & Language Therapist</span>
@@ -359,7 +390,7 @@
         </div>
         <div class="about-text reveal">
           <span class="eyebrow" data-i18n="about.eyebrow">About me</span>
-          <h2 data-i18n="about.title">A calm, caring space to communicate with confidence</h2>
+          <h2 class="js-mask" data-i18n="about.title">A calm, caring space to communicate with confidence</h2>
           <p data-i18n="about.p1">I'm Fatine Tber, a speech and language therapist (orthophoniste) dedicated to helping people of all ages communicate with confidence. I work with young children, teenagers and adults facing speech, language, reading or fluency difficulties, including adults recovering their speech after a stroke or illness.</p>
           <p data-i18n="about.p2">Every session is adapted to the person in front of me: play and stories for little ones, concrete everyday goals for teens and adults. I explain each step clearly, give simple exercises to continue at home, and involve families whenever it helps.</p>
           <div class="stats">
@@ -376,7 +407,7 @@
       <div class="container">
         <div class="section-head reveal">
           <span class="eyebrow" data-i18n="services.eyebrow">Services</span>
-          <h2 data-i18n="services.title">How I can help</h2>
+          <h2 class="js-mask" data-i18n="services.title">How I can help</h2>
           <p data-i18n="services.sub">Each journey starts with a thorough assessment, followed by a therapy plan tailored to you or your child.</p>
         </div>
 
@@ -387,7 +418,7 @@
             </div>
             <h3 data-i18n="s1.title">Speech & Language Disorders</h3>
             <p data-i18n="s1.short">From late talkers and pronunciation difficulties in children to language recovery in adults after a stroke.</p>
-            <button class="btn btn-outline" type="button" data-service="s1" data-i18n="services.btn">View details</button>
+            <button class="btn" type="button" data-service="s1" data-i18n="services.btn">View details</button>
           </article>
 
           <article class="card reveal">
@@ -396,7 +427,7 @@
             </div>
             <h3 data-i18n="s2.title">Reading & Writing Difficulties</h3>
             <p data-i18n="s2.short">Assessment and therapy for dyslexia, dysorthographia and other learning difficulties, for students and adults.</p>
-            <button class="btn btn-outline" type="button" data-service="s2" data-i18n="services.btn">View details</button>
+            <button class="btn" type="button" data-service="s2" data-i18n="services.btn">View details</button>
           </article>
 
           <article class="card reveal">
@@ -405,7 +436,7 @@
             </div>
             <h3 data-i18n="s3.title">Stuttering & Fluency</h3>
             <p data-i18n="s3.short">Helping children and adults speak more fluently and with confidence, at school, at work and in daily life.</p>
-            <button class="btn btn-outline" type="button" data-service="s3" data-i18n="services.btn">View details</button>
+            <button class="btn" type="button" data-service="s3" data-i18n="services.btn">View details</button>
           </article>
         </div>
       </div>
@@ -416,7 +447,7 @@
       <div class="container contact-grid">
         <div class="contact-info reveal">
           <span class="eyebrow" data-i18n="contact.eyebrow">Contact</span>
-          <h2 data-i18n="contact.title">Let's talk</h2>
+          <h2 class="js-mask" data-i18n="contact.title">Let's talk</h2>
           <p data-i18n="contact.sub">Have a question or want to book an assessment for yourself or a loved one? Send me a message and I'll get back to you within 48 hours.</p>
           <ul class="info-list">
             <li>
@@ -450,7 +481,7 @@
             <textarea id="message" name="message" required></textarea>
             <div class="error" data-i18n="form.errMessage">Please write a short message.</div>
           </div>
-          <button type="submit" class="btn btn-primary" data-i18n="form.send">Send message</button>
+          <button type="submit" class="btn" data-i18n="form.send">Send message</button>
           <p class="form-status" role="status" aria-live="polite"></p>
         </form>
       </div>
@@ -474,7 +505,7 @@
       <h3 id="modal-title"></h3>
       <p class="modal-intro" id="modal-intro"></p>
       <ul id="modal-list"></ul>
-      <a href="#contact" class="btn btn-primary" id="modal-cta" data-i18n="modal.cta">Book an assessment</a>
+      <a href="#contact" class="btn" id="modal-cta" data-i18n="modal.cta">Book an assessment</a>
     </div>
   </dialog>
 
@@ -617,6 +648,19 @@
       }
     };
 
+    // Moving gradient buttons: band + glow + cover, icon and label (label keeps the i18n key)
+    document.querySelectorAll(".btn").forEach(btn => {
+      const label = document.createElement("span");
+      label.className = "btn-label";
+      label.textContent = btn.textContent.trim();
+      if (btn.dataset.i18n) { label.dataset.i18n = btn.dataset.i18n; delete btn.dataset.i18n; }
+      btn.textContent = "";
+      btn.insertAdjacentHTML("afterbegin",
+        '<span class="btn-band" aria-hidden="true"><span class="btn-glow"></span><span class="btn-cover"></span></span>' +
+        '<span class="btn-icon" aria-hidden="true">\u2192</span>');
+      btn.appendChild(label);
+    });
+
     const icons = {};
     document.querySelectorAll("[data-service]").forEach(btn => {
       icons[btn.dataset.service] = btn.closest(".card").querySelector(".card-icon").innerHTML;
@@ -735,6 +779,25 @@
 
     document.querySelectorAll(".js-email").forEach(a => { a.href = "mailto:" + CONTACT_EMAIL; a.textContent = CONTACT_EMAIL; });
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Mask text reveal: hidden only once JS runs, revealed bottom-to-top when in view
+    const masks = document.querySelectorAll(".js-mask");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if ("IntersectionObserver" in window && !reduceMotion) {
+      masks.forEach(el => {
+        el.classList.add("mask-reveal");
+        el.addEventListener("transitionend", e => {
+          if (e.propertyName === "clip-path" && el.classList.contains("in")) el.classList.add("done");
+        });
+      });
+      // A fully clipped element never reports as visible, so watch its parent instead
+      const mio = new IntersectionObserver(entries => entries.forEach(en => {
+        if (!en.isIntersecting) return;
+        en.target.querySelectorAll(":scope > .js-mask").forEach(el => requestAnimationFrame(() => el.classList.add("in")));
+        mio.unobserve(en.target);
+      }), { threshold: .2 });
+      new Set([...masks].map(el => el.parentElement)).forEach(parent => mio.observe(parent));
+    }
 
     // Reveal on scroll
     if ("IntersectionObserver" in window) {
