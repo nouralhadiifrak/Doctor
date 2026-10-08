@@ -193,7 +193,7 @@
       background: linear-gradient(160deg, #6B3C05, var(--brown));
       display: grid; place-items: center;
     }
-    .portrait-logo { width: 62%; height: auto; margin-bottom: 18%; }
+    .portrait-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 70% 20%; }
     .portrait-caption {
       position: absolute; bottom: 18px; inset-inline: 18px; background: rgba(255, 255, 255, .92);
       border-radius: 14px; padding: 12px 16px; font-size: .92rem;
@@ -209,7 +209,7 @@
     .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
     .card {
       background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
-      padding: 32px 28px; display: flex; flex-direction: column;
+      padding: 32px 26px; display: flex; flex-direction: column; align-items: center; text-align: center;
       transition: transform .25s, box-shadow .25s;
     }
     .card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
@@ -218,7 +218,8 @@
       display: grid; place-items: center; margin-bottom: 22px;
     }
     .card p { color: var(--muted); flex: 1; }
-    .card .btn { align-self: flex-start; margin-top: 8px; padding: 10px 20px; }
+    .card h3 { font-size: 1.35rem; }
+    .card .btn { margin-top: 8px; padding: 10px 20px; }
 
     /* Modal */
     dialog {
@@ -279,7 +280,7 @@
       .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 44px; }
       .hero-art { max-width: 360px; }
       .portrait { max-width: 380px; width: 100%; margin: 0 auto; }
-      .cards { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; }
+      .cards { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 780px) {
       .menu-toggle { display: inline-flex; }
@@ -291,6 +292,9 @@
       .nav-links.open { display: flex; }
       .nav-links a { display: block; padding: 12px 0; font-size: 1.05rem; }
       .logo-text { display: none; }
+    }
+    @media (max-width: 600px) {
+      .cards { grid-template-columns: 1fr; }
     }
     @media (max-width: 520px) {
       section { padding: 64px 0; }
@@ -381,8 +385,7 @@
     <section class="about" id="about">
       <div class="container about-grid">
         <div class="portrait reveal">
-          <!-- Replace with: <img src="fatine.jpg" alt="Fatine Tber"> -->
-          <img class="portrait-logo" src="assets/logo-mark.png" alt="" width="240" height="127">
+          <img class="portrait-photo" src="assets/fatine.jpg" alt="Fatine Tber" width="408" height="510">
           <div class="portrait-caption">
             <strong data-i18n="hero.title1">Fatine Tber</strong>
             <span data-i18n="about.role">Speech & Language Therapist</span>
@@ -407,36 +410,63 @@
       <div class="container">
         <div class="section-head reveal">
           <span class="eyebrow" data-i18n="services.eyebrow">Services</span>
-          <h2 class="js-mask" data-i18n="services.title">How I can help</h2>
+          <h2 class="js-mask" data-i18n="services.title">Therapies &amp; Rehabilitation</h2>
           <p data-i18n="services.sub">Each journey starts with a thorough assessment, followed by a therapy plan tailored to you or your child.</p>
         </div>
 
         <div class="cards">
           <article class="card reveal">
             <div class="card-icon" aria-hidden="true">
-              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3M8 22h8"/></svg>
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
             </div>
-            <h3 data-i18n="s1.title">Speech & Language Disorders</h3>
-            <p data-i18n="s1.short">From late talkers and pronunciation difficulties in children to language recovery in adults after a stroke.</p>
+            <h3 data-i18n="s1.title">Speech Sounds</h3>
+            <p data-i18n="s1.short">Correcting articulation difficulties such as lisps and sound substitutions, so speech becomes clear and easy to understand.</p>
             <button class="btn" type="button" data-service="s1" data-i18n="services.btn">View details</button>
-          </article>
-
-          <article class="card reveal">
-            <div class="card-icon" aria-hidden="true">
-              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4h7a3 3 0 0 1 3 3v14a2 2 0 0 0-2-2H2zM22 4h-7a3 3 0 0 0-3 3v14a2 2 0 0 1 2-2h8z"/></svg>
-            </div>
-            <h3 data-i18n="s2.title">Reading & Writing Difficulties</h3>
-            <p data-i18n="s2.short">Assessment and therapy for dyslexia, dysorthographia and other learning difficulties, for students and adults.</p>
-            <button class="btn" type="button" data-service="s2" data-i18n="services.btn">View details</button>
           </article>
 
           <article class="card reveal">
             <div class="card-icon" aria-hidden="true">
               <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.1A8.4 8.4 0 0 1 12 3.1a8.4 8.4 0 0 1 9 8.4z"/><path d="M8 12h.01M12 12h.01M16 12h.01"/></svg>
             </div>
-            <h3 data-i18n="s3.title">Stuttering & Fluency</h3>
-            <p data-i18n="s3.short">Helping children and adults speak more fluently and with confidence, at school, at work and in daily life.</p>
+            <h3 data-i18n="s2.title">Fluency</h3>
+            <p data-i18n="s2.short">Helping people speak smoothly and naturally, without excessive hesitations, blocks or repetitions, including stuttering.</p>
+            <button class="btn" type="button" data-service="s2" data-i18n="services.btn">View details</button>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3 data-i18n="s3.title">Social Communication</h3>
+            <p data-i18n="s3.short">Building social skills: understanding emotions, speaking up at the right moment and connecting with others more easily.</p>
             <button class="btn" type="button" data-service="s3" data-i18n="services.btn">View details</button>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <h3 data-i18n="s4.title">Language</h3>
+            <p data-i18n="s4.short">Understanding and using words and sentences: language delays in children and aphasia in adults after a stroke.</p>
+            <button class="btn" type="button" data-service="s4" data-i18n="services.btn">View details</button>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+            </div>
+            <h3 data-i18n="s5.title">Voice &amp; Vocal Hygiene</h3>
+            <p data-i18n="s5.short">For people whose voice tires or breaks easily: improving vocal technique and preventing future problems.</p>
+            <button class="btn" type="button" data-service="s5" data-i18n="services.btn">View details</button>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22h6a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v10"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10.4 12.6a2 2 0 1 1 3 3L8 21l-4 1 1-4Z"/></svg>
+            </div>
+            <h3 data-i18n="s6.title">Literacy</h3>
+            <p data-i18n="s6.short">Assessment and therapy for reading, writing and spelling difficulties, such as dyslexia and dysorthographia.</p>
+            <button class="btn" type="button" data-service="s6" data-i18n="services.btn">View details</button>
           </article>
         </div>
       </div>
@@ -460,7 +490,7 @@
             </li>
             <li>
               <span class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-              <span data-i18n="contact.address">Practice address, City</span>
+              <a href="https://www.google.com/maps/place/Cabinet+d%E2%80%99orthophonie+Fatine+Tber/data=!4m2!3m1!1s0x0:0x4f036dd50c137de8" target="_blank" rel="noopener" data-i18n="contact.address">View the practice on Google Maps</a>
             </li>
           </ul>
         </div>
@@ -532,26 +562,38 @@
         "about.p2": "Every session is adapted to the person in front of me: play and stories for little ones, concrete everyday goals for teens and adults. I explain each step clearly, give simple exercises to continue at home, and involve families whenever it helps.",
         "about.s1": "languages spoken", "about.s2n": "All", "about.s2": "ages welcome", "about.s3": "individual sessions",
         "services.eyebrow": "Services",
-        "services.title": "How I can help",
+        "services.title": "Therapies & Rehabilitation",
         "services.sub": "Each journey starts with a thorough assessment, followed by a therapy plan tailored to you or your child.",
         "services.btn": "View details",
-        "s1.title": "Speech & Language Disorders",
-        "s1.short": "From late talkers and pronunciation difficulties in children to language recovery in adults after a stroke.",
-        "s1.intro": "Whether it's a child who is slow to start talking or an adult whose speech has been affected by a stroke or a neurological condition, targeted therapy helps rebuild clear, confident communication.",
-        "s1.list": ["Late talkers and pronunciation difficulties in children", "Vocabulary, understanding and sentence building", "Aphasia and language recovery after a stroke", "Speech support for neurological conditions (e.g. Parkinson's)", "Practical exercises for home and daily life"],
-        "s2.title": "Reading & Writing Difficulties",
-        "s2.short": "Assessment and therapy for dyslexia, dysorthographia and other learning difficulties, for students and adults.",
-        "s2.intro": "When reading or spelling is a daily struggle, at school, at university or at work, a clear assessment explains why, and targeted therapy builds strategies that last.",
-        "s2.list": ["Full reading and spelling assessment", "Dyslexia and dysorthographia therapy", "Phonological awareness and reading comprehension", "Coordination with teachers for school-age children", "Strategies for exams, studies and work"],
-        "s3.title": "Stuttering & Fluency",
-        "s3.short": "Helping children and adults speak more fluently and with confidence, at school, at work and in daily life.",
-        "s3.intro": "Stuttering can affect people at any age. Gentle, evidence-based therapy helps you speak more easily and feel at ease in conversation.",
-        "s3.list": ["Assessment of fluency and speaking habits", "Fluency techniques adapted to each age", "Building confidence in speaking situations", "Guidance for parents of young children", "Support for presentations, interviews and phone calls"],
+        "s1.title": "Speech Sounds",
+        "s1.short": "Correcting articulation difficulties such as lisps and sound substitutions, so speech becomes clear and easy to understand.",
+        "s1.intro": "Some sounds are hard to produce or get replaced by others: a lisp, a mispronounced \"r\", unclear speech. Targeted exercises help produce each sound correctly, then use it naturally in conversation.",
+        "s1.list": ["Assessment of articulation and speech sounds", "Lisps and sound substitutions", "Oral-motor and breathing exercises", "Carry-over into everyday conversation"],
+        "s2.title": "Fluency",
+        "s2.short": "Helping people speak smoothly and naturally, without excessive hesitations, blocks or repetitions, including stuttering.",
+        "s2.intro": "Fluency is the ability to speak in a continuous, natural flow. When stuttering or hesitations get in the way, therapy reduces the struggle and builds confidence in speaking.",
+        "s2.list": ["Assessment of fluency and speaking habits", "Stuttering therapy for children and adults", "Techniques to ease blocks and repetitions", "Confidence at school, at work and on the phone"],
+        "s3.title": "Social Communication",
+        "s3.short": "Building social skills: understanding emotions, speaking up at the right moment and connecting with others more easily.",
+        "s3.intro": "Communication is also about understanding others and sharing with them. Sessions work on the unwritten rules of conversation, so interactions feel easier at home, at school and with friends.",
+        "s3.list": ["Understanding emotions and facial expressions", "Starting, keeping up and ending a conversation", "Taking turns and adapting to the listener", "Support for autism spectrum and pragmatic difficulties"],
+        "s4.title": "Language",
+        "s4.short": "Understanding and using words and sentences: language delays in children and aphasia in adults after a stroke.",
+        "s4.intro": "Language is our ability to understand and express ourselves with words. Therapy helps children whose language develops late, and adults who have lost part of it after a stroke or a neurological illness.",
+        "s4.list": ["Language delay and limited vocabulary in children", "Understanding instructions and building sentences", "Aphasia and language recovery after a stroke", "Support for neurological conditions (e.g. Parkinson's)"],
+        "s5.title": "Voice & Vocal Hygiene",
+        "s5.short": "For people whose voice tires or breaks easily: improving vocal technique and preventing future problems.",
+        "s5.intro": "Hoarseness, vocal fatigue or losing your voice are common, especially for people who talk a lot for work. Therapy improves how you use your voice and builds habits that protect it.",
+        "s5.list": ["Voice assessment (hoarseness, fatigue, voice loss)", "Breathing and vocal technique", "Vocal hygiene: everyday habits that protect your voice", "Support for teachers and other voice professionals"],
+        "s6.title": "Literacy",
+        "s6.short": "Assessment and therapy for reading, writing and spelling difficulties, such as dyslexia and dysorthographia.",
+        "s6.intro": "When reading or writing is a daily struggle, at school, at university or at work, a clear assessment explains why, and targeted therapy builds strategies that last.",
+        "s6.list": ["Full reading and spelling assessment", "Dyslexia and dysorthographia therapy", "Phonological awareness and reading comprehension", "Strategies for school, exams and work"],
         "modal.cta": "Book an assessment",
         "contact.eyebrow": "Contact",
         "contact.title": "Let's talk",
         "contact.sub": "Have a question or want to book an assessment for yourself or a loved one? Send me a message and I'll get back to you within 48 hours.",
-        "contact.address": "Practice address, City",
+        "contact.address": "View the practice on Google Maps",
         "form.name": "Full name", "form.email": "Email", "form.message": "Message", "form.send": "Send message",
         "form.errName": "Please enter your name.", "form.errEmail": "Please enter a valid email address.", "form.errMessage": "Please write a short message.",
         "form.sending": "Sending…", "form.ok": "Thank you! Your message has been sent.", "form.mail": "Your email app is opening to send the message.",
@@ -575,26 +617,38 @@
         "about.p2": "Chaque séance est adaptée à la personne : le jeu et les histoires pour les plus petits, des objectifs concrets du quotidien pour les adolescents et les adultes. J'explique clairement chaque étape, je propose des exercices simples à poursuivre à la maison et j'associe l'entourage dès que c'est utile.",
         "about.s1": "langues parlées", "about.s2n": "Tous", "about.s2": "les âges", "about.s3": "séances individuelles",
         "services.eyebrow": "Services",
-        "services.title": "Comment je peux vous aider",
+        "services.title": "Thérapies & Rééducation",
         "services.sub": "Chaque parcours commence par un bilan complet, suivi d'un plan de rééducation adapté à vous ou à votre enfant.",
         "services.btn": "Voir les détails",
-        "s1.title": "Troubles de la parole et du langage",
-        "s1.short": "Des retards de parole et troubles d'articulation chez l'enfant à la récupération du langage chez l'adulte après un AVC.",
-        "s1.intro": "Qu'il s'agisse d'un enfant qui tarde à parler ou d'un adulte dont la parole a été touchée par un AVC ou une maladie neurologique, une rééducation ciblée aide à retrouver une communication claire et assurée.",
-        "s1.list": ["Retard de parole et troubles d'articulation chez l'enfant", "Vocabulaire, compréhension et construction de phrases", "Aphasie et récupération du langage après un AVC", "Rééducation dans les maladies neurologiques (ex. Parkinson)", "Exercices pratiques pour la maison et le quotidien"],
-        "s2.title": "Troubles de la lecture et de l'écriture",
-        "s2.short": "Bilan et rééducation de la dyslexie, de la dysorthographie et des autres troubles des apprentissages, pour les élèves comme pour les adultes.",
-        "s2.intro": "Quand lire ou écrire devient un combat quotidien, à l'école, à l'université ou au travail, un bilan précis permet de comprendre pourquoi, et une rééducation ciblée apporte des stratégies durables.",
-        "s2.list": ["Bilan complet du langage écrit", "Rééducation de la dyslexie et de la dysorthographie", "Conscience phonologique et compréhension écrite", "Lien avec l'enseignant pour les enfants scolarisés", "Stratégies pour les examens, les études et le travail"],
-        "s3.title": "Bégaiement et fluence",
-        "s3.short": "Aider enfants et adultes à parler plus facilement et avec assurance, à l'école, au travail et au quotidien.",
-        "s3.intro": "Le bégaiement peut toucher à tout âge. Une prise en charge douce et fondée sur les preuves aide à parler plus aisément et à se sentir à l'aise dans l'échange.",
-        "s3.list": ["Évaluation de la fluence et des habitudes de parole", "Techniques de fluence adaptées à chaque âge", "Confiance dans les situations de parole", "Guidance parentale pour les jeunes enfants", "Soutien pour les exposés, entretiens et appels téléphoniques"],
+        "s1.title": "Sons de la parole",
+        "s1.short": "Correction des troubles d'articulation comme le zézaiement ou les substitutions de sons, pour une parole claire et compréhensible.",
+        "s1.intro": "Certains sons sont difficiles à produire ou remplacés par d'autres : zézaiement, « r » mal prononcé, parole peu intelligible. Des exercices ciblés permettent de produire chaque son correctement, puis de l'utiliser naturellement.",
+        "s1.list": ["Bilan de l'articulation et des sons de la parole", "Zézaiement et substitutions de sons", "Exercices bucco-faciaux et respiratoires", "Transfert dans la conversation de tous les jours"],
+        "s2.title": "Fluidité",
+        "s2.short": "Aider à parler de manière naturelle et continue, sans hésitations excessives, blocages ni répétitions, y compris en cas de bégaiement.",
+        "s2.intro": "La fluidité, c'est la capacité à parler de façon continue et naturelle. Quand le bégaiement ou les hésitations s'en mêlent, la rééducation réduit l'effort et redonne confiance à l'oral.",
+        "s2.list": ["Évaluation de la fluence et des habitudes de parole", "Prise en charge du bégaiement, enfants et adultes", "Techniques pour assouplir blocages et répétitions", "Confiance à l'école, au travail et au téléphone"],
+        "s3.title": "Communication sociale",
+        "s3.short": "Développer les compétences sociales : comprendre les émotions, prendre la parole au bon moment et créer des liens plus facilement.",
+        "s3.intro": "Communiquer, c'est aussi comprendre l'autre et partager avec lui. Les séances travaillent les règles implicites de la conversation, pour des échanges plus faciles en famille, à l'école et entre amis.",
+        "s3.list": ["Comprendre les émotions et les expressions du visage", "Engager, maintenir et terminer une conversation", "Respecter les tours de parole et s'adapter à l'interlocuteur", "Accompagnement du trouble du spectre autistique et de la pragmatique"],
+        "s4.title": "Langage",
+        "s4.short": "Comprendre et utiliser les mots et les phrases : retards de langage chez l'enfant, aphasie chez l'adulte après un AVC.",
+        "s4.intro": "Le langage, c'est notre capacité à comprendre et à nous exprimer avec des mots. La rééducation aide les enfants dont le langage se développe tardivement et les adultes qui en ont perdu une partie après un AVC ou une maladie neurologique.",
+        "s4.list": ["Retard de langage et vocabulaire limité chez l'enfant", "Compréhension des consignes et construction de phrases", "Aphasie et récupération du langage après un AVC", "Accompagnement des maladies neurologiques (ex. Parkinson)"],
+        "s5.title": "Voix et hygiène vocale",
+        "s5.short": "Pour les personnes dont la voix se fatigue ou se casse facilement : améliorer la technique vocale et prévenir les troubles futurs.",
+        "s5.intro": "Voix enrouée, fatigue vocale ou extinction de voix sont fréquentes, surtout chez ceux qui parlent beaucoup pour leur métier. La rééducation améliore l'usage de la voix et installe des habitudes qui la protègent.",
+        "s5.list": ["Bilan vocal (enrouement, fatigue, perte de voix)", "Respiration et technique vocale", "Hygiène vocale : les bons gestes au quotidien", "Accompagnement des enseignants et professionnels de la voix"],
+        "s6.title": "Littératie",
+        "s6.short": "Bilan et rééducation des difficultés de lecture, d'écriture et d'orthographe, comme la dyslexie et la dysorthographie.",
+        "s6.intro": "Quand lire ou écrire devient un combat quotidien, à l'école, à l'université ou au travail, un bilan précis permet de comprendre pourquoi, et une rééducation ciblée apporte des stratégies durables.",
+        "s6.list": ["Bilan complet du langage écrit", "Rééducation de la dyslexie et de la dysorthographie", "Conscience phonologique et compréhension écrite", "Stratégies pour l'école, les examens et le travail"],
         "modal.cta": "Demander un bilan",
         "contact.eyebrow": "Contact",
         "contact.title": "Parlons-en",
         "contact.sub": "Une question ou un bilan à programmer, pour vous ou un proche ? Envoyez-moi un message, je vous réponds sous 48 heures.",
-        "contact.address": "Adresse du cabinet, Ville",
+        "contact.address": "Voir le cabinet sur Google Maps",
         "form.name": "Nom complet", "form.email": "E-mail", "form.message": "Message", "form.send": "Envoyer",
         "form.errName": "Veuillez indiquer votre nom.", "form.errEmail": "Veuillez saisir une adresse e-mail valide.", "form.errMessage": "Veuillez écrire un court message.",
         "form.sending": "Envoi…", "form.ok": "Merci ! Votre message a bien été envoyé.", "form.mail": "Votre messagerie s'ouvre pour envoyer le message.",
@@ -618,26 +672,38 @@
         "about.p2": "تُكيَّف كل جلسة مع الشخص الذي أمامي: اللعب والقصص للصغار، وأهداف عملية من الحياة اليومية للمراهقين والبالغين. أشرح كل خطوة بوضوح، وأقدّم تمارين بسيطة للمتابعة في المنزل، وأُشرك العائلة كلما كان ذلك مفيداً.",
         "about.s1": "لغات", "about.s2n": "كل", "about.s2": "الأعمار", "about.s3": "جلسات فردية",
         "services.eyebrow": "الخدمات",
-        "services.title": "كيف يمكنني مساعدتك",
+        "services.title": "العلاجات وإعادة التأهيل",
         "services.sub": "تبدأ كل رحلة بتقييم شامل، يليه برنامج علاجي مصمم خصيصاً لك أو لطفلك.",
         "services.btn": "عرض التفاصيل",
-        "s1.title": "اضطرابات النطق واللغة",
-        "s1.short": "من تأخر الكلام وصعوبات النطق لدى الأطفال إلى استعادة اللغة لدى البالغين بعد الجلطة الدماغية.",
-        "s1.intro": "سواء كان طفلاً تأخر في الكلام أو شخصاً بالغاً تأثر كلامه بجلطة دماغية أو مرض عصبي، يساعد العلاج الموجّه على استعادة تواصل واضح وواثق.",
-        "s1.list": ["تأخر الكلام وصعوبات النطق لدى الأطفال", "المفردات والفهم وبناء الجمل", "الحبسة الكلامية واستعادة اللغة بعد الجلطة", "دعم الكلام في الأمراض العصبية (مثل باركنسون)", "تمارين عملية للمنزل والحياة اليومية"],
-        "s2.title": "صعوبات القراءة والكتابة",
-        "s2.short": "تقييم وعلاج عسر القراءة وعسر الكتابة وصعوبات التعلم الأخرى، للتلاميذ والبالغين.",
-        "s2.intro": "عندما تصبح القراءة أو الكتابة معاناة يومية، في المدرسة أو الجامعة أو العمل، يساعد التقييم الدقيق على فهم السبب، ويقدّم العلاج الموجّه استراتيجيات تدوم.",
-        "s2.list": ["تقييم شامل للغة المكتوبة", "علاج عسر القراءة وعسر الكتابة", "الوعي الصوتي وفهم المقروء", "التنسيق مع المعلّم للأطفال في سن الدراسة", "استراتيجيات للامتحانات والدراسة والعمل"],
-        "s3.title": "التأتأة والطلاقة",
-        "s3.short": "مساعدة الأطفال والبالغين على الكلام بطلاقة وثقة، في المدرسة والعمل والحياة اليومية.",
-        "s3.intro": "قد تظهر التأتأة في أي عمر. يساعد العلاج اللطيف المبني على الأدلة على الكلام بسهولة أكبر والشعور بالراحة أثناء الحديث.",
-        "s3.list": ["تقييم الطلاقة وعادات الكلام", "تقنيات طلاقة مناسبة لكل عمر", "تعزيز الثقة في مواقف الكلام", "إرشاد أهل الأطفال الصغار", "دعم العروض والمقابلات والمكالمات الهاتفية"],
+        "s1.title": "أصوات الكلام",
+        "s1.short": "تصحيح اضطرابات النطق مثل اللثغة واستبدال الأصوات، ليصبح الكلام واضحاً وسهل الفهم.",
+        "s1.intro": "بعض الأصوات يصعب نطقها أو تُستبدل بأصوات أخرى: لثغة، أو نطق غير صحيح لحرف الراء، أو كلام غير واضح. تساعد التمارين الموجّهة على نطق كل صوت بشكل صحيح ثم استخدامه بشكل طبيعي في الحديث.",
+        "s1.list": ["تقييم النطق ومخارج الأصوات", "اللثغة واستبدال الأصوات", "تمارين الفم والتنفس", "نقل المكتسبات إلى الحديث اليومي"],
+        "s2.title": "الطلاقة",
+        "s2.short": "المساعدة على الكلام بشكل طبيعي ومتواصل، دون تردد مفرط أو توقفات أو تكرار، بما في ذلك حالات التأتأة.",
+        "s2.intro": "الطلاقة هي القدرة على الكلام بشكل متواصل وطبيعي. عندما تعيق التأتأة أو التردد الحديث، يخفف العلاج من الجهد ويعيد الثقة في التعبير الشفهي.",
+        "s2.list": ["تقييم الطلاقة وعادات الكلام", "علاج التأتأة للأطفال والبالغين", "تقنيات لتخفيف التوقفات والتكرار", "الثقة في المدرسة والعمل والمكالمات الهاتفية"],
+        "s3.title": "التواصل الاجتماعي",
+        "s3.short": "تنمية المهارات الاجتماعية: فهم المشاعر، وأخذ الكلمة في الوقت المناسب، وتكوين صداقات بسهولة أكبر.",
+        "s3.intro": "التواصل يعني أيضاً فهم الآخر والتفاعل معه. تعمل الجلسات على القواعد غير المكتوبة للمحادثة، لتصبح التفاعلات أسهل في البيت والمدرسة ومع الأصدقاء.",
+        "s3.list": ["فهم المشاعر وتعابير الوجه", "بدء المحادثة والحفاظ عليها وإنهاؤها", "احترام دور الكلام والتكيّف مع المحاور", "مرافقة اضطراب طيف التوحد وصعوبات التواصل الاجتماعي"],
+        "s4.title": "اللغة",
+        "s4.short": "فهم الكلمات والجمل واستخدامها: تأخر اللغة لدى الأطفال، والحبسة الكلامية لدى البالغين بعد الجلطة الدماغية.",
+        "s4.intro": "اللغة هي قدرتنا على الفهم والتعبير بالكلمات. يساعد العلاج الأطفال الذين تتطور لغتهم متأخرة، والبالغين الذين فقدوا جزءاً منها بعد جلطة دماغية أو مرض عصبي.",
+        "s4.list": ["تأخر اللغة وقلة المفردات لدى الأطفال", "فهم التعليمات وبناء الجمل", "الحبسة الكلامية واستعادة اللغة بعد الجلطة", "مرافقة الأمراض العصبية (مثل باركنسون)"],
+        "s5.title": "الصوت وصحة الصوت",
+        "s5.short": "للأشخاص الذين يتعب صوتهم أو يُبحّ بسهولة: تحسين تقنية الصوت والوقاية من المشاكل المستقبلية.",
+        "s5.intro": "بحة الصوت والإرهاق الصوتي وفقدان الصوت أمور شائعة، خاصة لدى من يتحدثون كثيراً في عملهم. يحسّن العلاج طريقة استخدام الصوت ويرسّخ عادات تحميه.",
+        "s5.list": ["تقييم الصوت (بحة، إرهاق، فقدان الصوت)", "التنفس وتقنية الصوت", "صحة الصوت: عادات يومية لحمايته", "مرافقة المعلمين ومهنيي الصوت"],
+        "s6.title": "القراءة والكتابة",
+        "s6.short": "تقييم وعلاج صعوبات القراءة والكتابة والإملاء، مثل عسر القراءة وعسر الكتابة.",
+        "s6.intro": "عندما تصبح القراءة أو الكتابة معاناة يومية، في المدرسة أو الجامعة أو العمل، يساعد التقييم الدقيق على فهم السبب، ويقدّم العلاج الموجّه استراتيجيات تدوم.",
+        "s6.list": ["تقييم شامل للغة المكتوبة", "علاج عسر القراءة وعسر الكتابة", "الوعي الصوتي وفهم المقروء", "استراتيجيات للمدرسة والامتحانات والعمل"],
         "modal.cta": "احجز تقييماً",
         "contact.eyebrow": "اتصل بي",
         "contact.title": "لنتحدث",
         "contact.sub": "لديك سؤال أو تريد حجز تقييم لك أو لأحد أحبّائك؟ أرسل لي رسالة وسأرد عليك خلال 48 ساعة.",
-        "contact.address": "عنوان العيادة، المدينة",
+        "contact.address": "موقع العيادة على خرائط Google",
         "form.name": "الاسم الكامل", "form.email": "البريد الإلكتروني", "form.message": "الرسالة", "form.send": "إرسال الرسالة",
         "form.errName": "يرجى إدخال اسمك.", "form.errEmail": "يرجى إدخال بريد إلكتروني صحيح.", "form.errMessage": "يرجى كتابة رسالة قصيرة.",
         "form.sending": "جارٍ الإرسال…", "form.ok": "شكراً لك! تم إرسال رسالتك.", "form.mail": "يتم فتح تطبيق البريد لإرسال الرسالة.",
