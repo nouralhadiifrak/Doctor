@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Brand palette: #010736 · #0D1C42 · #22396F · #FCF1D0 */
+:root {
+  --navy-950: #010736;
+  --navy-900: #0d1c42;
+  --navy-700: #22396f;
+  --cream: #fcf1d0;
+
+  --bg: #fbf8f1;
+  --surface: #ffffff;
+  --surface-2: #f5eedb;
+  --ink: #010736;
+  --muted: #4a5375;
+  --line: rgb(1 7 54 / 0.1);
+  --brand: #22396f;
+  --brand-hover: #0d1c42;
+  --brand-ink: #fcf1d0;
+  --accent: #22396f;
+  --gold: #b8924f;
+  --ring: rgb(34 57 111 / 0.35);
+  --sans: var(--font-inter), var(--font-plex-arabic), ui-sans-serif, system-ui, sans-serif;
+  --serif: var(--font-cormorant), var(--font-amiri), Georgia, serif;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #010736;
+  --surface: #0d1c42;
+  --surface-2: #081338;
+  --ink: #fcf1d0;
+  --muted: #b9b6b0;
+  --line: rgb(252 241 208 / 0.12);
+  --brand: #fcf1d0;
+  --brand-hover: #fff8e4;
+  --brand-ink: #010736;
+  --accent: #fcf1d0;
+  --gold: #e3c88a;
+  --ring: rgb(252 241 208 / 0.4);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-ink: var(--brand-ink);
+  --color-accent: var(--accent);
+  --color-gold: var(--gold);
+  --color-navy-950: var(--navy-950);
+  --color-navy-900: var(--navy-900);
+  --color-navy-700: var(--navy-700);
+  --color-cream: var(--cream);
+
+  --font-sans: var(--sans);
+  --font-display: var(--serif);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Arabic: Plex Arabic for text, Amiri for headings. */
+html[lang="ar"] {
+  --sans: var(--font-plex-arabic), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --serif: var(--font-amiri), var(--font-cormorant), Georgia, serif;
+}
+html[lang="ar"] .tracking-kicker {
+  letter-spacing: 0;
+}
+
+::selection {
+  background: var(--navy-700);
+  color: var(--cream);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.tracking-kicker {
+  letter-spacing: 0.24em;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+dialog::backdrop {
+  background: rgb(1 7 54 / 0.6);
+  backdrop-filter: blur(4px);
+}
+
+dialog[open] {
+  animation: dialog-in 0.25s ease-out;
+}
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

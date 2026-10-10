@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#22396F"/><stop offset="1" stop-color="#010736"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#g)"/>
+  <g fill="#FCF1D0" opacity="0.14">
+    <circle cx="400" cy="400" r="150"/>
+    <path d="M110 1000c0-190 130-330 290-330s290 140 290 330z"/>
+  </g>
+  <text x="400" y="930" text-anchor="middle" font-family="Georgia, serif" font-size="34" fill="#FCF1D0" opacity="0.6" letter-spacing="4">PHOTO DU DOCTEUR</text>
+</svg>
