@@ -6,7 +6,8 @@ import type { Dictionary } from "@/i18n/dictionaries";
 import { BOOKING_WINDOW_DAYS, addDays, nowAtClinic } from "@/lib/schedule";
 import { site } from "@/lib/site";
 import { CalendarIcon, CheckIcon, PhoneIcon } from "./Icons";
-import { SectionHeading, btn } from "./ui";
+import { BrandButton } from "./BrandButton";
+import { SectionHeading } from "./ui";
 
 type Slot = { time: string; available: boolean };
 type SlotState =
@@ -148,9 +149,9 @@ export function Booking({ dict, lang, intlLocale }: { dict: Dictionary["booking"
               {done.demo && (
                 <p className="mx-auto mt-4 max-w-md rounded-xl bg-surface-2 px-4 py-3 text-sm text-muted">{dict.demoNote}</p>
               )}
-              <button type="button" onClick={reset} className={`${btn.base} ${btn.outline} mt-8`}>
+              <BrandButton variant="outline" onClick={reset} className="mt-8">
                 {dict.another}
-              </button>
+              </BrandButton>
             </div>
           ) : (
             <form onSubmit={submit} noValidate className="relative grid gap-6">
@@ -292,9 +293,9 @@ export function Booking({ dict, lang, intlLocale }: { dict: Dictionary["booking"
                 </p>
               )}
 
-              <button type="submit" disabled={submitting} className={`${btn.base} ${btn.primary} w-full !py-4 text-base`}>
+              <BrandButton type="submit" disabled={submitting} icon={<CalendarIcon />} className="w-full !py-4 !text-base">
                 {submitting ? dict.submitting : dict.submit}
-              </button>
+              </BrandButton>
               <p className="text-center text-xs text-muted">{dict.privacy}</p>
             </form>
           )}

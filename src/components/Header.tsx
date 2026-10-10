@@ -8,7 +8,7 @@ import { CloseIcon, MenuIcon, PhoneIcon } from "./Icons";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
-import { btn } from "./ui";
+import { BrandButton } from "./BrandButton";
 
 type Nav = Dictionary["nav"];
 
@@ -68,13 +68,14 @@ export function Header({ lang, dict }: { lang: Locale; dict: Nav }) {
           </div>
           <ThemeToggle labels={{ light: dict.themeLight, dark: dict.themeDark }} />
           <div className="hidden lg:block">
-            <a
+            <BrandButton
+              variant={solid ? "primary" : "cream"}
               href={`tel:${site.phones.office.tel}`}
-              className={`${btn.base} !px-5 !py-2.5 ${solid ? btn.primary : btn.cream}`}
+              icon={<PhoneIcon />}
+              className="!px-5 !py-2.5"
             >
-              <PhoneIcon className="text-base" />
               <span dir="ltr">{site.phones.office.display}</span>
-            </a>
+            </BrandButton>
           </div>
           <button
             type="button"
@@ -107,9 +108,9 @@ export function Header({ lang, dict }: { lang: Locale; dict: Nav }) {
           ))}
           <div className="mt-6 flex items-center justify-between gap-4">
             <LanguageSwitcher lang={lang} label={dict.language} />
-            <a href={`tel:${site.phones.office.tel}`} className={`${btn.base} ${btn.primary} !py-3`}>
-              <PhoneIcon /> {dict.call}
-            </a>
+            <BrandButton href={`tel:${site.phones.office.tel}`} icon={<PhoneIcon />} className="!py-3">
+              {dict.call}
+            </BrandButton>
           </div>
         </nav>
       </div>

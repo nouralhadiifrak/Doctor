@@ -1,7 +1,8 @@
 import type { Dictionary } from "@/i18n/dictionaries";
 import { ArrowIcon, CalendarIcon, StarIcon } from "./Icons";
 import { Photo } from "./Photo";
-import { btn } from "./ui";
+import { BrandButton } from "./BrandButton";
+import { CurtainReveal } from "./fx/CurtainReveal";
 
 export function Hero({ dict, portrait }: { dict: Dictionary["hero"]; portrait: string }) {
   return (
@@ -26,20 +27,31 @@ export function Hero({ dict, portrait }: { dict: Dictionary["hero"]; portrait: s
             <span className="h-px w-10 bg-cream/40" aria-hidden="true" />
             {dict.eyebrow}
           </p>
-          <h1 className="mt-6 font-display text-[2.9rem] font-semibold leading-[1.02] text-balance sm:text-7xl lg:text-[5.25rem]">
-            {dict.title}
-          </h1>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-cream/75 sm:text-lg">{dict.subtitle}</p>
+          <CurtainReveal
+            tag="h1"
+            text={dict.title}
+            className="mt-6 pb-2 font-display text-[2.9rem] font-semibold leading-[1.02] text-balance sm:text-7xl lg:text-[5.25rem]"
+          />
+          <CurtainReveal
+            tag="p"
+            text={dict.subtitle}
+            delay={0.35}
+            className="mt-6 max-w-xl text-base leading-relaxed text-cream/75 sm:text-lg"
+          />
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <a href="#about" className={`${btn.base} ${btn.ghostLight}`}>
+            <BrandButton
+              variant="ghost"
+              href="#about"
+              icon={<ArrowIcon className="rtl:-scale-x-100" />}
+              iconSide="end"
+              className="w-full sm:w-auto"
+            >
               {dict.ctaAbout}
-              <ArrowIcon className="rtl:-scale-x-100" />
-            </a>
-            <a href="#booking" className={`${btn.base} ${btn.cream}`}>
-              <CalendarIcon className="text-base" />
+            </BrandButton>
+            <BrandButton variant="cream" href="#booking" icon={<CalendarIcon />} className="w-full sm:w-auto">
               {dict.ctaBook}
-            </a>
+            </BrandButton>
           </div>
 
           <ul className="mt-12 flex flex-wrap gap-x-6 gap-y-3 text-sm text-cream/70">

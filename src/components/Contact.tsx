@@ -2,7 +2,8 @@ import type { Dictionary } from "@/i18n/dictionaries";
 import { OPENING_HOURS } from "@/lib/schedule";
 import { site } from "@/lib/site";
 import { ArrowIcon, ClockIcon, PhoneIcon, PinIcon } from "./Icons";
-import { SectionHeading, btn } from "./ui";
+import { BrandButton } from "./BrandButton";
+import { SectionHeading } from "./ui";
 
 const fmt = (m: number) => `${String(Math.floor(m / 60)).padStart(2, "0")}:${String(m % 60).padStart(2, "0")}`;
 const weekOrder = [1, 2, 3, 4, 5, 6, 0];
@@ -29,14 +30,16 @@ export function Contact({ dict }: { dict: Dictionary["contact"] }) {
                 <br />
                 {site.address.city}
               </address>
-              <a
+              <BrandButton
+                variant="outline"
                 href={site.mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`${btn.base} ${btn.outline} mt-6 !py-2.5`}
+                newTab
+                icon={<ArrowIcon className="rtl:-scale-x-100" />}
+                iconSide="end"
+                className="mt-6 !py-2.5"
               >
-                {dict.directions} <ArrowIcon className="rtl:-scale-x-100" />
-              </a>
+                {dict.directions}
+              </BrandButton>
             </div>
 
             <div className={card}>

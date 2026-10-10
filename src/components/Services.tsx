@@ -3,7 +3,8 @@
 import { useRef, useState } from "react";
 import type { Dictionary } from "@/i18n/dictionaries";
 import { ActivityIcon, ArrowIcon, CheckIcon, CloseIcon, HeartPulseIcon, StethoscopeIcon } from "./Icons";
-import { SectionHeading, btn } from "./ui";
+import { BrandButton } from "./BrandButton";
+import { SectionHeading } from "./ui";
 
 const icons = [StethoscopeIcon, HeartPulseIcon, ActivityIcon];
 
@@ -84,13 +85,9 @@ export function Services({ dict, bookLabel }: { dict: Dictionary["services"]; bo
               </li>
             ))}
           </ul>
-          <a
-            href="#booking"
-            onClick={() => dialog.current?.close()}
-            className={`${btn.base} ${btn.primary} mt-8 w-full`}
-          >
+          <BrandButton href="#booking" onClick={() => dialog.current?.close()} className="mt-8 w-full">
             {bookLabel}
-          </a>
+          </BrandButton>
         </div>
       </dialog>
     </section>

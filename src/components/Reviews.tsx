@@ -1,5 +1,6 @@
 import type { Dictionary } from "@/i18n/dictionaries";
 import { reviews, site } from "@/lib/site";
+import { CurtainReveal } from "./fx/CurtainReveal";
 import { ArrowIcon, GoogleIcon, StarIcon } from "./Icons";
 
 const initials = (name: string) =>
@@ -31,9 +32,11 @@ export function Reviews({ dict }: { dict: Dictionary["reviews"] }) {
             {dict.kicker}
             <span className="h-px w-8 bg-cream/40" aria-hidden="true" />
           </p>
-          <h2 className="mt-4 font-display text-4xl font-semibold leading-[1.1] text-balance sm:text-5xl">
-            {dict.title}
-          </h2>
+          <CurtainReveal
+            tag="h2"
+            text={dict.title}
+            className="mt-4 pb-1 font-display text-4xl font-semibold leading-[1.1] text-balance sm:text-5xl"
+          />
           <div className="mt-6 flex items-center justify-center gap-3">
             <span className="font-display text-5xl font-semibold" dir="ltr">5,0</span>
             <div className="text-start">
