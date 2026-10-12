@@ -19,16 +19,19 @@ export const site = {
     "https://www.google.com/maps?q=Dr.+Hicham+Ben+Elghali,+Crystal+Offices+3,+Bouskoura&output=embed",
 };
 
-// Replace the placeholder files in /public/images with real photos
-// (e.g. "/images/cabinet-1.jpg") and update the paths here.
+// Gallery order. The first photo is also the hero portrait.
+// `fit: "contain"` shows tall photos in full instead of cropping them.
 export const gallery = [
-  { src: "/images/doctor.svg", key: "doctor" },
-  { src: "/images/cabinet-1.svg", key: "reception" },
-  { src: "/images/cabinet-2.svg", key: "waiting" },
-  { src: "/images/cabinet-3.svg", key: "office" },
-  { src: "/images/cabinet-4.svg", key: "exam" },
-  { src: "/images/cabinet-5.svg", key: "equipment" },
-] as const;
+  { src: "/images/doctor-portrait.png", key: "doctor", position: "50% 30%" },
+  { src: "/images/building.webp", key: "building", fit: "contain" },
+  { src: "/images/reception.webp", key: "reception", fit: "contain" },
+  { src: "/images/waiting-room.webp", key: "waiting" },
+  { src: "/images/lounge.webp", key: "lounge" },
+  { src: "/images/office.webp", key: "office" },
+  { src: "/images/office-2.webp", key: "office2" },
+  { src: "/images/exam-room.webp", key: "exam" },
+  { src: "/images/care-room.webp", key: "care" },
+] as const satisfies readonly { src: string; key: string; fit?: "contain"; position?: string }[];
 
 export type GalleryKey = (typeof gallery)[number]["key"];
 

@@ -56,7 +56,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
       <JsonLd />
       <Header lang={lang} dict={dict.nav} />
       <main>
-        <Hero dict={dict.hero} portrait={gallery[0].src} />
+        <Hero dict={dict.hero} portrait={gallery[0].src} portraitPosition={gallery[0].position} />
         <About dict={dict.about} />
         <Services dict={dict.services} bookLabel={dict.nav.book} />
         <Gallery dict={dict.gallery} />
