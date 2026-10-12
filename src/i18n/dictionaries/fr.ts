@@ -24,7 +24,7 @@ const fr = {
     eyebrow: "Médecin généraliste · Bouskoura",
     title: "Dr Hicham Ben Elghali",
     subtitle:
-      "Une médecine attentive et rigoureuse, dans un cabinet moderne et serein, pour vous accompagner à chaque étape de votre santé.",
+      "Un suivi médical attentif et rigoureux, dans un cabinet moderne et serein, pour vous accompagner à chaque étape de votre santé.",
     ctaAbout: "Découvrir le docteur",
     ctaBook: "Prendre rendez-vous",
     rating: "5,0 sur Google",

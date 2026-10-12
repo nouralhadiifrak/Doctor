@@ -26,7 +26,7 @@ const en: Dictionary = {
     eyebrow: "General practitioner · Bouskoura",
     title: "Dr Hicham Ben Elghali",
     subtitle:
-      "Attentive, thorough medicine in a modern and calm practice, supporting you at every stage of your health.",
+      "Attentive, thorough medical care in a modern and calm practice, supporting you at every stage of your health.",
     ctaAbout: "Meet the doctor",
     ctaBook: "Book an appointment",
     rating: "5.0 on Google",
