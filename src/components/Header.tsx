@@ -66,7 +66,7 @@ export function Header({ lang, dict }: { lang: Locale; dict: Nav }) {
           <div className="hidden sm:block">
             <LanguageSwitcher lang={lang} label={dict.language} />
           </div>
-          <ThemeToggle labels={{ light: dict.themeLight, dark: dict.themeDark }} />
+          <ThemeToggle labels={{ light: dict.themeLight, dark: dict.themeDark }} className="hidden sm:block" />
           <div className="hidden lg:block">
             <BrandButton
               variant={solid ? "primary" : "cream"}
@@ -106,8 +106,11 @@ export function Header({ lang, dict }: { lang: Locale; dict: Nav }) {
               {label}
             </a>
           ))}
-          <div className="mt-6 flex items-center justify-between gap-4">
-            <LanguageSwitcher lang={lang} label={dict.language} />
+          <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <LanguageSwitcher lang={lang} label={dict.language} />
+              <ThemeToggle labels={{ light: dict.themeLight, dark: dict.themeDark }} className="sm:hidden" />
+            </div>
             <BrandButton href={`tel:${site.phones.office.tel}`} icon={<PhoneIcon />} className="!py-3">
               {dict.call}
             </BrandButton>
