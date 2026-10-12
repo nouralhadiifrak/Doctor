@@ -4,7 +4,9 @@ import { Photo } from "./Photo";
 import { BrandButton } from "./BrandButton";
 import { CurtainReveal } from "./fx/CurtainReveal";
 
-export function Hero({ dict, portrait }: { dict: Dictionary["hero"]; portrait: string }) {
+type Props = { dict: Dictionary["hero"]; portrait: string; portraitPosition?: string };
+
+export function Hero({ dict, portrait, portraitPosition = "50% 50%" }: Props) {
   return (
     <section
       id="top"
@@ -30,13 +32,13 @@ export function Hero({ dict, portrait }: { dict: Dictionary["hero"]; portrait: s
           <CurtainReveal
             tag="h1"
             text={dict.title}
-            className="mt-6 pb-2 font-display text-[2.9rem] font-semibold leading-[1.02] text-balance sm:text-7xl lg:text-[5.25rem]"
+            className="mt-6 pb-2 font-display text-[2.5rem] font-semibold uppercase leading-[1.05] tracking-[0.04em] text-balance sm:text-6xl lg:text-[4.5rem]"
           />
           <CurtainReveal
             tag="p"
             text={dict.subtitle}
             delay={0.35}
-            className="mt-6 max-w-xl text-base leading-relaxed text-cream/75 sm:text-lg"
+            className="mt-6 max-w-xl text-sm uppercase leading-relaxed tracking-[0.12em] text-cream/75 sm:text-base"
           />
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
@@ -54,7 +56,7 @@ export function Hero({ dict, portrait }: { dict: Dictionary["hero"]; portrait: s
             </BrandButton>
           </div>
 
-          <ul className="mt-12 flex flex-wrap gap-x-6 gap-y-3 text-sm text-cream/70">
+          <ul className="mt-12 flex flex-wrap gap-x-6 gap-y-3 text-xs uppercase tracking-[0.12em] text-cream/70">
             <li className="flex items-center gap-2 text-cream">
               <span className="flex text-gold" aria-hidden="true">
                 {Array.from({ length: 5 }, (_, i) => (
@@ -82,6 +84,7 @@ export function Hero({ dict, portrait }: { dict: Dictionary["hero"]; portrait: s
               preload
               sizes="(min-width: 1024px) 28rem, 24rem"
               className="object-cover"
+              style={{ objectPosition: portraitPosition }}
             />
           </div>
         </div>

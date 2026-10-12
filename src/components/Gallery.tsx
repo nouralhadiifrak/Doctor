@@ -63,7 +63,7 @@ export function Gallery({ dict }: { dict: Dictionary["gallery"] }) {
           </div>
         </div>
 
-        <div className="relative mt-12">
+        <div className="relative mx-auto mt-12 max-w-5xl">
           <div
             ref={track}
             role="region"
@@ -73,7 +73,10 @@ export function Gallery({ dict }: { dict: Dictionary["gallery"] }) {
             onKeyDown={onKeyDown}
             className="no-scrollbar flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain rounded-3xl"
           >
-            {gallery.map((g, i) => (
+            {gallery.map((g, i) => {
+              const contain = "fit" in g && g.fit === "contain";
+              const position = "position" in g ? g.position : undefined;
+              return (
               <figure
                 key={g.src}
                 ref={(el) => {
@@ -84,19 +87,33 @@ export function Gallery({ dict }: { dict: Dictionary["gallery"] }) {
                 aria-label={`${i + 1} / ${total}`}
                 className="relative aspect-[4/5] w-full shrink-0 snap-center snap-always overflow-hidden bg-surface-2 sm:aspect-[16/9]"
               >
+                {contain && (
+                  // Blurred fill behind tall photos so they show in full without empty bars.
+                  <Photo
+                    src={g.src}
+                    alt=""
+                    aria-hidden="true"
+                    fill
+                    sizes="(min-width: 1024px) 64rem, 100vw"
+                    className="scale-110 object-cover opacity-60 blur-2xl"
+                    loading="lazy"
+                  />
+                )}
                 <Photo
                   src={g.src}
                   alt={dict.captions[g.key]}
                   fill
-                  sizes="(min-width: 1280px) 80rem, 100vw"
-                  className="object-cover"
+                  sizes="(min-width: 1024px) 64rem, 100vw"
+                  className={contain ? "object-contain" : "object-cover"}
+                  style={position ? { objectPosition: position } : undefined}
                   loading={i === 0 ? "eager" : "lazy"}
                 />
                 <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy-950/85 via-navy-950/30 to-transparent p-6 pt-20 font-display text-2xl font-semibold text-cream sm:p-8 sm:text-3xl">
                   {dict.captions[g.key]}
                 </figcaption>
               </figure>
-            ))}
+              );
+            })}
           </div>
 
           <span

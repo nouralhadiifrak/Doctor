@@ -82,11 +82,14 @@ const ar: Dictionary = {
     goTo: "الانتقال إلى الصورة",
     captions: {
       doctor: "الدكتور هشام بن الغالي",
+      building: "العيادة – Crystal Offices 3",
       reception: "الاستقبال",
       waiting: "قاعة الانتظار",
+      lounge: "فضاء الانتظار",
       office: "مكتب الاستشارة",
+      office2: "فضاء الاستشارة",
       exam: "قاعة الفحص",
-      equipment: "التجهيزات الطبية",
+      care: "قاعة العلاجات",
     },
   },
   reviews: {
