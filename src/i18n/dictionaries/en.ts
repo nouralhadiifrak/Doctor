@@ -27,7 +27,7 @@ const en: Dictionary = {
     title: "Dr Hicham Ben Elghali",
     subtitle:
       "Attentive, thorough medical care in a modern and calm practice, supporting you at every stage of your health.",
-    ctaAbout: "Meet the doctor",
+    ctaVisit: "Visit the practice",
     ctaBook: "Book an appointment",
     rating: "5.0 on Google",
     badges: ["Casablanca Faculty of Medicine", "University diploma in emergency medicine", "Home visits"],
@@ -46,9 +46,11 @@ const en: Dictionary = {
         title: "Doctor of Medicine",
         detail: "Faculty of Medicine and Pharmacy of Casablanca – Hassan II University",
       },
-      { title: "University diploma", detail: "Emergency medicine – Ibn Rochd University Hospital" },
-      { title: "Practice in Bouskoura", detail: "Andalous Prestige – Crystal Offices 3" },
+      { title: "Emergency medicine", detail: "University diploma – Ibn Rochd University Hospital" },
+      { title: "General medicine", detail: "Consultations, chronic disease follow-up and prevention" },
+      { title: "Home visits", detail: "Consultations at patients’ homes and teleconsultations" },
     ],
+    mapsLink: "Open the address in Google Maps",
   },
   services: {
     kicker: "Services",

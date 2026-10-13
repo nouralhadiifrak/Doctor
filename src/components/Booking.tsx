@@ -5,7 +5,8 @@ import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 import { BOOKING_WINDOW_DAYS, addDays, nowAtClinic } from "@/lib/schedule";
 import { site } from "@/lib/site";
-import { CalendarIcon, CheckIcon, PhoneIcon } from "./Icons";
+import { PhoneRingIcon } from "./AnimatedIcons";
+import { CalendarIcon, CheckIcon } from "./Icons";
 import { BrandButton } from "./BrandButton";
 import { SectionHeading } from "./ui";
 
@@ -126,11 +127,13 @@ export function Booking({ dict, lang, intlLocale }: { dict: Dictionary["booking"
         <div>
           <SectionHeading kicker={dict.kicker} title={dict.title} intro={dict.intro} align="start" />
           <div className="mt-10 space-y-4 text-sm text-muted">
-            <a href={`tel:${site.phones.office.tel}`} className="flex items-center gap-3 font-semibold text-ink hover:underline">
+            <a href={`tel:${site.phones.office.tel}`} className="flex items-center gap-3 font-semibold text-ink">
               <span className="grid size-10 place-items-center rounded-full bg-surface text-lg text-accent">
-                <PhoneIcon />
+                <PhoneRingIcon />
               </span>
-              <span dir="ltr">{site.phones.office.display}</span>
+              <span dir="ltr" className="underline decoration-accent/50 decoration-1 underline-offset-4">
+                {site.phones.office.display}
+              </span>
             </a>
             <p>{dict.emergency}</p>
           </div>

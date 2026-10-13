@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 import { site } from "@/lib/site";
-import { CloseIcon, MenuIcon, PhoneIcon } from "./Icons";
+import { PhoneRingIcon } from "./AnimatedIcons";
+import { CloseIcon, MenuIcon } from "./Icons";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
@@ -46,10 +47,10 @@ export function Header({ lang, dict }: { lang: Locale; dict: Nav }) {
       className={`fixed inset-x-0 top-0 z-40 transition-colors duration-300 ${
         solid
           ? "border-b border-line bg-bg/90 text-ink shadow-sm shadow-navy-950/5 backdrop-blur-xl"
-          : "border-b border-transparent text-cream"
+          : "border-b border-transparent text-ink"
       }`}
     >
-      <div className="mx-auto flex h-18 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-2 px-3 sm:h-18 sm:gap-4 sm:px-6 lg:px-8">
         <a href="#top" className="shrink-0" onClick={() => setOpen(false)}>
           <Logo tagline={dict.tagline} className="[&_svg]:text-current" />
         </a>
@@ -62,16 +63,13 @@ export function Header({ lang, dict }: { lang: Locale; dict: Nav }) {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
-          <div className="hidden sm:block">
-            <LanguageSwitcher lang={lang} label={dict.language} />
-          </div>
-          <ThemeToggle labels={{ light: dict.themeLight, dark: dict.themeDark }} className="hidden sm:block" />
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          <LanguageSwitcher lang={lang} label={dict.language} compact />
+          <ThemeToggle labels={{ light: dict.themeLight, dark: dict.themeDark }} />
           <div className="hidden lg:block">
             <BrandButton
-              variant={solid ? "primary" : "cream"}
               href={`tel:${site.phones.office.tel}`}
-              icon={<PhoneIcon />}
+              icon={<PhoneRingIcon />}
               className="!px-5 !py-2.5"
             >
               <span dir="ltr">{site.phones.office.display}</span>
@@ -79,7 +77,7 @@ export function Header({ lang, dict }: { lang: Locale; dict: Nav }) {
           </div>
           <button
             type="button"
-            className="grid size-10 place-items-center rounded-full border border-current/15 text-xl xl:hidden"
+            className="grid size-9 shrink-0 place-items-center rounded-full border border-current/15 text-lg sm:size-10 sm:text-xl xl:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? dict.close : dict.menu}
@@ -106,12 +104,8 @@ export function Header({ lang, dict }: { lang: Locale; dict: Nav }) {
               {label}
             </a>
           ))}
-          <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <LanguageSwitcher lang={lang} label={dict.language} />
-              <ThemeToggle labels={{ light: dict.themeLight, dark: dict.themeDark }} className="sm:hidden" />
-            </div>
-            <BrandButton href={`tel:${site.phones.office.tel}`} icon={<PhoneIcon />} className="!py-3">
+          <div className="mt-6">
+            <BrandButton href={`tel:${site.phones.office.tel}`} icon={<PhoneRingIcon />} className="w-full !py-3">
               {dict.call}
             </BrandButton>
           </div>

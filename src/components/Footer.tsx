@@ -37,7 +37,7 @@ export async function Footer({ dict, nav }: { dict: Dictionary["footer"]; nav: D
         </nav>
         <div className="flex flex-col gap-2 text-sm">
           {(["office", "mobile"] as const).map((k) => (
-            <a key={k} href={`tel:${site.phones[k].tel}`} dir="ltr" className="font-semibold tabular-nums hover:underline">
+            <a key={k} href={`tel:${site.phones[k].tel}`} dir="ltr" className="font-semibold tabular-nums underline decoration-cream/40 decoration-1 underline-offset-4 hover:decoration-cream">
               {site.phones[k].display}
             </a>
           ))}

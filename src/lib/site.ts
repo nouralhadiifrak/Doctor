@@ -16,7 +16,7 @@ export const site = {
   mapsUrl:
     "https://www.google.com/maps/place/Dr.+Hicham+Ben+Elghali/data=!4m2!3m1!1s0x0:0xf003014219b9face",
   mapsEmbedUrl:
-    "https://www.google.com/maps?q=Dr.+Hicham+Ben+Elghali,+Crystal+Offices+3,+Bouskoura&output=embed",
+    "https://maps.google.com/maps?q=Dr.+Hicham+Ben+Elghali,+Crystal+Offices+3,+Bouskoura&z=16&hl=fr&output=embed",
 };
 
 // Gallery order. The first photo is also the hero portrait.

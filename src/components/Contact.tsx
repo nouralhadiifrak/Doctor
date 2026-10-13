@@ -1,7 +1,8 @@
 import type { Dictionary } from "@/i18n/dictionaries";
 import { OPENING_HOURS } from "@/lib/schedule";
 import { site } from "@/lib/site";
-import { ArrowIcon, ClockIcon, PhoneIcon, PinIcon } from "./Icons";
+import { PhoneRingIcon, PinSpinIcon } from "./AnimatedIcons";
+import { ArrowIcon, ClockIcon } from "./Icons";
 import { SectionHeading } from "./ui";
 
 const fmt = (m: number) => `${String(Math.floor(m / 60)).padStart(2, "0")}:${String(m % 60).padStart(2, "0")}`;
@@ -32,7 +33,7 @@ export function Contact({ dict }: { dict: Dictionary["contact"] }) {
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
           <div className="divide-y divide-line rounded-3xl border border-line bg-surface p-6 shadow-sm shadow-navy-950/5 sm:p-7">
             <div className={block}>
-              <PinIcon className={icon} />
+              <PinSpinIcon className={icon} />
               <div className="flex-1">
                 <p className={label}>{dict.address}</p>
                 <address className="mt-2 text-sm not-italic leading-relaxed text-muted" dir="ltr" lang="fr">
@@ -42,7 +43,7 @@ export function Contact({ dict }: { dict: Dictionary["contact"] }) {
                   href={site.mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-accent underline-offset-4 hover:underline"
+                  className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-accent underline decoration-accent/50 decoration-1 underline-offset-4 transition hover:decoration-accent"
                 >
                   {dict.directions} <ArrowIcon className="rtl:-scale-x-100" />
                 </a>
@@ -69,7 +70,7 @@ export function Contact({ dict }: { dict: Dictionary["contact"] }) {
             </div>
 
             <div className={block}>
-              <PhoneIcon className={icon} />
+              <PhoneRingIcon className={icon} />
               <div className="flex-1">
                 <p className={label}>{dict.phones}</p>
                 <ul className="mt-2 space-y-1 text-sm">
@@ -79,7 +80,7 @@ export function Contact({ dict }: { dict: Dictionary["contact"] }) {
                       <a
                         href={`tel:${site.phones[k].tel}`}
                         dir="ltr"
-                        className="font-semibold tabular-nums text-accent underline-offset-4 hover:underline"
+                        className="font-semibold tabular-nums text-accent underline decoration-accent/50 decoration-1 underline-offset-4 transition hover:decoration-accent"
                       >
                         {site.phones[k].display}
                       </a>
@@ -90,13 +91,16 @@ export function Contact({ dict }: { dict: Dictionary["contact"] }) {
             </div>
           </div>
 
-          <div className="min-h-[18rem] overflow-hidden rounded-3xl border border-line bg-surface-2">
+          {/* Fixed heights: a percentage height inside an auto-height box collapses on
+              phones, and a lazy iframe with no height never loads. */}
+          <div className="relative h-72 overflow-hidden rounded-3xl border border-line bg-surface-2 sm:h-80 lg:h-auto lg:min-h-[18rem]">
             <iframe
               title={dict.mapTitle}
               src={site.mapsEmbedUrl}
               loading="lazy"
+              allowFullScreen
               referrerPolicy="no-referrer-when-downgrade"
-              className="size-full min-h-[18rem] border-0 dark:opacity-90 dark:[filter:invert(0.9)_hue-rotate(180deg)]"
+              className="absolute inset-0 h-full w-full border-0 dark:opacity-90 dark:[filter:invert(0.9)_hue-rotate(180deg)]"
             />
           </div>
         </div>

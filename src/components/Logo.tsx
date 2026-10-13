@@ -14,13 +14,15 @@ export function Emblem({ className = "" }: { className?: string }) {
 
 export function Logo({ tagline, className = "" }: LogoProps) {
   return (
-    <span className={`flex items-center gap-3 ${className}`}>
-      <Emblem className="size-10 shrink-0 text-accent" />
+    <span className={`flex items-center gap-2 sm:gap-3 ${className}`}>
+      <Emblem className="size-8 shrink-0 text-accent sm:size-10" />
       <span className="flex flex-col leading-none">
-        <span className="font-display text-[1.15rem] font-semibold tracking-wide" dir="ltr">
-          Dr. Hicham Ben Elghali
+        {/* Two short lines on phones to leave room for the header controls. */}
+        <span className="font-display text-[0.92rem] font-semibold leading-[1.05] tracking-wide sm:text-[1.15rem] sm:leading-none" dir="ltr">
+          <span className="block sm:inline">Dr. Hicham </span>
+          <span className="block sm:inline">Ben Elghali</span>
         </span>
-        <span className="mt-1 text-[0.62rem] font-medium uppercase tracking-[0.22em] opacity-70">
+        <span className="mt-1 hidden text-[0.62rem] font-medium uppercase tracking-[0.22em] opacity-70 sm:block">
           {tagline}
         </span>
       </span>
