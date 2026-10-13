@@ -44,9 +44,11 @@ const fr = {
         title: "Doctorat en médecine",
         detail: "Faculté de Médecine et de Pharmacie de Casablanca – Université Hassan II",
       },
-      { title: "Diplôme universitaire", detail: "Médecine d’urgence – CHU Ibn Rochd" },
-      { title: "Cabinet à Bouskoura", detail: "Andalous Prestige – Crystal Offices 3" },
+      { title: "Médecine d’urgence", detail: "Diplôme universitaire – CHU Ibn Rochd" },
+      { title: "Médecine générale", detail: "Consultations, suivi des maladies chroniques et prévention" },
+      { title: "Visites à domicile", detail: "Consultations au domicile des patients et téléconsultations" },
     ],
+    mapsLink: "Ouvrir l’adresse dans Google Maps",
   },
   services: {
     kicker: "Services",
