@@ -20,13 +20,25 @@ agreed so far. No secrets belong in this file.
 - Booking writes to Google Calendar via a service account
   (env: GOOGLE_SERVICE_ACCOUNT_EMAIL, GOOGLE_PRIVATE_KEY, GOOGLE_CALENDAR_ID).
   Tested working on the owner's own calendar. Setup steps: README.md.
-- Effects: mask text reveal on headings, moving-gradient buttons, glass slider
-  dark/light switch (in the phone menu on small screens).
-- Hero text in capitals; subtitle reworded to "Un suivi médical…" (in caps,
-  "Une médecine" read as "une médecin").
-- Deployed on Vercel from `main`. Work branch: `claude/zen-heisenberg-n79be7`.
-  Latest commits on that branch (photos, caps, compact contact, switch) still
-  need a merge into `main` to go live.
+- Effects: mask text reveal on headings, moving-gradient buttons, soft pill
+  theme switch (silver knob = light, navy knob = dark, from client video),
+  cover-flow gallery (from client video, autoplay 4.5s), animated line icons
+  in src/components/AnimatedIcons.tsx (cap, red alert – always red,
+  stethoscope, house, spinning pin, ringing phone).
+- Hero follows light/dark theme. Hero text in capitals; subtitle "Un suivi
+  médical…" (in caps, "Une médecine" read as "une médecin").
+- Hero buttons: "Visiter le cabinet" (Google Maps, new tab) + "Prendre
+  rendez-vous". Hidden on phones (sticky bottom bar covers call/book).
+- Mobile order: title → portrait → Google rating → 4 qualifications with
+  icons → about text → underlined address linking to Maps → services…
+- Mobile header shows language picker + theme switch; logo on two lines.
+- Phone numbers are underlined links everywhere. Map uses fixed heights
+  (was collapsing on phones) – confirm on a real phone after deploy.
+- Qualifications (4): Doctorat en médecine, Médecine d'urgence, Médecine
+  générale, Visites à domicile – the last two were written from the bio and
+  need the doctor's approval.
+- Deployed on Vercel from `main`. Work branch: `claude/zen-heisenberg-n79be7`
+  (merge it into `main` to publish new commits).
 
 ## Waiting on the client (meeting)
 
