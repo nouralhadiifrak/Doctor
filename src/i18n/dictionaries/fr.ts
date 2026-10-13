@@ -25,7 +25,7 @@ const fr = {
     title: "Dr Hicham Ben Elghali",
     subtitle:
       "Un suivi médical attentif et rigoureux, dans un cabinet moderne et serein, pour vous accompagner à chaque étape de votre santé.",
-    ctaAbout: "Découvrir le docteur",
+    ctaVisit: "Visiter le cabinet",
     ctaBook: "Prendre rendez-vous",
     rating: "5,0 sur Google",
     badges: ["Faculté de Médecine de Casablanca", "DU de médecine d’urgence", "Visites à domicile"],

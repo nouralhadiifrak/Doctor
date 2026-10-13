@@ -1,5 +1,7 @@
 import type { Dictionary } from "@/i18n/dictionaries";
-import { ArrowIcon, CalendarIcon, StarIcon } from "./Icons";
+import { site } from "@/lib/site";
+import { PinSpinIcon } from "./AnimatedIcons";
+import { CalendarIcon, StarIcon } from "./Icons";
 import { Photo } from "./Photo";
 import { BrandButton } from "./BrandButton";
 import { CurtainReveal } from "./fx/CurtainReveal";
@@ -48,13 +50,8 @@ export function Hero({ dict, portrait, portraitPosition = "50% 50%" }: Props) {
 
           {/* On phones the sticky bottom bar already offers Call / Book. */}
           <div className="mt-10 hidden flex-col gap-3 sm:flex sm:flex-row">
-            <BrandButton
-              variant="outline"
-              href="#about"
-              icon={<ArrowIcon className="rtl:-scale-x-100" />}
-              iconSide="end"
-            >
-              {dict.ctaAbout}
+            <BrandButton variant="outline" href={site.mapsUrl} newTab icon={<PinSpinIcon />}>
+              {dict.ctaVisit}
             </BrandButton>
             <BrandButton href="#booking" icon={<CalendarIcon />}>
               {dict.ctaBook}

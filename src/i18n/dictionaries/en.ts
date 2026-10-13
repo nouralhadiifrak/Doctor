@@ -27,7 +27,7 @@ const en: Dictionary = {
     title: "Dr Hicham Ben Elghali",
     subtitle:
       "Attentive, thorough medical care in a modern and calm practice, supporting you at every stage of your health.",
-    ctaAbout: "Meet the doctor",
+    ctaVisit: "Visit the practice",
     ctaBook: "Book an appointment",
     rating: "5.0 on Google",
     badges: ["Casablanca Faculty of Medicine", "University diploma in emergency medicine", "Home visits"],
