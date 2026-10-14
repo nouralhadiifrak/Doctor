@@ -23,7 +23,7 @@ export async function Footer({ dict, nav }: { dict: Dictionary["footer"]; nav: D
     <footer className="bg-navy-950 pb-28 pt-16 text-cream lg:pb-12">
       <div className="mx-auto flex max-w-7xl flex-col gap-10 px-4 sm:px-6 lg:flex-row lg:items-start lg:justify-between lg:px-8">
         <div>
-          <Logo tagline={dict.tagline} className="[&_svg]:text-cream" />
+          <Logo tagline={dict.tagline} tone="onDark" />
           <p className="mt-6 text-sm leading-relaxed text-cream/60" dir="ltr" lang="fr">
             {site.address.line1}, {site.address.line2}, {site.address.city}
           </p>

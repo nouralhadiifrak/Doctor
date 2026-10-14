@@ -176,7 +176,7 @@ export function Booking({ dict, lang, intlLocale }: { dict: Dictionary["booking"
               {done.demo && (
                 <p className="mx-auto mt-4 max-w-md rounded-xl bg-surface-2 px-4 py-3 text-sm text-muted">{dict.demoNote}</p>
               )}
-              <BrandButton variant="outline" onClick={reset} className="mt-4 flex w-fit mx-auto">
+              <BrandButton variant="outlineLight" onClick={reset} className="mt-4 flex w-fit mx-auto">
                 {dict.another}
               </BrandButton>
             </div>
@@ -330,7 +330,7 @@ export function Booking({ dict, lang, intlLocale }: { dict: Dictionary["booking"
                 </a>
               )}
 
-              <BrandButton type="submit" disabled={submitting} icon={<CalendarIcon />} className="w-full !py-4 !text-base">
+              <BrandButton variant="navy" type="submit" disabled={submitting} icon={<CalendarIcon />} className="w-full !py-4 !text-base">
                 {submitting ? dict.submitting : dict.submit}
               </BrandButton>
               <p className="text-center text-xs text-muted">{dict.privacy}</p>

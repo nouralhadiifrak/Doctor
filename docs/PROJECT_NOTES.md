@@ -10,7 +10,14 @@ agreed so far. No secrets belong in this file.
 - Phone: 06 63 45 60 22 only (calls + WhatsApp; the doctor has no landline).
 - Hours: Mon–Fri 09:00–18:00, Sat 09:00–13:00, Sun closed. Slots: 20 min.
 - Languages: French (default), English, Arabic (RTL).
-- Palette: #010736, #0D1C42, #22396F, #FCF1D0. Feel: calm, safe, luxury, professional.
+- Palette (from the logo): navy #0E275B, teal #1A9B8F, light background
+  #F2F7F0, darker teal #137A70 for links/small text, dark mode background
+  #071631 with light #F2F7F0 cards, stars #E0A43A. Feel: calm, safe, professional.
+- Logo: public/images/logo.png (transparent) + logo-dark.png (navy parts made
+  light for dark backgrounds), favicon src/app/icon.png. Source was a JPG –
+  ask for an SVG for sharper rendering.
+- Domain: generaliste-bouskoura.com (bought at Genious). sitemap.xml and
+  robots.txt point to it.
 
 ## Current state (built)
 
@@ -44,8 +51,8 @@ agreed so far. No secrets belong in this file.
   button, booking saves to Google Calendar then opens WhatsApp with a
   prefilled summary (WhatsApp fallback if the calendar is unreachable);
   doctor's own calendar events block slots, all-day events block the day.
-- Pending from that meeting: new colors + logo (waiting for files), domain
-  name already bought by the doctor (connect it in Vercel → Domains).
+- Pending: connect generaliste-bouskoura.com in Vercel → Domains (DNS at
+  Genious), set NEXT_PUBLIC_SITE_URL, submit the sitemap in Search Console.
 
 ## Waiting on the client (meeting)
 

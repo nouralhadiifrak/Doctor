@@ -13,7 +13,7 @@ const initials = (name: string) =>
 
 function Stars({ count, className = "" }: { count: number; className?: string }) {
   return (
-    <span className={`flex gap-0.5 text-gold ${className}`} aria-hidden="true">
+    <span className={`flex gap-0.5 text-star ${className}`} aria-hidden="true">
       {Array.from({ length: count }, (_, i) => (
         <StarIcon key={i} />
       ))}

@@ -15,8 +15,8 @@ export function Hero({ dict, portrait, portraitPosition = "50% 50%" }: Props) {
     <section id="top" className="relative isolate overflow-hidden bg-bg text-ink">
       {/* Ambient light and fine rings, tinted for each theme */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -top-40 end-[-10%] size-[42rem] rounded-full bg-cream blur-[120px] dark:bg-navy-700/50" />
-        <div className="absolute bottom-[-30%] start-[-10%] size-[36rem] rounded-full bg-gold/10 blur-[100px] dark:bg-navy-900" />
+        <div className="absolute -top-40 end-[-10%] size-[42rem] rounded-full bg-gold/20 blur-[120px] dark:bg-navy-700/60" />
+        <div className="absolute bottom-[-30%] start-[-10%] size-[36rem] rounded-full bg-navy-700/10 blur-[100px] dark:bg-gold/10" />
         <svg
           className="absolute end-[-12rem] top-1/2 hidden size-[56rem] -translate-y-1/2 text-ink/[0.06] lg:block"
           viewBox="0 0 100 100"
@@ -99,7 +99,7 @@ export function Hero({ dict, portrait, portraitPosition = "50% 50%" }: Props) {
 
 function Stars({ className = "" }: { className?: string }) {
   return (
-    <span className={`flex text-gold ${className}`} aria-hidden="true">
+    <span className={`flex text-star ${className}`} aria-hidden="true">
       {Array.from({ length: 5 }, (_, i) => (
         <StarIcon key={i} />
       ))}

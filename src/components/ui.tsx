@@ -15,7 +15,7 @@ export function SectionHeading({
   const center = align === "center";
   return (
     <div className={center ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
-      <p className={`flex items-center gap-3 text-xs font-semibold uppercase tracking-kicker text-gold ${center ? "justify-center" : ""}`}>
+      <p className={`flex items-center gap-3 text-xs font-semibold uppercase tracking-kicker text-accent ${center ? "justify-center" : ""}`}>
         <span className="h-px w-8 bg-gold/60" aria-hidden="true" />
         {kicker}
         {center && <span className="h-px w-8 bg-gold/60" aria-hidden="true" />}

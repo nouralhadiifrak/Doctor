@@ -1,21 +1,31 @@
-type LogoProps = { tagline: string; className?: string };
+import Image from "next/image";
 
-/** Monogram: an "H" whose crossbar forms a medical cross, inside a fine double ring. */
-export function Emblem({ className = "" }: { className?: string }) {
+type LogoProps = {
+  tagline: string;
+  className?: string;
+  /** "auto" follows the theme; "onDark" always uses the light-ink version (footer). */
+  tone?: "auto" | "onDark";
+};
+
+// The client's "HB" monogram. logo-dark.png has the navy parts turned light so it
+// stays visible on navy backgrounds.
+function Mark({ tone }: { tone: "auto" | "onDark" }) {
+  const size = "h-8 w-auto shrink-0 sm:h-11";
+  if (tone === "onDark") {
+    return <Image src="/images/logo-dark.png" alt="" width={1150} height={610} className={size} />;
+  }
   return (
-    <svg viewBox="0 0 48 48" className={className} fill="none" stroke="currentColor" aria-hidden="true">
-      <circle cx="24" cy="24" r="22.5" strokeWidth="1" />
-      <circle cx="24" cy="24" r="19" strokeWidth="0.6" opacity="0.55" />
-      <path d="M16.5 14.5v19M31.5 14.5v19M16.5 24h15" strokeWidth="2" strokeLinecap="round" />
-      <path d="M24 18.5v11" strokeWidth="2" strokeLinecap="round" />
-    </svg>
+    <>
+      <Image src="/images/logo.png" alt="" width={1150} height={610} priority className={`${size} dark:hidden`} />
+      <Image src="/images/logo-dark.png" alt="" width={1150} height={610} className={`${size} hidden dark:block`} />
+    </>
   );
 }
 
-export function Logo({ tagline, className = "" }: LogoProps) {
+export function Logo({ tagline, className = "", tone = "auto" }: LogoProps) {
   return (
     <span className={`flex items-center gap-2 sm:gap-3 ${className}`}>
-      <Emblem className="size-8 shrink-0 text-accent sm:size-10" />
+      <Mark tone={tone} />
       <span className="flex flex-col leading-none">
         {/* Two short lines on phones to leave room for the header controls. */}
         <span className="font-display text-[0.92rem] font-semibold leading-[1.05] tracking-wide sm:text-[1.15rem] sm:leading-none" dir="ltr">
