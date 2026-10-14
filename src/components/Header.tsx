@@ -68,11 +68,11 @@ export function Header({ lang, dict }: { lang: Locale; dict: Nav }) {
           <ThemeToggle labels={{ light: dict.themeLight, dark: dict.themeDark }} />
           <div className="hidden lg:block">
             <BrandButton
-              href={`tel:${site.phones.office.tel}`}
+              href={`tel:${site.phone.tel}`}
               icon={<PhoneRingIcon />}
               className="!px-5 !py-2.5"
             >
-              <span dir="ltr">{site.phones.office.display}</span>
+              <span dir="ltr">{site.phone.display}</span>
             </BrandButton>
           </div>
           <button
@@ -105,7 +105,7 @@ export function Header({ lang, dict }: { lang: Locale; dict: Nav }) {
             </a>
           ))}
           <div className="mt-6">
-            <BrandButton href={`tel:${site.phones.office.tel}`} icon={<PhoneRingIcon />} className="w-full !py-3">
+            <BrandButton href={`tel:${site.phone.tel}`} icon={<PhoneRingIcon />} className="w-full !py-3">
               {dict.call}
             </BrandButton>
           </div>

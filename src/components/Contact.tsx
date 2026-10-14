@@ -1,6 +1,6 @@
 import type { Dictionary } from "@/i18n/dictionaries";
 import { OPENING_HOURS } from "@/lib/schedule";
-import { site } from "@/lib/site";
+import { site, whatsappUrl } from "@/lib/site";
 import { PhoneRingIcon, PinSpinIcon } from "./AnimatedIcons";
 import { ArrowIcon, ClockIcon } from "./Icons";
 import { SectionHeading } from "./ui";
@@ -24,6 +24,8 @@ export function Contact({ dict }: { dict: Dictionary["contact"] }) {
   const block = "flex gap-4 py-5 first:pt-0 last:pb-0";
   const icon = "mt-0.5 shrink-0 text-xl text-accent";
   const label = "font-display text-lg font-semibold leading-none";
+  const link =
+    "font-semibold tabular-nums text-accent underline decoration-accent/50 decoration-1 underline-offset-4 transition hover:decoration-accent";
 
   return (
     <section id="contact" className="py-20 sm:py-28">
@@ -74,18 +76,18 @@ export function Contact({ dict }: { dict: Dictionary["contact"] }) {
               <div className="flex-1">
                 <p className={label}>{dict.phones}</p>
                 <ul className="mt-2 space-y-1 text-sm">
-                  {(["office", "mobile"] as const).map((k) => (
-                    <li key={k} className="flex items-center justify-between gap-4">
-                      <span className="text-muted">{dict[k]}</span>
-                      <a
-                        href={`tel:${site.phones[k].tel}`}
-                        dir="ltr"
-                        className="font-semibold tabular-nums text-accent underline decoration-accent/50 decoration-1 underline-offset-4 transition hover:decoration-accent"
-                      >
-                        {site.phones[k].display}
-                      </a>
-                    </li>
-                  ))}
+                  <li className="flex items-center justify-between gap-4">
+                    <span className="text-muted">{dict.call}</span>
+                    <a href={`tel:${site.phone.tel}`} dir="ltr" className={link}>
+                      {site.phone.display}
+                    </a>
+                  </li>
+                  <li className="flex items-center justify-between gap-4">
+                    <span className="text-muted">WhatsApp</span>
+                    <a href={whatsappUrl(dict.whatsappMessage)} target="_blank" rel="noopener noreferrer" dir="ltr" className={link}>
+                      {site.phone.display}
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>

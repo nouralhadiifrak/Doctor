@@ -7,7 +7,7 @@ agreed so far. No secrets belong in this file.
 
 - Dr Hicham Ben Elghali, médecin généraliste (male – texts must use masculine forms).
 - Bureau n°2, Rez-de-chaussée, Andalous Prestige – Crystal Offices 3, Bouskoura.
-- Phones: cabinet 05 20 11 06 20, mobile 06 63 45 60 22 (no WhatsApp button).
+- Phone: 06 63 45 60 22 only (calls + WhatsApp; the doctor has no landline).
 - Hours: Mon–Fri 09:00–18:00, Sat 09:00–13:00, Sun closed. Slots: 20 min.
 - Languages: French (default), English, Arabic (RTL).
 - Palette: #010736, #0D1C42, #22396F, #FCF1D0. Feel: calm, safe, luxury, professional.
@@ -39,6 +39,13 @@ agreed so far. No secrets belong in this file.
   need the doctor's approval.
 - Deployed on Vercel from `main`. Work branch: `claude/zen-heisenberg-n79be7`
   (merge it into `main` to publish new commits).
+
+- After the client meeting: single number everywhere, floating WhatsApp
+  button, booking saves to Google Calendar then opens WhatsApp with a
+  prefilled summary (WhatsApp fallback if the calendar is unreachable);
+  doctor's own calendar events block slots, all-day events block the day.
+- Pending from that meeting: new colors + logo (waiting for files), domain
+  name already bought by the doctor (connect it in Vercel → Domains).
 
 ## Waiting on the client (meeting)
 

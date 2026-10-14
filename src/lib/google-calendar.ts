@@ -38,7 +38,11 @@ function getClient() {
 const calendarPath = () =>
   `${API}/calendars/${encodeURIComponent(process.env.GOOGLE_CALENDAR_ID!)}/events`;
 
-/** Busy intervals on a practice-local date. Events marked "free" are ignored. */
+/**
+ * Busy intervals on a practice-local date. Timed events block their slots
+ * unless marked "Free"; all-day events (days off, holidays) always block the
+ * whole day, since Google creates them as "Free" by default.
+ */
 export async function getBusy(date: string): Promise<Busy[]> {
   const url = new URL(calendarPath());
   url.searchParams.set("timeMin", toRfc3339(date, "00:00"));
@@ -52,7 +56,7 @@ export async function getBusy(date: string): Promise<Busy[]> {
   const dayEnd = Date.parse(toRfc3339(date, "23:59"));
 
   return (res.data.items ?? [])
-    .filter((e) => e.status !== "cancelled" && e.transparency !== "transparent")
+    .filter((e) => e.status !== "cancelled" && (e.start?.date || e.transparency !== "transparent"))
     .map((e) => ({
       start: e.start?.dateTime ? Date.parse(e.start.dateTime) : dayStart,
       end: e.end?.dateTime ? Date.parse(e.end.dateTime) : dayEnd,
