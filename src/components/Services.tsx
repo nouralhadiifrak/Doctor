@@ -85,7 +85,7 @@ export function Services({ dict, bookLabel }: { dict: Dictionary["services"]; bo
               </li>
             ))}
           </ul>
-          <BrandButton variant="navy" href="#booking" onClick={() => dialog.current?.close()} className="mt-8 w-full">
+          <BrandButton href="#booking" onClick={() => dialog.current?.close()} className="mt-8 w-full">
             {bookLabel}
           </BrandButton>
         </div>

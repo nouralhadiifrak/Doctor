@@ -10,9 +10,12 @@ agreed so far. No secrets belong in this file.
 - Phone: 06 63 45 60 22 only (calls + WhatsApp; the doctor has no landline).
 - Hours: Mon–Fri 09:00–18:00, Sat 09:00–13:00, Sun closed. Slots: 20 min.
 - Languages: French (default), English, Arabic (RTL).
-- Palette (from the logo): navy #0E275B, teal #1A9B8F, light background
-  #F2F7F0, darker teal #137A70 for links/small text, dark mode background
-  #071631 with light #F2F7F0 cards, stars #E0A43A. Feel: calm, safe, professional.
+- Palette: the original site colours (#010736 · #0D1C42 · #22396F · cream
+  #FCF1D0, light background #FBF8F1, dark mode #010736 with dark cards) plus
+  the logo's "B" teal #1A9B8F (#2BB5A7 in dark mode) in place of the gold for
+  section kickers, decorative lines, button trails and focus rings. Stars stay
+  gold. A logo-based palette and a beige variant were tried and rejected.
+  Feel: calm, safe, professional.
 - Logo: public/images/logo.png (transparent) + logo-dark.png (navy parts made
   light for dark backgrounds), favicon src/app/icon.png. Source was a JPG –
   ask for an SVG for sharper rendering.
