@@ -48,15 +48,8 @@ export function Hero({ dict, portrait, portraitPosition = "50% 50%" }: Props) {
             className="mt-6 max-w-xl text-sm uppercase leading-relaxed tracking-[0.12em] text-muted sm:text-base"
           />
 
-          {/* On phones the sticky bottom bar already offers Call / Book. */}
-          <div className="mt-10 hidden flex-col gap-3 sm:flex sm:flex-row">
-            <BrandButton variant="outline" href={site.mapsUrl} newTab icon={<PinSpinIcon />}>
-              {dict.ctaVisit}
-            </BrandButton>
-            <BrandButton href="#booking" icon={<CalendarIcon />}>
-              {dict.ctaBook}
-            </BrandButton>
-          </div>
+          {/* On phones the buttons sit under the rating instead (see below). */}
+          <HeroActions dict={dict} className="mt-10 hidden sm:flex" />
 
           <ul className="mt-12 hidden flex-wrap gap-x-6 gap-y-3 text-xs uppercase tracking-[0.12em] text-muted lg:flex">
             <li className="flex items-center gap-2 text-ink">
@@ -92,8 +85,25 @@ export function Hero({ dict, portrait, portraitPosition = "50% 50%" }: Props) {
           <Stars className="text-base" />
           {dict.rating}
         </p>
+        <HeroActions dict={dict} className="-mt-4 justify-center sm:hidden" />
       </div>
     </section>
+  );
+}
+
+// Compact on phones so both buttons fit on one line.
+const compact = "max-sm:!gap-1.5 max-sm:!px-3.5 max-sm:!py-3 max-sm:!text-[0.8rem]";
+
+function HeroActions({ dict, className }: { dict: Dictionary["hero"]; className: string }) {
+  return (
+    <div className={`flex flex-wrap gap-2 sm:gap-3 ${className}`}>
+      <BrandButton variant="outline" href={site.mapsUrl} newTab icon={<PinSpinIcon />} className={compact}>
+        {dict.ctaVisit}
+      </BrandButton>
+      <BrandButton href="#booking" icon={<CalendarIcon />} className={compact}>
+        {dict.ctaBook}
+      </BrandButton>
+    </div>
   );
 }
 
