@@ -99,7 +99,7 @@ export function Hero({ dict, portrait, portraitPosition = "50% 50%" }: Props) {
 
 function Stars({ className = "" }: { className?: string }) {
   return (
-    <span className={`flex text-gold ${className}`} aria-hidden="true">
+    <span className={`flex text-star ${className}`} aria-hidden="true">
       {Array.from({ length: 5 }, (_, i) => (
         <StarIcon key={i} />
       ))}

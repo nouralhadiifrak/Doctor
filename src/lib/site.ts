@@ -2,11 +2,9 @@
 
 export const site = {
   name: "Dr Hicham Ben Elghali",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-  phones: {
-    office: { display: "05 20 11 06 20", tel: "+212520110620" },
-    mobile: { display: "06 63 45 60 22", tel: "+212663456022" },
-  },
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://generaliste-bouskoura.com",
+  // Single number for calls and WhatsApp.
+  phone: { display: "06 63 45 60 22", tel: "+212663456022", whatsapp: "212663456022" },
   address: {
     line1: "Bureau n°2, Rez-de-chaussée",
     line2: "Andalous Prestige – Crystal Offices 3",
@@ -53,3 +51,6 @@ export const reviews = [
     text: "Très bon médecin, à la fois compétent, professionnel et humain. Il est vraiment à l'écoute de ses patients prend le temps de bien expliquer et de rassurer. On se sent en confiance dès la consultation. Je recommande vivement.",
   },
 ];
+
+/** wa.me link to the doctor's WhatsApp with a prefilled message. */
+export const whatsappUrl = (text: string) => `https://wa.me/${site.phone.whatsapp}?text=${encodeURIComponent(text)}`;

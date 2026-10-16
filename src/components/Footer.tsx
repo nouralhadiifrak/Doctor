@@ -23,7 +23,7 @@ export async function Footer({ dict, nav }: { dict: Dictionary["footer"]; nav: D
     <footer className="bg-navy-950 pb-28 pt-16 text-cream lg:pb-12">
       <div className="mx-auto flex max-w-7xl flex-col gap-10 px-4 sm:px-6 lg:flex-row lg:items-start lg:justify-between lg:px-8">
         <div>
-          <Logo tagline={dict.tagline} className="[&_svg]:text-cream" />
+          <Logo tagline={dict.tagline} tone="onDark" />
           <p className="mt-6 text-sm leading-relaxed text-cream/60" dir="ltr" lang="fr">
             {site.address.line1}, {site.address.line2}, {site.address.city}
           </p>
@@ -36,11 +36,9 @@ export async function Footer({ dict, nav }: { dict: Dictionary["footer"]; nav: D
           ))}
         </nav>
         <div className="flex flex-col gap-2 text-sm">
-          {(["office", "mobile"] as const).map((k) => (
-            <a key={k} href={`tel:${site.phones[k].tel}`} dir="ltr" className="font-semibold tabular-nums underline decoration-cream/40 decoration-1 underline-offset-4 hover:decoration-cream">
-              {site.phones[k].display}
-            </a>
-          ))}
+          <a href={`tel:${site.phone.tel}`} dir="ltr" className="font-semibold tabular-nums underline decoration-cream/40 decoration-1 underline-offset-4 hover:decoration-cream">
+            {site.phone.display}
+          </a>
         </div>
       </div>
       <p className="mx-auto mt-12 max-w-7xl border-t border-cream/10 px-4 pt-6 text-xs text-cream/50 sm:px-6 lg:px-8">

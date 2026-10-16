@@ -4,9 +4,9 @@ import { useRef, useState, useSyncExternalStore, type FormEvent } from "react";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 import { BOOKING_WINDOW_DAYS, addDays, nowAtClinic } from "@/lib/schedule";
-import { site } from "@/lib/site";
+import { site, whatsappUrl } from "@/lib/site";
 import { PhoneRingIcon } from "./AnimatedIcons";
-import { CalendarIcon, CheckIcon } from "./Icons";
+import { CalendarIcon, CheckIcon, WhatsAppIcon } from "./Icons";
 import { BrandButton } from "./BrandButton";
 import { SectionHeading } from "./ui";
 
@@ -30,10 +30,10 @@ export function Booking({ dict, lang, intlLocale }: { dict: Dictionary["booking"
   const [errors, setErrors] = useState<Partial<Record<Field, string>>>({});
   const [serverError, setServerError] = useState<ServerError | null>(null);
   const [submitting, setSubmitting] = useState(false);
-  const [done, setDone] = useState<{ date: string; time: string; demo: boolean } | null>(null);
+  const [done, setDone] = useState<{ date: string; time: string; demo: boolean; whatsapp: string } | null>(null);
   const request = useRef(0);
 
-  const phone = site.phones.office.display;
+  const phone = site.phone.display;
   const withPhone = (s: string) => s.replace("{phone}", phone);
 
   const loadSlots = async (date: string) => {
@@ -83,7 +83,10 @@ export function Booking({ dict, lang, intlLocale }: { dict: Dictionary["booking"
       });
       const data = await res.json().catch(() => ({}));
       if (res.ok) {
-        setDone({ date: form.date, time: form.time, demo: Boolean(data.demo) });
+        // Saved in the calendar: hand the patient over to WhatsApp to confirm with the doctor.
+        const whatsapp = whatsappUrl(whatsappText(dict.whatsappIntro));
+        setDone({ date: form.date, time: form.time, demo: Boolean(data.demo), whatsapp });
+        setTimeout(() => window.location.assign(whatsapp), 1500);
         return;
       }
       const code = data.error as ServerError;
@@ -110,6 +113,19 @@ export function Booking({ dict, lang, intlLocale }: { dict: Dictionary["booking"
     }).format(new Date(Date.UTC(y, m - 1, d)));
   };
 
+  /** Booking summary sent to the doctor on WhatsApp. */
+  const whatsappText = (intro: string) =>
+    [
+      intro,
+      `• ${dict.name} : ${form.name.trim()}`,
+      `• ${dict.phone} : ${form.phone.trim()}`,
+      form.date && `• ${dict.date} : ${formatDate(form.date)}`,
+      form.time && `• ${dict.time} : ${form.time}`,
+      form.message.trim() && `• ${dict.message} : ${form.message.trim()}`,
+    ]
+      .filter(Boolean)
+      .join("\n");
+
   const reset = () => {
     setDone(null);
     setForm({ name: "", phone: "", date: "", time: "", message: "", website: "" });
@@ -127,12 +143,12 @@ export function Booking({ dict, lang, intlLocale }: { dict: Dictionary["booking"
         <div>
           <SectionHeading kicker={dict.kicker} title={dict.title} intro={dict.intro} align="start" />
           <div className="mt-10 space-y-4 text-sm text-muted">
-            <a href={`tel:${site.phones.office.tel}`} className="flex items-center gap-3 font-semibold text-ink">
+            <a href={`tel:${site.phone.tel}`} className="flex items-center gap-3 font-semibold text-ink">
               <span className="grid size-10 place-items-center rounded-full bg-surface text-lg text-accent">
                 <PhoneRingIcon />
               </span>
               <span dir="ltr" className="underline decoration-accent/50 decoration-1 underline-offset-4">
-                {site.phones.office.display}
+                {site.phone.display}
               </span>
             </a>
             <p>{dict.emergency}</p>
@@ -149,10 +165,18 @@ export function Booking({ dict, lang, intlLocale }: { dict: Dictionary["booking"
               <p className="mx-auto mt-4 max-w-md leading-relaxed text-muted">
                 {dict.successBody.replace("{date}", formatDate(done.date)).replace("{time}", done.time)}
               </p>
+              <p className="mx-auto mt-4 max-w-md text-sm text-muted">{dict.whatsappRedirect}</p>
+              <a
+                href={done.whatsapp}
+                className="mx-auto mt-6 inline-flex items-center gap-2 rounded-full bg-[#25d366] px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[#25d366]/30 transition hover:bg-[#1ebe5b]"
+              >
+                <WhatsAppIcon className="text-lg" />
+                {dict.openWhatsapp}
+              </a>
               {done.demo && (
                 <p className="mx-auto mt-4 max-w-md rounded-xl bg-surface-2 px-4 py-3 text-sm text-muted">{dict.demoNote}</p>
               )}
-              <BrandButton variant="outline" onClick={reset} className="mt-8">
+              <BrandButton variant="outline" onClick={reset} className="mt-4 flex w-fit mx-auto">
                 {dict.another}
               </BrandButton>
             </div>
@@ -294,6 +318,16 @@ export function Booking({ dict, lang, intlLocale }: { dict: Dictionary["booking"
                 <p role="alert" className="rounded-xl border border-red-700/20 bg-red-50 px-4 py-3 text-sm text-red-800 dark:border-red-300/20 dark:bg-red-950/40 dark:text-red-200">
                   {withPhone(dict.errors[serverError])}
                 </p>
+              )}
+              {serverError && serverError !== "slot_unavailable" && serverError !== "invalid" && (
+                // Calendar unreachable: let the patient send the request on WhatsApp instead.
+                <a
+                  href={whatsappUrl(whatsappText(dict.whatsappRequest))}
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-[#25d366] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#1ebe5b]"
+                >
+                  <WhatsAppIcon className="text-lg" />
+                  {dict.sendWhatsapp}
+                </a>
               )}
 
               <BrandButton type="submit" disabled={submitting} icon={<CalendarIcon />} className="w-full !py-4 !text-base">

@@ -7,14 +7,16 @@ import {
   type MovingGradientButtonProps,
 } from "./fx/MovingGradientButton";
 
-// Palettes built from the brand colours #010736 · #0D1C42 · #22396F · #FCF1D0.
+// Palettes built from the brand colours #010736 · #0D1C42 · #22396F · #FCF1D0;
+// the moving arrow heads use the logo's teal #1A9B8F. Filled light-mode buttons
+// use that teal too (the "B").
 const NAVY: GradientPalette = {
-  fill: "#22396F",
-  hoverFill: "#010736",
-  textColor: "#FCF1D0",
+  fill: "#1A9B8F",
+  hoverFill: "#137A70",
+  textColor: "#FFFFFF",
   hoverTextColor: "#FFFFFF",
-  borderColor: "#22396F",
-  strokeColor: "#0D1C42",
+  borderColor: "#1A9B8F",
+  strokeColor: "#137A70",
   headColor: "#FCF1D0",
 };
 
@@ -35,7 +37,7 @@ const GHOST: GradientPalette = {
   hoverTextColor: "#FFFFFF",
   borderColor: "rgba(252, 241, 208, 0.28)",
   strokeColor: "rgba(252, 241, 208, 0.35)",
-  headColor: "#FCF1D0",
+  headColor: "#1A9B8F",
 };
 
 const OUTLINE_LIGHT: GradientPalette = {
@@ -45,7 +47,7 @@ const OUTLINE_LIGHT: GradientPalette = {
   hoverTextColor: "#22396F",
   borderColor: "rgba(1, 7, 54, 0.14)",
   strokeColor: "rgba(34, 57, 111, 0.45)",
-  headColor: "#22396F",
+  headColor: "#1A9B8F",
 };
 
 const OUTLINE_DARK: GradientPalette = {
@@ -55,7 +57,7 @@ const OUTLINE_DARK: GradientPalette = {
   hoverTextColor: "#FFFFFF",
   borderColor: "rgba(252, 241, 208, 0.16)",
   strokeColor: "rgba(252, 241, 208, 0.35)",
-  headColor: "#FCF1D0",
+  headColor: "#1A9B8F",
 };
 
 export type BrandVariant = "primary" | "navy" | "cream" | "ghost" | "outline";

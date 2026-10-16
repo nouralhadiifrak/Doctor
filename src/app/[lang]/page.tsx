@@ -7,6 +7,7 @@ import { Gallery } from "@/components/Gallery";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { MobileActionBar } from "@/components/MobileActionBar";
+import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 import { Reviews } from "@/components/Reviews";
 import { Services } from "@/components/Services";
 import { hasLocale, intlLocale } from "@/i18n/config";
@@ -19,7 +20,7 @@ function JsonLd() {
     "@type": "Physician",
     name: site.name,
     medicalSpecialty: "PrimaryCare",
-    telephone: site.phones.office.tel,
+    telephone: site.phone.tel,
     url: site.url,
     address: {
       "@type": "PostalAddress",
@@ -66,6 +67,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
       </main>
       <Footer dict={dict.footer} nav={dict.nav} />
       <MobileActionBar dict={dict.nav} />
+      <WhatsAppFloat dict={dict.nav} />
     </>
   );
 }

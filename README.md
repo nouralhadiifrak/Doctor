@@ -38,7 +38,9 @@ Appointments are written by a Google **service account** into a calendar that is
 
 **Switching to the doctor's calendar later:** share the doctor's calendar with the same service account (step 3) and change `GOOGLE_CALENDAR_ID`. Nothing else changes.
 
-Each booking creates an event "RDV · Patient name" with the phone and reason in its description. To block time (holidays, lunch), add a "Busy" event in the calendar. All-day events block the day only if they are set to "Busy".
+Each booking creates an event "RDV · Patient name" with the phone and reason in its description, then sends the patient to WhatsApp with a prefilled summary for the doctor. If the calendar can't be reached, the form offers to send the request on WhatsApp instead.
+
+**Blocking time:** any event the doctor adds to his calendar during opening hours (meeting, family matter…) makes those slots unavailable on the site. All-day events (days off, holidays) block the whole day. A timed event set to "Show as: Free" does not block anything.
 
 ## Deploy
 
