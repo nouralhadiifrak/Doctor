@@ -9,15 +9,15 @@ import {
 
 // Palettes built from the brand colours #010736 · #0D1C42 · #22396F · #FCF1D0;
 // the moving arrow heads use the logo's teal #1A9B8F. Filled light-mode buttons
-// use the logo's navy #0E275B (the "H").
+// use that teal too (the "B").
 const NAVY: GradientPalette = {
-  fill: "#0E275B",
-  hoverFill: "#010736",
-  textColor: "#FCF1D0",
+  fill: "#1A9B8F",
+  hoverFill: "#137A70",
+  textColor: "#FFFFFF",
   hoverTextColor: "#FFFFFF",
-  borderColor: "#0E275B",
-  strokeColor: "#0D1C42",
-  headColor: "#1A9B8F",
+  borderColor: "#1A9B8F",
+  strokeColor: "#137A70",
+  headColor: "#FCF1D0",
 };
 
 const CREAM: GradientPalette = {
