@@ -8,13 +8,14 @@ import {
 } from "./fx/MovingGradientButton";
 
 // Palettes built from the brand colours #010736 · #0D1C42 · #22396F · #FCF1D0;
-// the moving arrow heads use the logo's teal #1A9B8F.
+// the moving arrow heads use the logo's teal #1A9B8F. Filled light-mode buttons
+// use the logo's navy #0E275B (the "H").
 const NAVY: GradientPalette = {
-  fill: "#22396F",
+  fill: "#0E275B",
   hoverFill: "#010736",
   textColor: "#FCF1D0",
   hoverTextColor: "#FFFFFF",
-  borderColor: "#22396F",
+  borderColor: "#0E275B",
   strokeColor: "#0D1C42",
   headColor: "#1A9B8F",
 };
