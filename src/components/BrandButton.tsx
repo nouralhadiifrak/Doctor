@@ -77,8 +77,6 @@ export function BrandButton({ variant = "primary", ...props }: Props) {
             ? dark
               ? OUTLINE_DARK
               : OUTLINE_LIGHT
-            : dark
-              ? CREAM
-              : NAVY;
+            : NAVY; // teal in both themes
   return <MovingGradientButton palette={palette} {...props} />;
 }
