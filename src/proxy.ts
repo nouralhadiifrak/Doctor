@@ -1,10 +1,20 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { defaultLocale, hasLocale, locales } from "@/i18n/config";
+import { site } from "@/lib/site";
 
 export const LOCALE_COOKIE = "NEXT_LOCALE";
 
+// Only one public address: in production, the *.vercel.app URLs redirect
+// permanently to the real domain so Google sees no duplicate pages.
+const canonical = new URL(site.url);
+
 export function proxy(request: NextRequest) {
-  const { pathname } = request.nextUrl;
+  const { pathname, search } = request.nextUrl;
+
+  const host = request.headers.get("host");
+  if (process.env.VERCEL_ENV === "production" && host?.endsWith(".vercel.app")) {
+    return NextResponse.redirect(new URL(pathname + search, canonical), 308);
+  }
   const hasPrefix = locales.some(
     (l) => pathname === `/${l}` || pathname.startsWith(`/${l}/`),
   );
