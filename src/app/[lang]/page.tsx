@@ -13,7 +13,11 @@ import { Reviews } from "@/components/Reviews";
 import { Services } from "@/components/Services";
 import { hasLocale, intlLocale, locales, type Locale } from "@/i18n/config";
 import { getDictionary, type Dictionary } from "@/i18n/dictionaries";
+import { OPENING_HOURS } from "@/lib/schedule";
 import { gallery, site } from "@/lib/site";
+
+const WEEKDAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const hhmm = (m: number) => `${String(Math.floor(m / 60)).padStart(2, "0")}:${String(m % 60).padStart(2, "0")}`;
 
 /** Structured data for Google: the practice, the website and the FAQ. */
 function JsonLd({ lang, dict }: { lang: Locale; dict: Dictionary }) {
@@ -45,15 +49,16 @@ function JsonLd({ lang, dict }: { lang: Locale; dict: Dictionary }) {
         hasMap: site.mapsUrl,
         sameAs: [site.mapsUrl],
         availableService: dict.services.items.map((s) => ({ "@type": "MedicalProcedure", name: s.title })),
-        openingHoursSpecification: [
-          {
-            "@type": "OpeningHoursSpecification",
-            dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            opens: "09:00",
-            closes: "18:00",
-          },
-          { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "09:00", closes: "13:00" },
-        ],
+        openingHoursSpecification: Object.entries(OPENING_HOURS).flatMap(([day, hours]) =>
+          hours
+            ? [{
+                "@type": "OpeningHoursSpecification",
+                dayOfWeek: WEEKDAYS[Number(day)],
+                opens: hhmm(hours[0]),
+                closes: hhmm(hours[1]),
+              }]
+            : [],
+        ),
       },
       {
         "@type": "WebSite",

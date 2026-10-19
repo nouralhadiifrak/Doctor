@@ -117,7 +117,7 @@ const fr = {
   booking: {
     kicker: "Rendez-vous",
     title: "Prendre rendez-vous",
-    intro: "Choisissez une date et un créneau de 20 minutes. Votre rendez-vous est enregistré directement dans l’agenda du cabinet.",
+    intro: "Choisissez une date et un créneau de 30 minutes. Votre rendez-vous est enregistré directement dans l’agenda du cabinet.",
     name: "Nom complet",
     namePlaceholder: "Votre nom et prénom",
     phone: "Téléphone",
@@ -180,7 +180,7 @@ const fr = {
       },
       {
         q: "Quels sont les horaires de consultation ?",
-        a: "Le cabinet est ouvert du lundi au vendredi de 9h à 18h et le samedi de 9h à 13h. Il est fermé le dimanche.",
+        a: "Le cabinet est ouvert du lundi au jeudi de 9h à 18h, le vendredi de 14h à 18h et le samedi de 9h à 13h. Il est fermé le dimanche.",
       },
       {
         q: "Comment prendre rendez-vous ?",

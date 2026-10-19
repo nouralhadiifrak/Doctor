@@ -2,7 +2,7 @@
 // the API so both always agree on which slots exist.
 
 export const TIMEZONE = "Africa/Casablanca";
-export const SLOT_MINUTES = 20;
+export const SLOT_MINUTES = 30;
 export const BOOKING_WINDOW_DAYS = 60;
 
 // Minutes from midnight, keyed by weekday (0 = Sunday). Missing = closed.
@@ -11,7 +11,7 @@ export const OPENING_HOURS: Partial<Record<number, [number, number]>> = {
   2: [9 * 60, 18 * 60],
   3: [9 * 60, 18 * 60],
   4: [9 * 60, 18 * 60],
-  5: [9 * 60, 18 * 60],
+  5: [14 * 60, 18 * 60], // Friday: afternoon only
   6: [9 * 60, 13 * 60],
 };
 

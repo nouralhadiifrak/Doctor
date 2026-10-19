@@ -111,7 +111,7 @@ const en: Dictionary = {
   booking: {
     kicker: "Appointment",
     title: "Book an appointment",
-    intro: "Pick a date and a 20-minute slot. Your appointment goes straight into the practice’s calendar.",
+    intro: "Pick a date and a 30-minute slot. Your appointment goes straight into the practice’s calendar.",
     name: "Full name",
     namePlaceholder: "Your first and last name",
     phone: "Phone",
@@ -174,7 +174,7 @@ const en: Dictionary = {
       },
       {
         q: "What are the opening hours?",
-        a: "The practice is open Monday to Friday from 9 am to 6 pm and Saturday from 9 am to 1 pm. It is closed on Sundays.",
+        a: "The practice is open Monday to Thursday from 9 am to 6 pm, Friday from 2 pm to 6 pm and Saturday from 9 am to 1 pm. It is closed on Sundays.",
       },
       {
         q: "How do I book an appointment?",

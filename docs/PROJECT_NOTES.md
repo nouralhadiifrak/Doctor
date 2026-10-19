@@ -8,7 +8,8 @@ agreed so far. No secrets belong in this file.
 - Dr Hicham Ben Elghali, médecin généraliste (male – texts must use masculine forms).
 - Bureau n°2, Rez-de-chaussée, Andalous Prestige – Crystal Offices 3, Bouskoura.
 - Phone: 06 63 45 60 22 only (calls + WhatsApp; the doctor has no landline).
-- Hours: Mon–Fri 09:00–18:00, Sat 09:00–13:00, Sun closed. Slots: 20 min.
+- Hours: Mon–Thu 09:00–18:00, Fri 14:00–18:00 (not available Friday morning),
+  Sat 09:00–13:00, Sun closed. Slots: 30 min.
 - Languages: French (default), English, Arabic (RTL).
 - Palette: the original site colours (#010736 · #0D1C42 · #22396F · cream
   #FCF1D0, light background #FBF8F1, dark mode #010736 with dark cards) plus
