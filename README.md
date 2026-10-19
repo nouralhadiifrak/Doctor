@@ -19,7 +19,7 @@ Without Google credentials, `npm run dev` runs booking in **demo mode**: the for
 | --- | --- |
 | Texts (FR / EN / AR) | `src/i18n/dictionaries/fr.ts`, `en.ts`, `ar.ts` |
 | Phones, address, map, photos, reviews | `src/lib/site.ts` |
-| Opening hours, 20-min slots, booking window | `src/lib/schedule.ts` |
+| Opening hours, 30-min slots, Friday afternoon only, booking window | `src/lib/schedule.ts` |
 | Colours and fonts | `src/app/globals.css`, `src/app/[lang]/layout.tsx` |
 
 **Photos:** replace the placeholders in `public/images/` with real photos (JPG/WebP, ideally 1600×1000 for the cabinet and 800×1000 for the portrait) and update the paths in `src/lib/site.ts`. The first gallery photo is also used as the hero portrait.

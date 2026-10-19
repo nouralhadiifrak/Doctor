@@ -22,7 +22,7 @@ Git workflow I want: work on a feature branch, commit with clear messages, push,
 - Address: Bureau n°2, Rez-de-chaussée, Andalous Prestige – Crystal Offices 3, Bouskoura (Grand Casablanca).
 - Google Maps link: https://www.google.com/maps/place/Dr.+Hicham+Ben+Elghali/data=!4m2!3m1!1s0x0:0xf003014219b9face
 - Phones (tap-to-call, no WhatsApp button): cabinet 05 20 11 06 20 (+212520110620), mobile 06 63 45 60 22 (+212663456022).
-- Hours: Monday–Friday 09:00–18:00, Saturday 09:00–13:00, Sunday closed. Appointment slot: 20 min.
+- Hours: Monday–Thursday 09:00–18:00, Friday 14:00–18:00, Saturday 09:00–13:00, Sunday closed. Appointment slot: 30 min.
 - Languages: French (default), English, Arabic (RTL). Name in Arabic: الدكتور هشام بن الغالي (flag for native-speaker check).
 - About text (use verbatim, translate for EN/AR):
   "Le Dr Hicham Ben Elghali est médecin généraliste exerçant à Bouskoura. Diplômé de la Faculté de Médecine et de Pharmacie de Casablanca (Université Hassan II), il a également obtenu un diplôme universitaire en médecine d’urgence au CHU Ibn Rochd.
