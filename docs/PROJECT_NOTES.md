@@ -19,8 +19,9 @@ agreed so far. No secrets belong in this file.
 - Logo: public/images/logo.png (transparent) + logo-dark.png (navy parts made
   light for dark backgrounds), favicon src/app/icon.png. Source was a JPG –
   ask for an SVG for sharper rendering.
-- Domain: generaliste-bouskoura.com (bought at Genious). sitemap.xml and
-  robots.txt point to it.
+- Domain: generaliste-bouskoura.ma (bought at Genious, DNS at Genious: A @ →
+  Vercel IP, CNAME www → Vercel). Canonical host is www.generaliste-bouskoura.ma
+  (the bare domain redirects to it). Connected and live.
 
 ## Current state (built)
 
@@ -54,8 +55,14 @@ agreed so far. No secrets belong in this file.
   button, booking saves to Google Calendar then opens WhatsApp with a
   prefilled summary (WhatsApp fallback if the calendar is unreachable);
   doctor's own calendar events block slots, all-day events block the day.
-- Pending: connect generaliste-bouskoura.com in Vercel → Domains (DNS at
-  Genious), set NEXT_PUBLIC_SITE_URL, submit the sitemap in Search Console.
+- SEO on the site: titles "… à Bouskoura, près de Casablanca", hreflang incl.
+  x-default, link preview image (src/app/opengraph-image.jpg), JSON-LD graph
+  (Physician + WebSite + FAQPage), FAQ section built only from known facts
+  (texts to validate with the doctor; the emergency answer reuses
+  booking.emergency). No aggregateRating markup on purpose (Google ignores
+  self-served review stars for local businesses).
+- Pending (off-site): Search Console + sitemap, Google Business Profile
+  (website link), DabaDoc / Med.ma profiles, Bing Webmaster Tools.
 
 ## Waiting on the client (meeting)
 

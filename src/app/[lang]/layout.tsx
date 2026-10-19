@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Amiri, Cormorant_Garamond, IBM_Plex_Sans_Arabic, Inter } from "next/font/google";
 import { notFound } from "next/navigation";
-import { dirOf, hasLocale, locales } from "@/i18n/config";
+import { defaultLocale, dirOf, hasLocale, locales, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { site } from "@/lib/site";
 import "../globals.css";
@@ -31,6 +31,10 @@ const amiri = Amiri({
 // Applies the saved or system theme before first paint to avoid a flash.
 const themeScript = `try{var t=localStorage.getItem("theme");var d=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches;document.documentElement.classList.toggle("dark",d)}catch(e){}`;
 
+// Link preview (WhatsApp, Facebook…): src/app/opengraph-image.jpg, served at the site root.
+const ogImage = { url: "/opengraph-image.jpg", width: 1200, height: 630, alt: site.name };
+const ogLocale: Record<Locale, string> = { fr: "fr_MA", en: "en_US", ar: "ar_MA" };
+
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
 }
@@ -49,14 +53,23 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
     description: dict.meta.description,
     alternates: {
       canonical: `/${lang}`,
-      languages: Object.fromEntries(locales.map((l) => [l, `/${l}`])),
+      languages: { ...Object.fromEntries(locales.map((l) => [l, `/${l}`])), "x-default": `/${defaultLocale}` },
     },
     openGraph: {
       type: "website",
+      url: `/${lang}`,
       title: dict.meta.title,
       description: dict.meta.description,
-      locale: lang,
+      locale: ogLocale[lang],
+      alternateLocale: locales.filter((l) => l !== lang).map((l) => ogLocale[l]),
       siteName: site.name,
+      images: [ogImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: dict.meta.title,
+      description: dict.meta.description,
+      images: [ogImage],
     },
   };
 }

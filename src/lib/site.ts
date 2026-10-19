@@ -2,7 +2,7 @@
 
 export const site = {
   name: "Dr Hicham Ben Elghali",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://generaliste-bouskoura.com",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.generaliste-bouskoura.ma",
   // Single number for calls and WhatsApp.
   phone: { display: "06 63 45 60 22", tel: "+212663456022", whatsapp: "212663456022" },
   address: {

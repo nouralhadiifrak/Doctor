@@ -2,7 +2,7 @@ import type { Dictionary } from "./fr";
 
 const en: Dictionary = {
   meta: {
-    title: "Dr Hicham Ben Elghali – General Practitioner in Bouskoura",
+    title: "Dr Hicham Ben Elghali – General Practitioner in Bouskoura, near Casablanca",
     description:
       "General practice of Dr Hicham Ben Elghali in Bouskoura: consultations, chronic disease follow-up, ECG, ultrasound, home visits and teleconsultations. Book your appointment online.",
   },
@@ -162,6 +162,37 @@ const en: Dictionary = {
     mapTitle: "Map of the practice in Bouskoura",
     closed: "Closed",
     days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+  },
+  faq: {
+    kicker: "FAQ",
+    title: "Your questions, answered",
+    emergencyQuestion: "What should I do in an emergency?",
+    items: [
+      {
+        q: "Where is Dr Ben Elghali’s practice?",
+        a: "The general practice is at Office no. 2, ground floor, Andalous Prestige – Crystal Offices 3, Bouskoura (Greater Casablanca). Google Maps directions are in the Contact section.",
+      },
+      {
+        q: "What are the opening hours?",
+        a: "The practice is open Monday to Friday from 9 am to 6 pm and Saturday from 9 am to 1 pm. It is closed on Sundays.",
+      },
+      {
+        q: "How do I book an appointment?",
+        a: "Book online on this site by choosing a date and a time slot, or contact the practice by phone or WhatsApp on 06 63 45 60 22.",
+      },
+      {
+        q: "Does the doctor make home visits?",
+        a: "Yes, Dr Ben Elghali offers home visits. Contact the practice by phone or WhatsApp to arrange one.",
+      },
+      {
+        q: "Do you offer teleconsultations?",
+        a: "Yes, teleconsultations are available. Contact the practice to schedule one.",
+      },
+      {
+        q: "Which tests are done at the practice?",
+        a: "The practice performs electrocardiograms (ECG), ultrasound scans and metabolic screening, in addition to general consultations and chronic disease follow-up.",
+      },
+    ],
   },
   footer: {
     tagline: "General practitioner in Bouskoura",

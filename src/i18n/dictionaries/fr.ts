@@ -1,6 +1,6 @@
 const fr = {
   meta: {
-    title: "Dr Hicham Ben Elghali – Médecin généraliste à Bouskoura",
+    title: "Dr Hicham Ben Elghali – Médecin généraliste à Bouskoura, près de Casablanca",
     description:
       "Cabinet de médecine générale du Dr Hicham Ben Elghali à Bouskoura : consultations, suivi des maladies chroniques, ECG, échographie, visites à domicile et téléconsultations. Prise de rendez-vous en ligne.",
   },
@@ -168,6 +168,37 @@ const fr = {
     mapTitle: "Carte du cabinet à Bouskoura",
     closed: "Fermé",
     days: ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
+  },
+  faq: {
+    kicker: "Questions fréquentes",
+    title: "Vos questions, nos réponses",
+    emergencyQuestion: "Que faire en cas d’urgence ?",
+    items: [
+      {
+        q: "Où se trouve le cabinet du Dr Ben Elghali ?",
+        a: "Le cabinet de médecine générale est situé Bureau n°2, rez-de-chaussée, Andalous Prestige – Crystal Offices 3, à Bouskoura (Grand Casablanca). L’itinéraire Google Maps est disponible dans la rubrique Contact.",
+      },
+      {
+        q: "Quels sont les horaires de consultation ?",
+        a: "Le cabinet est ouvert du lundi au vendredi de 9h à 18h et le samedi de 9h à 13h. Il est fermé le dimanche.",
+      },
+      {
+        q: "Comment prendre rendez-vous ?",
+        a: "Vous pouvez réserver en ligne sur ce site en choisissant une date et un créneau, ou contacter le cabinet par téléphone ou sur WhatsApp au 06 63 45 60 22.",
+      },
+      {
+        q: "Le docteur fait-il des visites à domicile ?",
+        a: "Oui, le Dr Ben Elghali propose des visites à domicile. Contactez le cabinet par téléphone ou sur WhatsApp pour organiser la visite.",
+      },
+      {
+        q: "Proposez-vous des téléconsultations ?",
+        a: "Oui, des téléconsultations sont proposées. Contactez le cabinet pour convenir d’un rendez-vous.",
+      },
+      {
+        q: "Quels examens sont réalisés au cabinet ?",
+        a: "Le cabinet réalise l’électrocardiogramme (ECG), l’échographie et le dépistage métabolique, en plus des consultations de médecine générale et du suivi des maladies chroniques.",
+      },
+    ],
   },
   footer: {
     tagline: "Médecin généraliste à Bouskoura",
