@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { About } from "@/components/About";
 import { Booking } from "@/components/Booking";
 import { Contact } from "@/components/Contact";
+import { Faq, faqEntries } from "@/components/Faq";
 import { Footer } from "@/components/Footer";
 import { Gallery } from "@/components/Gallery";
 import { Header } from "@/components/Header";
@@ -10,33 +11,68 @@ import { MobileActionBar } from "@/components/MobileActionBar";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 import { Reviews } from "@/components/Reviews";
 import { Services } from "@/components/Services";
-import { hasLocale, intlLocale } from "@/i18n/config";
-import { getDictionary } from "@/i18n/dictionaries";
+import { hasLocale, intlLocale, locales, type Locale } from "@/i18n/config";
+import { getDictionary, type Dictionary } from "@/i18n/dictionaries";
 import { gallery, site } from "@/lib/site";
 
-function JsonLd() {
+/** Structured data for Google: the practice, the website and the FAQ. */
+function JsonLd({ lang, dict }: { lang: Locale; dict: Dictionary }) {
+  const page = `${site.url}/${lang}`;
   const data = {
     "@context": "https://schema.org",
-    "@type": "Physician",
-    name: site.name,
-    medicalSpecialty: "PrimaryCare",
-    telephone: site.phone.tel,
-    url: site.url,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: `${site.address.line1}, ${site.address.line2}`,
-      addressLocality: site.address.city,
-      addressCountry: site.address.country,
-    },
-    hasMap: site.mapsUrl,
-    openingHoursSpecification: [
+    "@graph": [
       {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        opens: "09:00",
-        closes: "18:00",
+        "@type": "Physician",
+        "@id": `${site.url}/#physician`,
+        name: site.name,
+        description: dict.meta.description,
+        medicalSpecialty: "PrimaryCare",
+        url: page,
+        image: `${site.url}${gallery[0].src}`,
+        logo: `${site.url}/images/logo.png`,
+        telephone: site.phone.tel,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: `${site.address.line1}, ${site.address.line2}`,
+          addressLocality: site.address.city,
+          addressRegion: "Casablanca-Settat",
+          addressCountry: site.address.country,
+        },
+        areaServed: [
+          { "@type": "City", name: "Bouskoura" },
+          { "@type": "City", name: "Casablanca" },
+        ],
+        hasMap: site.mapsUrl,
+        sameAs: [site.mapsUrl],
+        availableService: dict.services.items.map((s) => ({ "@type": "MedicalProcedure", name: s.title })),
+        openingHoursSpecification: [
+          {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            opens: "09:00",
+            closes: "18:00",
+          },
+          { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "09:00", closes: "13:00" },
+        ],
       },
-      { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "09:00", closes: "13:00" },
+      {
+        "@type": "WebSite",
+        "@id": `${site.url}/#website`,
+        url: site.url,
+        name: site.name,
+        inLanguage: locales,
+        publisher: { "@id": `${site.url}/#physician` },
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${page}#faq`,
+        inLanguage: lang,
+        mainEntity: faqEntries(dict.faq, dict.booking.emergency).map(({ q, a }) => ({
+          "@type": "Question",
+          name: q,
+          acceptedAnswer: { "@type": "Answer", text: a },
+        })),
+      },
     ],
   };
   return (
@@ -54,7 +90,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
 
   return (
     <>
-      <JsonLd />
+      <JsonLd lang={lang} dict={dict} />
       <Header lang={lang} dict={dict.nav} />
       <main>
         <Hero dict={dict.hero} portrait={gallery[0].src} portraitPosition={gallery[0].position} />
@@ -63,6 +99,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         <Gallery dict={dict.gallery} />
         <Reviews dict={dict.reviews} />
         <Booking dict={dict.booking} lang={lang} intlLocale={intlLocale[lang]} />
+        <Faq dict={dict.faq} emergency={dict.booking.emergency} />
         <Contact dict={dict.contact} />
       </main>
       <Footer dict={dict.footer} nav={dict.nav} />
