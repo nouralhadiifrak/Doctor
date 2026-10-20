@@ -158,7 +158,9 @@ export function Gallery({ dict }: { dict: Dictionary["gallery"] }) {
                   src={g.src}
                   alt={dict.captions[g.key]}
                   fill
-                  sizes="(min-width: 1024px) 40rem, 75vw"
+                  // Wide photos fill a tall frame on phones, so they need more pixels than its width.
+                  sizes="(min-width: 1024px) 40rem, 160vw"
+                  quality={90}
                   className={contain ? "object-contain" : "object-cover"}
                   style={position ? { objectPosition: position } : undefined}
                   loading={Math.abs(offset) <= 1 ? "eager" : "lazy"}
