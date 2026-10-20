@@ -14,7 +14,7 @@ import { Services } from "@/components/Services";
 import { hasLocale, intlLocale, locales, type Locale } from "@/i18n/config";
 import { getDictionary, type Dictionary } from "@/i18n/dictionaries";
 import { OPENING_HOURS } from "@/lib/schedule";
-import { gallery, site } from "@/lib/site";
+import { portrait, site } from "@/lib/site";
 
 const WEEKDAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const hhmm = (m: number) => `${String(Math.floor(m / 60)).padStart(2, "0")}:${String(m % 60).padStart(2, "0")}`;
@@ -32,7 +32,7 @@ function JsonLd({ lang, dict }: { lang: Locale; dict: Dictionary }) {
         description: dict.meta.description,
         medicalSpecialty: "PrimaryCare",
         url: page,
-        image: `${site.url}${gallery[0].src}`,
+        image: `${site.url}${portrait.src}`,
         logo: `${site.url}/images/logo.png`,
         telephone: site.phone.tel,
         address: {
@@ -98,7 +98,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
       <JsonLd lang={lang} dict={dict} />
       <Header lang={lang} dict={dict.nav} />
       <main>
-        <Hero dict={dict.hero} portrait={gallery[0].src} portraitPosition={gallery[0].position} />
+        <Hero dict={dict.hero} portrait={portrait.src} portraitPosition={portrait.position} />
         <About dict={dict.about} />
         <Services dict={dict.services} bookLabel={dict.nav.book} />
         <Gallery dict={dict.gallery} />

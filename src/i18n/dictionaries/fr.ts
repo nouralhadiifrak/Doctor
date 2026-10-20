@@ -98,6 +98,7 @@ const fr = {
       doctor: "Dr Hicham Ben Elghali",
       building: "Le cabinet – Crystal Offices 3",
       reception: "L’accueil",
+      corridor: "L’entrée et le couloir",
       waiting: "La salle d’attente",
       lounge: "L’espace d’attente",
       office: "Le bureau de consultation",
