@@ -27,7 +27,7 @@ agreed so far. No secrets belong in this file.
 ## Current state (built)
 
 - Next.js 16 + Tailwind 4, one long page with sections: hero, about, services
-  (3 cards + popups), gallery (9 real photos), Google reviews (verbatim),
+  (3 cards + popups), gallery (6 photos from the doctor, Oct 2026), Google reviews (verbatim),
   booking, contact (compact card + map), footer, sticky mobile Call/Book bar.
 - Booking writes to Google Calendar via a service account
   (env: GOOGLE_SERVICE_ACCOUNT_EMAIL, GOOGLE_PRIVATE_KEY, GOOGLE_CALENDAR_ID).

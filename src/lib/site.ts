@@ -23,15 +23,11 @@ export const portrait = { src: "/images/doctor-portrait.png", position: "50% 30%
 // Gallery order. `fit: "contain"` shows tall photos in full instead of cropping them.
 export const gallery = [
   { src: "/images/doctor-desk.webp", key: "doctor", position: "52% 50%" },
-  { src: "/images/building.webp", key: "building", fit: "contain" },
-  { src: "/images/reception.webp", key: "reception", fit: "contain" },
   { src: "/images/corridor.webp", key: "corridor" },
   { src: "/images/waiting-room.webp", key: "waiting" },
-  { src: "/images/lounge.webp", key: "lounge" },
   { src: "/images/office.webp", key: "office" },
   { src: "/images/office-2.webp", key: "office2" },
   { src: "/images/exam-room.webp", key: "exam" },
-  { src: "/images/care-room.webp", key: "care" },
 ] as const satisfies readonly { src: string; key: string; fit?: "contain"; position?: string }[];
 
 export type GalleryKey = (typeof gallery)[number]["key"];
