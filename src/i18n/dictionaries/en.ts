@@ -90,14 +90,11 @@ const en: Dictionary = {
     goTo: "Go to photo",
     captions: {
       doctor: "Dr Hicham Ben Elghali",
-      building: "The practice – Crystal Offices 3",
-      reception: "Reception",
+      corridor: "Entrance and corridor",
       waiting: "Waiting room",
-      lounge: "Waiting area",
       office: "Consultation office",
       office2: "Consultation area",
       exam: "Examination room",
-      care: "Treatment room",
     },
   },
   reviews: {

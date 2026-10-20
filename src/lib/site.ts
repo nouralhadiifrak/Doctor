@@ -17,18 +17,17 @@ export const site = {
     "https://maps.google.com/maps?q=Dr.+Hicham+Ben+Elghali,+Crystal+Offices+3,+Bouskoura&z=16&hl=fr&output=embed",
 };
 
-// Gallery order. The first photo is also the hero portrait.
-// `fit: "contain"` shows tall photos in full instead of cropping them.
+// Tall portrait used in the hero arch (and as the practice image for Google).
+export const portrait = { src: "/images/doctor-portrait.png", position: "50% 30%" };
+
+// Gallery order. `fit: "contain"` shows tall photos in full instead of cropping them.
 export const gallery = [
-  { src: "/images/doctor-portrait.png", key: "doctor", position: "50% 30%" },
-  { src: "/images/building.webp", key: "building", fit: "contain" },
-  { src: "/images/reception.webp", key: "reception", fit: "contain" },
+  { src: "/images/doctor-desk.webp", key: "doctor", position: "52% 50%" },
+  { src: "/images/corridor.webp", key: "corridor" },
   { src: "/images/waiting-room.webp", key: "waiting" },
-  { src: "/images/lounge.webp", key: "lounge" },
   { src: "/images/office.webp", key: "office" },
   { src: "/images/office-2.webp", key: "office2" },
   { src: "/images/exam-room.webp", key: "exam" },
-  { src: "/images/care-room.webp", key: "care" },
 ] as const satisfies readonly { src: string; key: string; fit?: "contain"; position?: string }[];
 
 export type GalleryKey = (typeof gallery)[number]["key"];
