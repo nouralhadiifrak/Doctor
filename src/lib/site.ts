@@ -18,7 +18,7 @@ export const site = {
 };
 
 // Tall portrait used in the hero arch (and as the practice image for Google).
-export const portrait = { src: "/images/doctor-portrait.png", position: "50% 30%" };
+export const portrait = { src: "/images/doctor-portrait.webp", position: "50% 25%" };
 
 // Gallery order. `fit: "contain"` shows tall photos in full instead of cropping them.
 export const gallery = [

@@ -73,6 +73,7 @@ export function Hero({ dict, portrait, portraitPosition = "50% 50%" }: Props) {
               alt={dict.portraitAlt}
               fill
               preload
+              quality={90}
               sizes="(min-width: 1024px) 28rem, 20rem"
               className="object-cover"
               style={{ objectPosition: portraitPosition }}
