@@ -163,7 +163,8 @@ export function Gallery({ dict }: { dict: Dictionary["gallery"] }) {
                   quality={90}
                   className={contain ? "object-contain" : "object-cover"}
                   style={position ? { objectPosition: position } : undefined}
-                  loading={Math.abs(offset) <= 1 ? "eager" : "lazy"}
+                  // The gallery is far down the page: let the browser fetch photos as it gets close.
+                  loading="lazy"
                   draggable={false}
                 />
               </figure>
