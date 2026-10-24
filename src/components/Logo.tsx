@@ -1,5 +1,8 @@
 import Image from "next/image";
 
+// Shown at most 44px tall (~84px wide): never fetch the 1150px original.
+const LOGO_SIZES = "84px";
+
 type LogoProps = {
   tagline: string;
   className?: string;
@@ -12,12 +15,12 @@ type LogoProps = {
 function Mark({ tone }: { tone: "auto" | "onDark" }) {
   const size = "h-8 w-auto shrink-0 sm:h-11";
   if (tone === "onDark") {
-    return <Image src="/images/logo-dark.png" alt="" width={1150} height={610} className={size} />;
+    return <Image src="/images/logo-dark.png" alt="" width={1150} height={610} sizes={LOGO_SIZES} className={size} />;
   }
   return (
     <>
-      <Image src="/images/logo.png" alt="" width={1150} height={610} priority className={`${size} dark:hidden`} />
-      <Image src="/images/logo-dark.png" alt="" width={1150} height={610} className={`${size} hidden dark:block`} />
+      <Image src="/images/logo.png" alt="" width={1150} height={610} sizes={LOGO_SIZES} priority className={`${size} dark:hidden`} />
+      <Image src="/images/logo-dark.png" alt="" width={1150} height={610} sizes={LOGO_SIZES} className={`${size} hidden dark:block`} />
     </>
   );
 }
