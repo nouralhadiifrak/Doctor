@@ -141,6 +141,9 @@ const fr = {
     sendWhatsapp: "Envoyer la demande par WhatsApp",
     privacy: "Vos informations servent uniquement à organiser votre rendez-vous.",
     emergency: "En cas d’urgence, appelez le 15 ou le 141.",
+    teleTitle: "Vous préférez une téléconsultation ?",
+    teleText: "Consultez le docteur depuis chez vous, sans vous déplacer.",
+    teleCta: "Réserver une téléconsultation",
     errors: {
       name: "Veuillez indiquer votre nom.",
       phone: "Veuillez indiquer un numéro de téléphone valide.",
@@ -189,7 +192,8 @@ const fr = {
       },
       {
         q: "Proposez-vous des téléconsultations ?",
-        a: "Oui, des téléconsultations sont proposées. Contactez le cabinet pour convenir d’un rendez-vous.",
+        a: "Oui, des téléconsultations sont proposées. Vous pouvez les réserver en ligne sur Sehalink.",
+        link: "Réserver une téléconsultation",
       },
       {
         q: "Quels examens sont réalisés au cabinet ?",

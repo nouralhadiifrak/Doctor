@@ -135,6 +135,9 @@ const en: Dictionary = {
     sendWhatsapp: "Send the request on WhatsApp",
     privacy: "Your details are only used to organise your appointment.",
     emergency: "In an emergency, call 15 or 141.",
+    teleTitle: "Prefer a teleconsultation?",
+    teleText: "See the doctor from home, without travelling.",
+    teleCta: "Book a teleconsultation",
     errors: {
       name: "Please enter your name.",
       phone: "Please enter a valid phone number.",
@@ -183,7 +186,8 @@ const en: Dictionary = {
       },
       {
         q: "Do you offer teleconsultations?",
-        a: "Yes, teleconsultations are available. Contact the practice to schedule one.",
+        a: "Yes, teleconsultations are available. You can book one online on Sehalink.",
+        link: "Book a teleconsultation",
       },
       {
         q: "Which tests are done at the practice?",

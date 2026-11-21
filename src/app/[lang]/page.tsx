@@ -47,7 +47,7 @@ function JsonLd({ lang, dict }: { lang: Locale; dict: Dictionary }) {
           { "@type": "City", name: "Casablanca" },
         ],
         hasMap: site.mapsUrl,
-        sameAs: [site.mapsUrl],
+        sameAs: [site.mapsUrl, site.teleconsultUrl],
         availableService: dict.services.items.map((s) => ({ "@type": "MedicalProcedure", name: s.title })),
         openingHoursSpecification: Object.entries(OPENING_HOURS).flatMap(([day, hours]) =>
           hours
@@ -72,10 +72,10 @@ function JsonLd({ lang, dict }: { lang: Locale; dict: Dictionary }) {
         "@type": "FAQPage",
         "@id": `${page}#faq`,
         inLanguage: lang,
-        mainEntity: faqEntries(dict.faq, dict.booking.emergency).map(({ q, a }) => ({
+        mainEntity: faqEntries(dict.faq, dict.booking.emergency).map(({ q, a, link }) => ({
           "@type": "Question",
           name: q,
-          acceptedAnswer: { "@type": "Answer", text: a },
+          acceptedAnswer: { "@type": "Answer", text: link ? `${a} ${site.teleconsultUrl}` : a },
         })),
       },
     ],

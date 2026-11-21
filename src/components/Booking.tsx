@@ -6,7 +6,7 @@ import type { Dictionary } from "@/i18n/dictionaries";
 import { BOOKING_WINDOW_DAYS, addDays, nowAtClinic } from "@/lib/schedule";
 import { site, whatsappUrl } from "@/lib/site";
 import { PhoneRingIcon } from "./AnimatedIcons";
-import { CalendarIcon, CheckIcon, WhatsAppIcon } from "./Icons";
+import { ArrowIcon, CalendarIcon, CheckIcon, VideoIcon, WhatsAppIcon } from "./Icons";
 import { BrandButton } from "./BrandButton";
 import { SectionHeading } from "./ui";
 
@@ -152,6 +152,26 @@ export function Booking({ dict, lang, intlLocale }: { dict: Dictionary["booking"
               </span>
             </a>
             <p>{dict.emergency}</p>
+          </div>
+
+          {/* Teleconsultations are booked on the doctor's Sehalink profile. */}
+          <div className="mt-8 rounded-2xl border border-line bg-surface p-5 sm:p-6">
+            <p className="flex items-center gap-3 font-display text-xl font-semibold leading-tight">
+              <span className="grid size-10 shrink-0 place-items-center rounded-full bg-surface-2 text-lg text-accent">
+                <VideoIcon />
+              </span>
+              {dict.teleTitle}
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-muted">{dict.teleText}</p>
+            <BrandButton
+              variant="outline"
+              href={site.teleconsultUrl}
+              newTab
+              icon={<ArrowIcon className="rtl:-scale-x-100" />}
+              className="mt-5"
+            >
+              {dict.teleCta}
+            </BrandButton>
           </div>
         </div>
 

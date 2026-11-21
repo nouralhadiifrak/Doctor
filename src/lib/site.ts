@@ -11,6 +11,8 @@ export const site = {
     city: "Bouskoura",
     country: "MA",
   },
+  // Teleconsultation booking (the doctor's Sehalink profile).
+  teleconsultUrl: "https://sehalink.com/medecins/casablanca/generaliste/hicham-ben-elghali/9040",
   mapsUrl:
     "https://www.google.com/maps/place/Dr.+Hicham+Ben+Elghali/data=!4m2!3m1!1s0x0:0xf003014219b9face",
   mapsEmbedUrl:
