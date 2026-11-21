@@ -114,7 +114,7 @@ const fr = {
   booking: {
     kicker: "Rendez-vous",
     title: "Prendre rendez-vous",
-    intro: "Choisissez une date et un créneau de 30 minutes. Votre rendez-vous est enregistré directement dans l’agenda du cabinet.",
+    intro: "Choisissez une consultation au cabinet ou une téléconsultation. Au cabinet, votre rendez-vous de 30 minutes est enregistré directement dans l’agenda du cabinet.",
     name: "Nom complet",
     namePlaceholder: "Votre nom et prénom",
     phone: "Téléphone",
@@ -141,6 +141,12 @@ const fr = {
     sendWhatsapp: "Envoyer la demande par WhatsApp",
     privacy: "Vos informations servent uniquement à organiser votre rendez-vous.",
     emergency: "En cas d’urgence, appelez le 15 ou le 141.",
+    chooseTitle: "Quel type de rendez-vous souhaitez-vous ?",
+    cabinetTitle: "Au cabinet",
+    cabinetText: "Consultation à Bouskoura, créneau de 30 minutes.",
+    teleTitle: "Téléconsultation",
+    teleText: "Depuis chez vous, sans vous déplacer. Réservation sur Sehalink.",
+    back: "Changer le type de rendez-vous",
     errors: {
       name: "Veuillez indiquer votre nom.",
       phone: "Veuillez indiquer un numéro de téléphone valide.",
@@ -189,7 +195,8 @@ const fr = {
       },
       {
         q: "Proposez-vous des téléconsultations ?",
-        a: "Oui, des téléconsultations sont proposées. Contactez le cabinet pour convenir d’un rendez-vous.",
+        a: "Oui, des téléconsultations sont proposées. Vous pouvez les réserver en ligne sur Sehalink.",
+        link: "Réserver une téléconsultation",
       },
       {
         q: "Quels examens sont réalisés au cabinet ?",

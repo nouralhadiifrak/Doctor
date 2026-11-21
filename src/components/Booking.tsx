@@ -6,7 +6,7 @@ import type { Dictionary } from "@/i18n/dictionaries";
 import { BOOKING_WINDOW_DAYS, addDays, nowAtClinic } from "@/lib/schedule";
 import { site, whatsappUrl } from "@/lib/site";
 import { PhoneRingIcon } from "./AnimatedIcons";
-import { CalendarIcon, CheckIcon, WhatsAppIcon } from "./Icons";
+import { ArrowIcon, CalendarIcon, CheckIcon, StethoscopeIcon, VideoIcon, WhatsAppIcon } from "./Icons";
 import { BrandButton } from "./BrandButton";
 import { SectionHeading } from "./ui";
 
@@ -30,6 +30,8 @@ export function Booking({ dict, lang, intlLocale }: { dict: Dictionary["booking"
   const [errors, setErrors] = useState<Partial<Record<Field, string>>>({});
   const [serverError, setServerError] = useState<ServerError | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  // First step: at the practice (this form) or teleconsultation (the doctor's Sehalink page).
+  const [mode, setMode] = useState<"choose" | "cabinet">("choose");
   const [done, setDone] = useState<{ date: string; time: string; demo: boolean; whatsapp: string } | null>(null);
   const request = useRef(0);
 
@@ -136,6 +138,9 @@ export function Booking({ dict, lang, intlLocale }: { dict: Dictionary["booking"
     "mt-2 block w-full rounded-xl border border-line bg-bg px-4 py-3.5 text-base text-ink placeholder:text-muted/60 transition focus:border-accent focus:outline-none focus:ring-4 focus:ring-[var(--ring)]";
   const labelCls = "text-sm font-semibold";
   const errorCls = "mt-2 text-sm text-red-700 dark:text-red-300";
+  const choiceCls =
+    "group flex flex-col items-start rounded-2xl border border-line bg-bg p-6 text-start transition hover:-translate-y-0.5 hover:border-accent hover:shadow-lg hover:shadow-navy-950/10 focus-visible:border-accent";
+  const choiceIconCls = "grid size-12 place-items-center rounded-full bg-surface-2 text-2xl text-accent";
 
   return (
     <section id="booking" className="bg-surface-2 py-24 sm:py-32">
@@ -180,8 +185,42 @@ export function Booking({ dict, lang, intlLocale }: { dict: Dictionary["booking"
                 {dict.another}
               </BrandButton>
             </div>
+          ) : mode === "choose" ? (
+            <div>
+              <h3 className="font-display text-2xl font-semibold sm:text-3xl">{dict.chooseTitle}</h3>
+              <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                <button type="button" onClick={() => setMode("cabinet")} className={choiceCls}>
+                  <span className={choiceIconCls}>
+                    <StethoscopeIcon />
+                  </span>
+                  <span className="mt-5 flex items-center gap-2 font-display text-xl font-semibold">
+                    {dict.cabinetTitle}
+                    <ArrowIcon className="text-accent transition group-hover:translate-x-1 rtl:-scale-x-100 rtl:group-hover:-translate-x-1" />
+                  </span>
+                  <span className="mt-2 text-sm leading-relaxed text-muted">{dict.cabinetText}</span>
+                </button>
+                <a href={site.teleconsultUrl} target="_blank" rel="noopener noreferrer" className={choiceCls}>
+                  <span className={choiceIconCls}>
+                    <VideoIcon />
+                  </span>
+                  <span className="mt-5 flex items-center gap-2 font-display text-xl font-semibold">
+                    {dict.teleTitle}
+                    <span aria-hidden="true" className="text-accent">↗</span>
+                  </span>
+                  <span className="mt-2 text-sm leading-relaxed text-muted">{dict.teleText}</span>
+                </a>
+              </div>
+            </div>
           ) : (
             <form onSubmit={submit} noValidate className="relative grid gap-6">
+              <button
+                type="button"
+                onClick={() => setMode("choose")}
+                className="flex w-fit items-center gap-2 text-sm font-semibold text-accent underline decoration-accent/40 underline-offset-4 hover:decoration-accent"
+              >
+                <ArrowIcon className="-scale-x-100 rtl:scale-x-100" />
+                {dict.back}
+              </button>
               <div className="grid gap-6 sm:grid-cols-2">
                 <div>
                   <label htmlFor="bk-name" className={labelCls}>{dict.name}</label>

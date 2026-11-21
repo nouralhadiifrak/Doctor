@@ -108,7 +108,7 @@ const en: Dictionary = {
   booking: {
     kicker: "Appointment",
     title: "Book an appointment",
-    intro: "Pick a date and a 30-minute slot. Your appointment goes straight into the practice’s calendar.",
+    intro: "Choose a consultation at the practice or a teleconsultation. At the practice, your 30-minute appointment goes straight into the practice’s calendar.",
     name: "Full name",
     namePlaceholder: "Your first and last name",
     phone: "Phone",
@@ -135,6 +135,12 @@ const en: Dictionary = {
     sendWhatsapp: "Send the request on WhatsApp",
     privacy: "Your details are only used to organise your appointment.",
     emergency: "In an emergency, call 15 or 141.",
+    chooseTitle: "What type of appointment would you like?",
+    cabinetTitle: "At the practice",
+    cabinetText: "Consultation in Bouskoura, 30-minute slot.",
+    teleTitle: "Teleconsultation",
+    teleText: "From home, without travelling. Booked on Sehalink.",
+    back: "Change appointment type",
     errors: {
       name: "Please enter your name.",
       phone: "Please enter a valid phone number.",
@@ -183,7 +189,8 @@ const en: Dictionary = {
       },
       {
         q: "Do you offer teleconsultations?",
-        a: "Yes, teleconsultations are available. Contact the practice to schedule one.",
+        a: "Yes, teleconsultations are available. You can book one online on Sehalink.",
+        link: "Book a teleconsultation",
       },
       {
         q: "Which tests are done at the practice?",

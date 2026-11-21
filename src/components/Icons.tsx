@@ -21,6 +21,13 @@ function Icon({ children, ...props }: IconProps) {
   );
 }
 
+export const VideoIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <rect x="2.5" y="6" width="13" height="12" rx="2" />
+    <path d="m15.5 10.5 6-3.5v10l-6-3.5" />
+  </Icon>
+);
+
 export const PhoneIcon = (p: IconProps) => (
   <Icon {...p}>
     <path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2" />
